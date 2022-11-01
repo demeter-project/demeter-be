@@ -18,10 +18,17 @@ namespace :csv_load do
         moisture_enum_value = 1
       end
 
+      states = plant[:state_and_province]
+
+      if !states.nil?
+        states = states[/\(.*?\)/].gsub(/\W+/, " ").strip
+      end
+
       plant_hash = {
         symbol: plant[:symbol],
         scientific_name: plant[:scientific_name],
         common_name: plant[:common_name],
+        native_states: states,
         temperature_min: plant[:temperature_minimum_f],
         moisture_use: moisture_enum_value
       }
@@ -30,7 +37,6 @@ namespace :csv_load do
         Plant.create!(plant_hash)
       end
     end
-
     ActiveRecord::Base.connection.reset_pk_sequence!('plants')
   end
 end

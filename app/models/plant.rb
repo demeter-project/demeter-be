@@ -6,7 +6,14 @@ class Plant < ApplicationRecord
     scientific_name 
     common_name 
     temperature_min 
-    moisture_use]
+    moisture_use
+    native_states]
 
   validates_numericality_of :temperature_min
+
+  # belongs_to :plot
+
+  def self.native_to(state)
+    
+  end
 end

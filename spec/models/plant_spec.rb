@@ -15,4 +15,12 @@ RSpec.describe Plant, type: :model do
 
     it { should validate_numericality_of(:temperature_min) }
   end
+
+  describe 'class methods' do
+    describe '#native_to(state)' do
+      it 'returns all plants native to provided state' do
+        
+      end
+    end
+  end
 end
