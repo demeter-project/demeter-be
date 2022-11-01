@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_01_174946) do
+ActiveRecord::Schema.define(version: 2022_11_01_212733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,9 @@ ActiveRecord::Schema.define(version: 2022_11_01_174946) do
     t.string "symbol"
     t.string "scientific_name"
     t.string "common_name"
-    t.integer "moisture_use"
+    t.string "native_states"
     t.integer "temperature_min"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "moisture_use"
   end
 
 end
