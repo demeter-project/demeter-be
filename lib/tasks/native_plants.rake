@@ -9,7 +9,7 @@ namespace :csv_load do
     CSV.foreach(native_plants, headers: true, header_converters: :symbol) do |plant|
       plant_hash = {
         symbol: plant[:symbol],
-        scientific_name: plant[:scientific_namex],
+        scientific_name: plant[:scientific_name],
         common_name: plant[:common_name],
         frost_free_days_min: plant[:frost_free_days_minimum],
         temperature_min: plant[:temperature_minimum_f],
