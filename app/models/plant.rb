@@ -14,6 +14,6 @@ class Plant < ApplicationRecord
   # belongs_to :plot
 
   def self.native_to(state)
-    
+    where('native_states like ?', "%#{state}%")
   end
 end
