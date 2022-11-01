@@ -1,24 +1,27 @@
-# README
+# Demeter-Be
+## Turing Backend Engineering Group Project
+![ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white) ![ror](	https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white) ![html5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![css](	https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+#### Contributors: [Thomas Musselman](https://github.com/musselmanth) | [Riley McCullough](https://github.com/Rileybmcc) | [Sid Mann](https://github.com/sjmann2) | [A.J. Krumholz](https://github.com/ajkrumholz) | [Ken Lenhart](https://github.com/ajkrumholz)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description:
+A RESTful API backend that consumes the [National Oceanic and Atmospheric Administration](https://www.noaa.gov/) weather API and the [Growstuff](https://www.growstuff.org/) gardening API.
 
-Things you may want to cover:
+#### Directions
 
-* Ruby version
+[GitHub Repo](https://github.com/demeter-project/demeter-be)
 
-* System dependencies
+`bundle install`
 
-* Configuration
+`rails db:{drop,create,migrate,seed}`
 
-* Database creation
+`rails s`
 
-* Database initialization
+#### Endpoints available
 
-* How to run the test suite
+**Get one plant**
 
-* Services (job queues, cache servers, search engines, etc.)
+GET `http://localhost:3000/api/v1/plants/<plant_id>`
 
-* Deployment instructions
 
-* ...
+
+
