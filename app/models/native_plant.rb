@@ -1,2 +1,0 @@
-class NativePlant < ApplicationRecord
-end

@@ -11,13 +11,12 @@ namespace :csv_load do
         symbol: plant[:symbol],
         scientific_name: plant[:scientific_name],
         common_name: plant[:common_name],
-        frost_free_days_min: plant[:frost_free_days_minimum],
         temperature_min: plant[:temperature_minimum_f],
-        edible: plant[:palatable_human]
+        moisture_use: plant[:moisture_use]
       }
 
       if plant_hash.none? { |key, value| value.blank? || value.nil? || value == "NA" }
-        NativePlant.create!(plant_hash)
+        Plant.create!(plant_hash)
       end
     end
 
