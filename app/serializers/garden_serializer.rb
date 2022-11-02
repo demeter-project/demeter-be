@@ -6,5 +6,4 @@ class GardenSerializer
   attribute :weather_forecast do |object|
     WeatherFacade.get_forecast(object.zip_code)
   end
-
 end

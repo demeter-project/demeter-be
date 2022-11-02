@@ -1,5 +1,4 @@
 class WeatherFacade
-
   def self.get_forecast(zipcode)
     lat_long = HardinessService.get_lat_lon(zipcode)[:coordinates]
     latitude = lat_long[:lat]
