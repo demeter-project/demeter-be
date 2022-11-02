@@ -1,6 +1,7 @@
 class PlotSerializer
   include JSONAPI::Serializer
 
-  attributes  :name,
-              :plants
+  attributes :name
+
+  has_many :plants
 end

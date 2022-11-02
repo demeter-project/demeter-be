@@ -9,6 +9,7 @@ class Plant < ApplicationRecord
     moisture_use
     temperature_min
   ]
+  
   validates_numericality_of :temperature_min
   
   has_many :plot_plants
