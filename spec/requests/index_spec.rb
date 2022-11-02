@@ -6,7 +6,7 @@ RSpec.describe 'plots#index' do
       get '/api/v1/gardens/:garden_id/plots'
       garden = create :garden
       plots = create_list(:plot, 5, garden: garden)
-
+      require 'pry'; binding.pry
       expect(response).to be_successful
       expect(response).to have_http_status(200)
 
@@ -14,7 +14,6 @@ RSpec.describe 'plots#index' do
       expect(result).to have_key(:data)
 
       plots = result[:data]
-      end
     end
   end
 end
