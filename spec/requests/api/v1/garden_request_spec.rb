@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Garden API' do
   describe 'GET /gardens/:id' do
     it 'returns data for one garden', :vcr do
-      garden = Garden.create!(name: "My Garden", zip_code: 60647, state_code: 'IL')
+      # garden = Garden.create!(name: "My Garden", zip_code: 60647, state_code: 'IL')
+      garden = create(:garden)
 
       get "/api/v1/gardens/#{garden.id}"
 
