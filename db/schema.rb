@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_135609) do
 
   create_table "gardens", force: :cascade do |t|
     t.string "name"
-    t.string "zip_code"
+    t.integer "zip_code"
     t.string "state_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_135609) do
     t.bigint "plot_id"
     t.bigint "plant_id"
     t.integer "quantity"
+    t.datetime "date_planted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plant_id"], name: "index_plot_plants_on_plant_id"
