@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.0.0 # Needed for javascript runtime
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
 jobs: # a collection of steps
-deploy: 
+  deploy:
     executor: heroku/default
     steps:
       - attach_workspace:
@@ -13,7 +13,7 @@ deploy:
 
   build-and-test: # runs not using Workflows must have a `build` job as entry point
     docker: # run the steps with Docker
-      - image: circleci/ruby:2.7.2 # if you're using ruby version >= 3.0, use cimg/ruby:3.x.y 
+      - image: circleci/ruby:2.7.2 # if you're using ruby version >= 3.0, use cimg/ruby:3.x.y
         environment: # environment variables for primary container
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -30,7 +30,7 @@ deploy:
       # Which version of bundler?
       - node/install:
           install-yarn: true
-          node-version: '16.13'
+          node-version: "16.13"
       - run:
           name: Force Bundler Version
           command: |
