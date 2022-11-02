@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_135609) do
 
   create_table "gardens", force: :cascade do |t|
     t.string "name"
-    t.integer "zip_code"
+    t.string "zip_code"
     t.string "state_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
