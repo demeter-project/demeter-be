@@ -2,7 +2,7 @@ class Api::V1::PlotsController < ApplicationController
   before_action :set_garden, only: %i[index create]
 
   def index
-    plots = PlotSerializer.new(garden.plots)
+    plots = PlotSerializer.new(@garden.plots)
     render json: plots
   end
 
