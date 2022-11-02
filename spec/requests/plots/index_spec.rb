@@ -9,7 +9,7 @@ RSpec.describe 'plots#index' do
       expect(response).to be_successful
       expect(response).to have_http_status(200)
 
-      result = JSON.parse(response.body)
+      result = JSON.parse(response.body, symbolize_names: true)
       expect(result).to have_key(:data)
 
       data = result[:data]

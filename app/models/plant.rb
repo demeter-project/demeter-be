@@ -1,5 +1,6 @@
 class Plant < ApplicationRecord
   
+  # validations may not be necessary as we're seeding this data rather than relying on user input
   validates_presence_of %i[
     usda_symbol 
     scientific_name 
@@ -8,10 +9,10 @@ class Plant < ApplicationRecord
     moisture_use
     temperature_min
   ]
-
   validates_numericality_of :temperature_min
   
-  belongs_to :plot
+  has_many :plot_plants
+  has_many :plots, through: :plot_plants
   
   def self.native_to(state)
     where('states like ?', "%#{state}%")
