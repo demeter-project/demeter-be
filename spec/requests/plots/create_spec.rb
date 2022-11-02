@@ -30,11 +30,37 @@ RSpec.describe 'plot creation' do
 
     describe 'sad path' do
       describe 'if name param not present' do
+        it 'returns a 400 error with information' do
+          post "/api/v1/gardens/#{garden.id}/plots"
 
+          expect(response).not_to be_successful
+          expect(response).to have_http_status(400)
+
+          result = JSON.parse(response.body, symbolize_names: true)
+          expect(result).to have_key(:errors)
+
+          first_error = result[:errors].first
+          expect(first_error).to have_key(:title)
+          expect(first_error).to have_key(:detail)
+          expect(first_error[:detail]).to eq("Name can't be blank")
+        end
       end
 
       describe 'if name param empty' do
+        it 'returns a 400 error with information' do
+          post "/api/v1/gardens/#{garden.id}/plots?name="
 
+          expect(response).not_to be_successful
+          expect(response).to have_http_status(400)
+
+          result = JSON.parse(response.body, symbolize_names: true)
+          expect(result).to have_key(:errors)
+
+          first_error = result[:errors].first
+          expect(first_error).to have_key(:title)
+          expect(first_error).to have_key(:detail)
+          expect(first_error[:detail]).to eq("Name can't be blank")
+        end
       end
     end
   end
