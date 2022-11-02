@@ -20,12 +20,18 @@ RSpec.describe 'plots#show' do
       expect(data).to have_key(:type)
       expect(data).to have_key(:attributes)
       expect(data).to have_key(:relationships)
+      
 
       expect(data[:attributes]).to have_key(:name)
+      expect(data[:attributes]).to have_key(:soil_ph_min)
+      expect(data[:attributes]).to have_key(:soil_ph_max)
+      expect(data[:attributes]).to have_key(:shade_tolerant)
       expect(data[:relationships]).to have_key(:plants)
 
       plants = data[:relationships][:plants]
       expect(plants).to have_key(:data)
     end
+
+    it ''
   end
 end
