@@ -8,6 +8,10 @@ class Api::V1::PlotsController < ApplicationController
 
   def show
     plot = PlotSerializer.new(Plot.find(params[:id]))
+
+    # seperate plot plants controller
+    # plot_plants = PlotPlantSerializer.new(plot.plot_plants)
+    
     render json: plot
   end
 end
