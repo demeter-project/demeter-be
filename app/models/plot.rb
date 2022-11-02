@@ -4,5 +4,5 @@ class Plot < ApplicationRecord
   has_many :plants, through: :plot_plants
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+  # validates_uniqueness_of :name
 end
