@@ -12,7 +12,13 @@ RSpec.describe 'plots#index' do
       result = JSON.parse(response.body)
       expect(result).to have_key(:data)
 
-      plots = result[:data]
+      data = result[:data]
+      expect(data.count).to eq(5)
+
+      expected_plot = data.first
+      actual_plot = plots.first
+      require 'pry'; binding.pry
+      expect(expected_plot[:name])
     end
   end
 end
