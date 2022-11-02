@@ -1,7 +1,10 @@
 class WeatherFacade
-  def self.get_forecast(latitude, longitude)
+
+  def self.get_forecast(zipcode)
+    lat_long = HardinessService.get_lat_lon(zipcode)[:coordinates]
+    latitude = lat_long[:lat]
+    longitude = lat_long[:lon]
     forecast = WeatherService.get_forecast(latitude, longitude)
-    # require 'pry' ; binding.pry
     forecast[:properties][:periods].map do |day|
       Weather.new(day)
     end
