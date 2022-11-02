@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://phzmapi.org/60647.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.6.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '94'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 02 Nov 2022 00:33:50 GMT
+      Last-Modified:
+      - Sat, 15 Apr 2017 03:56:55 GMT
+      Etag:
+      - '"c87c6772c680874730f7fb3f01109756"'
+      X-Amz-Version-Id:
+      - 'null'
+      Accept-Ranges:
+      - bytes
+      Server:
+      - AmazonS3
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 df8b3bc606f25025fcf4b59c26a0553e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - ORD58-P5
+      X-Amz-Cf-Id:
+      - 2cYvY-iC8Uh_RQR9j_YwMMMK7ESGhXkAPClnFexnlkqTRzgT1AvL3Q==
+      Age:
+      - '64750'
+    body:
+      encoding: UTF-8
+      string: '{"zone": "6a", "coordinates": {"lat": 41.83, "lon": -87.68}, "temperature_range":
+        "-10 to -5"}'
+  recorded_at: Wed, 02 Nov 2022 18:32:59 GMT
+recorded_with: VCR 6.1.0
