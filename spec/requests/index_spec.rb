@@ -5,7 +5,7 @@ RSpec.describe 'plots#index' do
     it 'returns a json response with information about all plots in the garden' do
       get '/api/v1/gardens/:garden_id/plots'
       garden = create :garden
-      
+      plots = create_list(:plot, 5, garden: garden)
 
       expect(response).to be_successful
       expect(response).to have_http_status(200)
