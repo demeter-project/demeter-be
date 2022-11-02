@@ -1,27 +1,362 @@
 # Demeter-Be
+
 ## Turing Backend Engineering Group Project
-![ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white) ![ror](	https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
+![ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white) ![ror](https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
 #### Contributors: [Thomas Musselman](https://github.com/musselmanth) | [Riley McCullough](https://github.com/Rileybmcc) | [Sid Mann](https://github.com/sjmann2) | [A.J. Krumholz](https://github.com/ajkrumholz) | [Ken Lenhart](https://github.com/ajkrumholz)
 
-### Description:
-A RESTful API backend that consumes the [National Oceanic and Atmospheric Administration](https://www.noaa.gov/) weather API and the [Growstuff](https://www.growstuff.org/) gardening API.
+---
 
-#### Directions
+## Description:
+
+This is the back-end API for our Codename Demeter project. For for detailed information about the project please visit the front-end repository linked below.
+
+This app includes a PostgreSQL database that stores garden, plot, and plant information for the app. Plant information is provided from CSV files of data scraped from the USDA's Plants Database. Plants were filtered so only plants with significant data are included.
+
+The app also consumes two external APIs and consolidates the data to be consumed by our front end:
+
+- Weather information for a user's garden is provided by consuming the [NOAA Weather API](https://www.noaa.gov/)
+- USDA Plant Hardiness Zones are provided by https://phzmapi.org/ which is an API provided by Oregon State PRISM Climate Group
+
+---
+
+## Links
+
+[Front End Repository](https://github.com/demeter-project/demeter-fe)
+
+[Application Deployed on Heroku](https://demeter-fe.herokuapp.com/)
+
+---
+
+## Technology Used
+
+- Rails 5.2.6
+- Ruby 2.7.4
+- PostgreSQL Database
+- CircleCI for CI/CD
+- Heroku
+- [jsonapi-serializer](https://github.com/jsonapi-serializer/jsonapi-serializer#conditional-relationships) for API response serialization.
+
+---
+
+## Local Setup Directions
 
 [GitHub Repo](https://github.com/demeter-project/demeter-be)
 
-`bundle install`
+```
+git clone git@github.com:demeter-project/demeter-be.git
 
-`rails db:{drop,create,migrate,seed}`
+bundle install
 
-`rails s`
+rails db:{drop,create,migrate,seed}
 
-#### Endpoints available
+rails s
+```
 
-**Get one plant**
+---
 
-GET `http://localhost:3000/api/v1/plants/<plant_id>`
+## Database Schema Diagram
 
+<img src="doc/readme_images/schema.png" width="700px">
 
+---
 
+## Endpoints Available
 
+### **Base URL**
+
+`https://demeter-be.herokuapp.com/api/v1/`
+
+---
+
+### **Get one plant**
+
+GET `/plants/<plant_id>`
+
+**Example Response:**
+
+```JSON
+{
+  "data": {
+    "id": "192",
+    "type": "plant",
+    "attributes": {
+      "name": "Heartleaf Arnica",
+      "usda_symbol": "ARCO9",
+      "scientific_name": "Arnica cordifolia",
+      "states": "AK, AZ, CA, CO, ID, MI, MT, ND, NM, NV, OR, SD, UT, WA, WY",
+      "duration": "Perennial",
+      **etc...**
+    }
+  }
+}
+```
+
+---
+
+### **Get plants native to a particular state.**
+
+GET `/plants`
+
+**Required Params:**
+
+- state: Two letter state code
+- zip_code: 5-digit zip code for the planting location
+
+**Optional Params:**
+
+- search_name: A string search query which returns only results with a similar or matching name. If no matching results, a null data value will be returned.
+- sort_by: Pass a plant attribute to sort the results based on that attribute. Available Options are any attribute listed in the plants table within the database schema above.
+  **Example Queries:**
+
+- GET `https://demeter-be.herokuapp.com/api/v1/plants?state=CO&zip_code=80223`
+- GET `https://demeter-be.herokuapp.com/api/v1/plants?state=CO&zip_code=80223&sort_by=ph_minimum`
+- GET `https://demeter-be.herokuapp.com/api/v1/plants?state=CO&zip_code=80223&seach_name=columbine`
+
+**Example Response:**
+
+```JSON
+{
+    "data": [
+        {
+            "id": "156",
+            "type": "plant",
+            "attributes": {
+                "name": "Heartleaf Arnica",
+                "usda_symbol": "ARCO9",
+                "scientific_name": "Arnica cordifolia",
+                "states": "AK, AZ, CA, CO, ID, MI, MT, ND, NM, NV, OR, SD, UT, WA, WY",
+                "duration": "Perennial",
+                "suitable_for_hz": true,
+                **etc....**
+            }
+        },
+        {
+            "id": "124",
+            "type": "plant",
+            "attributes": {
+                "name": "Heartleaf Arnica",
+                "usda_symbol": "ARCO9",
+                "scientific_name": "Arnica cordifolia",
+                "states": "AK, AZ, CA, CO, ID, MI, MT, ND, NM, NV, OR, SD, UT, WA, WY",
+                "duration": "Perennial",
+                "suitable_for_hz": false,
+                **etc....**
+            }
+        },
+        **etc...**
+    ]
+}
+```
+
+**Notes**
+
+Plants returned in this query include an additional boolean attribute "suitable_for_hz" that specifies whether the plant is suitable in the provided zip_code.
+
+See the database schema above for list of other attributes on a given plant.
+
+---
+
+### **Get a user's gardens**
+
+- GET `/gardens`
+
+**Required Params:**
+
+- user_id: The user's id.
+
+**Example Query:**
+
+- GET `https://demeter-be.herokuapp.com/api/v1/gardens?user_id=18`
+
+**Example Response:**
+
+```JSON
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "garden",
+            "attributes": {
+                "name": "My Garden",
+                "zip_code": 80023,
+                "state": "CO",
+                "user_id": "18"
+            }
+        },
+        {
+            "id": "2",
+            "type": "garden",
+            "attributes": {
+                "name": "My Second Garden",
+                "zip_code": 80023,
+                "state": "CO",
+                "user_id": "18"
+            }
+        }
+    ]
+}
+```
+
+---
+
+### **Get one garden**
+
+GET `/gardens/<garden_id>`
+
+**Example Response:**
+
+```JSON
+{
+  "data": {
+    "id": "6",
+    "type": "garden",
+    "attributes": {
+      "name": "My Garden",
+      "zip_code": 80023,
+      "state": "CO",
+      "weather_forecast": [
+          {
+              "number": 1,
+              "name": "Tonight",
+              "startTime": "2022-11-01T19:00:00-05:00",
+              "endTime": "2022-11-02T06:00:00-05:00",
+              "isDaytime": false,
+              "temperature": 54,
+              "temperatureUnit": "F",
+              "temperatureTrend": null,
+              "windSpeed": "15 mph",
+              "windDirection": "S",
+              "icon": "https://api.weather.gov/icons/land/night/skc?size=medium",
+              "shortForecast": "Clear",
+              "detailedForecast": "Clear, with a low around 54. South wind around 15 mph, with gusts as high as 25 mph."
+          },
+          {
+              "number": 2,
+              "name": "Wednesday",
+              "startTime": "2022-11-02T06:00:00-05:00",
+              "endTime": "2022-11-02T18:00:00-05:00",
+              "isDaytime": true,
+              "temperature": 76,
+              "temperatureUnit": "F",
+              "temperatureTrend": null,
+              "windSpeed": "15 to 25 mph",
+              "windDirection": "S",
+              "icon": "https://api.weather.gov/icons/land/day/wind_few?size=medium",
+              "shortForecast": "Sunny",
+              "detailedForecast": "Sunny, with a high near 76. South wind 15 to 25 mph, with gusts as high as 40 mph."
+        },
+        **etc...(includes 7 days in actual response)**
+      ]
+    }
+  }
+}
+```
+
+**Notes:**
+
+When fetching a single garden, the seven day forecast for garden's location is included in the attributes of the garden.
+
+---
+
+### **Get a garden's plots**
+
+GET `/gardens/<garden_id>/plots`
+
+**Example Response:**
+
+```JSON
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "plot",
+      "attributes": {
+        "name": "Pink Flowers"
+      }
+    },
+    {
+      "id": "2",
+      "type": "plot",
+      "attributes": {
+        "name": "Ornamental Grasses"
+      }
+    },
+    **etc..**
+  ]
+}
+```
+
+---
+
+### **Get one plot**
+
+GET `/gardens/<garden_id>/plots/<plot_id>`
+
+**Example Response**
+
+```JSON
+{
+  "data": {
+    "id": "15",
+    "type": "plot",
+    "attributes": {
+      "name": "Succulents",
+      "soil_ph_min": 5.7,
+      "soil_ph_max": 7,
+      "shade_tolerant": true
+    }
+  }
+}
+```
+
+**Notes**
+
+`soil_ph_min`, `soil_ph_max`, and `shade_tolerant` are calculated based on the plants within the plot. If there are currently no plants within the plot these values will be null.
+
+---
+
+### **Get a plot's plants**
+
+GET `/gardens/<garden_id>/plots/<plot_id>/plot_plants`
+
+**Example Response**
+
+```JSON
+{
+  "data": [
+    {
+      "id": "3",
+      "type": "plot_plant",
+      "attributes": {
+        "plant_id": "15"
+        "plant_name": "Common Clover"
+        "quantity": 5
+        "date_planted": 2022/05/18
+      }
+    },
+    {
+      "id": "4",
+      "type": "plot_plant",
+      "attributes": {
+        "plant_id": "185"
+        "plant_name": "Columbine"
+        "quantity": null
+        "date_planted": null
+      }
+    },
+    **etc...**
+  ]
+}
+```
+
+**Notes:**
+
+If a plant has null values for `quantity` and `date_planted` then it has been added to a garden but not planted.
+
+---
+
+### Post, Delete, Patch Endpoints coming soon...
+
+---
