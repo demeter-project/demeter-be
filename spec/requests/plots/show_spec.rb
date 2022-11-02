@@ -27,8 +27,10 @@ RSpec.describe 'plots#show' do
       expect(attributes[:soil_ph_min]).to eq(plot.soil_ph_min.to_s)
       expect(attributes).to have_key(:soil_ph_max)
       expect(attributes[:soil_ph_max]).to eq(plot.soil_ph_max.to_s)
-      expect(attributes).to have_key(:shade_tolerant)
-      expect(attributes[:shade_tolerant]).to eq(plot.shade_tolerant)
+      expect(attributes).to have_key(:shade_tolerant?)
+      expect(attributes[:shade_tolerant?]).to eq(plot.shade_tolerant?)
+      expect(attributes).to have_key(:contains_toxic?)
+      expect(attributes[:contains_toxic?]).to eq(plot.contains_toxic?)
 
       expect(data[:relationships]).to have_key(:plants)
 
@@ -46,7 +48,8 @@ RSpec.describe 'plots#show' do
       attributes = result[:data][:attributes]
       expect(attributes[:soil_ph_min]).to eq(nil)
       expect(attributes[:soil_ph_max]).to eq(nil)
-      expect(attributes[:shade_tolerant]).to eq(nil)
+      expect(attributes[:shade_tolerant?]).to eq(nil)
+      expect(attributes[:contains_toxic?]).to eq(nil)
     end
   end
 end

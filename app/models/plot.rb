@@ -7,26 +7,22 @@ class Plot < ApplicationRecord
   validates_uniqueness_of :name
 
   def soil_ph_min
-    average(:ph_minimum)
+    return nil if plants.empty?
+    plants.order(ph_minimum: :desc).first.ph_minimum
   end
 
   def soil_ph_max
-    average(:ph_maximum)
+    return nil if plants.empty?
+    plants.order(ph_maximum: :asc).first.ph_maximum
   end
 
-  def average(attribute)
-    if plants.empty?
-      nil
-    else
-      plants.sum { |plant| plant.send(attribute) } / plants.count
-    end
+  def shade_tolerant?
+    return nil if plants.empty?
+    plants.all? { |plant| plant.shade_tolerance == "Tolerant"}
   end
 
-  def shade_tolerant
-    if plants.empty?
-      nil
-    else
-      plants.all? { |plant| plant.shade_tolerance == "Tolerant"}
-    end
+  def contains_toxic?
+    return nil if plants.empty?
+    plants.all? { |plant| plant.toxicity == "None" }
   end
 end
