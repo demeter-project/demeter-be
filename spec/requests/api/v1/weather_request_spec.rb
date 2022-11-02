@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'the forecast request spec', :vcr do
+RSpec.describe 'Weather API', :vcr do
   describe 'GET /weather?zipcode=x' do
     it 'returns a 7 day forecast for my given zipcode' do
       WeatherFacade.get_forecast('60647')
