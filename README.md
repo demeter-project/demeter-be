@@ -360,3 +360,84 @@ If a plant has null values for `quantity` and `date_planted` then it has been ad
 ### Post, Delete, Patch Endpoints coming soon...
 
 ---
+
+### **Create a new garden**
+
+POST `/gardens`
+
+**Required JSON Body:**
+
+```JSON
+{
+  "name": "My Garden",
+  "zip_code": "80023",
+  "state": "CO",
+  "user_id": 15
+}
+```
+
+**Example Response**
+
+Response should match a GET `gardens/<garden_id>` response for the newly created garden.
+
+---
+
+### **Create a new plot for a garden**
+
+POST `/gardens/<garden_id>/plots`
+
+**Required JSON Body:**
+
+```JSON
+{
+  "name": "Colorado Wildflowers"
+}
+```
+
+**Example Response**
+
+Response should match a GET `/gardens/<garden_id>/plots/<plot_id>` response for the newly created plot.
+
+---
+
+### **Delete a garden**
+
+DELETE `/gardens/<garden_id>`
+
+**Notes:**
+
+Will return status 204 with no JSON response if the garden was successfully deleted.
+
+---
+
+### **Delete a plot in a garden**
+
+DELETE `/gardens/<garden_id>/plots/<plot_id>`
+
+**Notes:**
+
+Will return status 204 with no JSON response if the plot was successfully deleted.
+
+---
+
+### **Add plants to existing plot / update plot**
+
+PATCH `/gardens/<garden_id>/plots/<plot_id>`
+
+!!! _**This endpoint is subject to change depending on figuring out how this actually gets implemented**_
+
+**Example JSON Body:**
+
+```JSON
+{
+  "plant_ids": [8, 148, 298, 1024, 9]
+}
+```
+
+**Example Response**
+
+The response should match a GET `/gardens/<garden_id>/plots/<plot_id>` request response. The response will not include the added plants, however once the post request is made the plants can be retrieved with the GET `/gardens/<garden_id>/plots/<plot_id>/plot_plants` endpoint.
+
+**Notes:**
+
+The intension of this endpoint is to add plants to a plot, but it could also be passed a "name" in the JSON body to update the name.
