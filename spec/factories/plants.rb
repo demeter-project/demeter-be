@@ -12,6 +12,7 @@ FactoryBot.define do
     duration { %w(Annual Perennial Biannual).sample }
     growth_rate { %w(Slow Moderate Rapid).sample }
     salinity_tolerance { %w(None Low Medium High).sample }
+    shade_tolerance { %w(Tolerant Intermediate Intolerant).sample }
     edible { Faker::Boolean.boolean }
     ph_minimum { Faker::Number.within(range: 3..6.5).round(1) }
     ph_maximum { Faker::Number.within(range: 6.5..9.9).round(1) }
