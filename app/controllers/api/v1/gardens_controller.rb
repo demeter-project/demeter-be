@@ -14,7 +14,8 @@ class Api::V1::GardensController < ApplicationController
     if garden.save
       render json: GardenSerializer.new(garden), status: 201
     else
-      render json: ErrorSerializer.new(garden.errors), status: 400
+      errors = ErrorSerializer.new(garden.errors)
+      render json: errors.show, status: 400
     end
   end
 
