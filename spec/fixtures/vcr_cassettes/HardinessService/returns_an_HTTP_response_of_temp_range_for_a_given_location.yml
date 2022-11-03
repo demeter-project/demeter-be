@@ -39,16 +39,16 @@ http_interactions:
       X-Cache:
       - Hit from cloudfront
       Via:
-      - 1.1 7b0c56156aa23390beef6359f4bdb40a.cloudfront.net (CloudFront)
+      - 1.1 1efedf9603f0d5e659b2c621d2750e46.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - ORD58-P5
       X-Amz-Cf-Id:
-      - L-t-O7IOyn_doYWi9f2cJ3tShrpLorbnZVVJK85hfKDOeGLCc8rpGg==
+      - r1IPb0z8HIOsbUK8bDHS1yGLUu8aFn9jf5x2P0M8fG28p4Qt9_ZXsw==
       Age:
-      - '74956'
+      - '84478'
     body:
       encoding: UTF-8
       string: '{"zone": "6a", "coordinates": {"lat": 41.83, "lon": -87.68}, "temperature_range":
         "-10 to -5"}'
-  recorded_at: Wed, 02 Nov 2022 21:23:05 GMT
+  recorded_at: Thu, 03 Nov 2022 00:01:47 GMT
 recorded_with: VCR 6.1.0
