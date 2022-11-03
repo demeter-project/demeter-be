@@ -15,13 +15,23 @@ class Api::V1::PlotsController < ApplicationController
     render json: plot
   end
 
+  def update
+    plot = Plot.find(params[:id])
+    if plot.update(plot_params)
+      render json: PlotSerializer.new(plot)
+    else
+      errors = ErrorSerializer.new(plot.errors)
+      render rson: errors.show, status: 400
+    end
+  end
+
   def destroy
     plot = set_plot
     plot.destroy
   end
 
   def create
-    plot = @garden.plots.create(plot_params)
+    plot = @garden.plots.new(plot_params)
     if plot.save
       render json: PlotSerializer.new(plot), status: 201
     else
@@ -41,6 +51,6 @@ class Api::V1::PlotsController < ApplicationController
   end
 
   def plot_params
-    params.permit(:name)
+    params.require(:plot).permit(:name, plant_ids: [])
   end
 end
