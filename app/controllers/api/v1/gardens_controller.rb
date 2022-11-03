@@ -10,16 +10,6 @@ class Api::V1::GardensController < ApplicationController
     render json: GardenSerializer.new(@garden, params: {weather: true})
   end
 
-  def destroy
-    @garden.destroy
-  end
-
-  private
-
-  def set_garden
-    @garden = Garden.find(params[:id])
-  end
-
   def create
     garden = Garden.new(garden_params)
     if garden.save
@@ -30,8 +20,16 @@ class Api::V1::GardensController < ApplicationController
     end
   end
 
+  def destroy
+    @garden.destroy
+  end
+  
   private
 
+  def set_garden
+    @garden = Garden.find(params[:id])
+  end
+  
   def garden_params
     params.require(:garden).permit(:user_id, :zip_code, :name, :state_code)
   end
