@@ -4,7 +4,8 @@ class Plot < ApplicationRecord
   has_many :plants, through: :plot_plants
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+
+  # validates_uniqueness_of :name
 
   def soil_ph_min
     return nil if plants.empty?
@@ -25,4 +26,5 @@ class Plot < ApplicationRecord
     return nil if plants.empty?
     plants.all? { |plant| plant.toxicity == "None" }
   end
+
 end

@@ -3,13 +3,13 @@ orbs:
   node: circleci/node@5.0.0 # Needed for javascript runtime
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
 jobs: # a collection of steps
-  deploy:
-    executor: heroku/default
-    steps:
-      - attach_workspace:
-          at: ~/demeter-be
-      - heroku/deploy-via-git:
-          force: true # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
+  deploy: 
+      executor: heroku/default
+      steps:
+        - attach_workspace:
+            at: ~/demeter-be
+        - heroku/deploy-via-git:
+            force: true # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
 
   build-and-test: # runs not using Workflows must have a `build` job as entry point
     docker: # run the steps with Docker
