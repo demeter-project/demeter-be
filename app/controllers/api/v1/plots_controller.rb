@@ -18,6 +18,7 @@ class Api::V1::PlotsController < ApplicationController
   def destroy
     plot = set_plot
     plot.destroy
+  end
 
   def create
     plot = @garden.plots.create(plot_params)
@@ -33,6 +34,7 @@ class Api::V1::PlotsController < ApplicationController
 
   def set_plot
     Plot.find(params[:id])
+  end
 
   def set_garden
     @garden = Garden.find(params[:garden_id])
