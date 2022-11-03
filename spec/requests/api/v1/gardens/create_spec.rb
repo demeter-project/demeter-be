@@ -50,5 +50,18 @@ RSpec.describe 'gardens#create' do
       expect(result[:errors].first).to have_key(:title)
       expect(result[:errors].first).to have_key(:detail)
     end
+
+    it 'returns an error when values are incorrect' do
+      post "/api/v1/gardens", params: { garden: { user_id: 'barney', zip_code: "5408", state_code: "VTA", name: "Arnold's Whimsical Carrot Grotto" } }
+      
+      expect(response).not_to be_successful
+      expect(response).to have_http_status(400)
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result).to have_key(:errors)
+      expect(result[:errors]).to be_an Array
+      expect(result[:errors].first).to have_key(:title)
+      expect(result[:errors].first).to have_key(:detail)
+    end
   end
 end
