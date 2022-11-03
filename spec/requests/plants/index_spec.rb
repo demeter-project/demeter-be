@@ -36,5 +36,14 @@ RSpec.describe '/api/v1/plants endpoints' do
       expect(actual_first[:attributes]).to have_key(:precipitation_min)
       expect(actual_first[:attributes]).to have_key(:precipitation_max)
     end
+
+    describe 'sad path: state missing or empty' do
+      it 'returns an error' do
+        get '/api/v1/plants?state='
+
+        expect(response).not_to be_successful
+        require 'pry'; binding.pry
+      end
+    end
   end
 end
