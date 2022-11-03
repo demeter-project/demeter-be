@@ -32,6 +32,10 @@ RSpec.describe 'plots#show' do
       expect(attributes).to have_key(:contains_toxic?)
       expect(attributes[:contains_toxic?]).to eq(plot.contains_toxic?)
 
+      expect(data[:attributes]).to have_key(:name)
+      expect(data[:attributes]).to have_key(:soil_ph_min)
+      expect(data[:attributes]).to have_key(:soil_ph_max)
+      expect(data[:attributes]).to have_key(:shade_tolerant)
       expect(data[:relationships]).to have_key(:plants)
 
       plants = data[:relationships][:plants]
