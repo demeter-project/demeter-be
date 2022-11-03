@@ -1,8 +1,8 @@
 class Api::V1::PlotsController < ApplicationController
-  
+  before_action :set_garden, only: %i[index create]
+
   def index
-    garden = Garden.find(params[:garden_id])
-    plots = PlotSerializer.new(garden.plots)
+    plots = PlotSerializer.new(@garden.plots)
     render json: plots
   end
 
@@ -18,11 +18,27 @@ class Api::V1::PlotsController < ApplicationController
   def destroy
     plot = set_plot
     plot.destroy
+
+  def create
+    plot = @garden.plots.create(plot_params)
+    if plot.save
+      render json: PlotSerializer.new(plot), status: 201
+    else
+      errors = ErrorSerializer.new(plot.errors)
+      render json: errors.show, status: 400
+    end
   end
 
   private
 
   def set_plot
     Plot.find(params[:id])
+
+  def set_garden
+    @garden = Garden.find(params[:garden_id])
+  end
+
+  def plot_params
+    params.permit(:name)
   end
 end
