@@ -14,6 +14,10 @@ class ErrorSerializer
     end
   end
 
+  def custom
+    require 'pry'; binding.pry
+  end
+
   def show
     { errors: handle }
   end
