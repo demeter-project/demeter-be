@@ -6,7 +6,7 @@ class LocationService
   end
 
   def self.get_lat_lon(zipcode)
-    response = conn.get("/v1/geocode/search?postcode=#{zipcode}")
+    response = conn.get("/v1/geocode/search?postcode=#{zipcode}&filter=countrycode:us")
     JSON.parse(response.body, symbolize_names: true)
   end
 end
