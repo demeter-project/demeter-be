@@ -4,8 +4,17 @@ class ErrorSerializer
     @errors = errors
   end
 
-  def handle
-    errors.messages.reduce([]) do |array, (att,msg)|
+  
+  def show
+    { errors: handle(errors.messages) }
+  end
+  
+  def custom_show
+    { errors: custom_handle(errors) }
+  end
+  
+  def handle(error_hash)
+    error_hash.reduce([]) do |array, (att,msg)|
       title = att.to_s.capitalize
       array << { 
         title: title,
@@ -14,7 +23,13 @@ class ErrorSerializer
     end
   end
 
-  def show
-    { errors: handle }
+  def custom_handle(error_hash)
+    error_hash.reduce([]) do |array, (att,msg)|
+      title = att.to_s.capitalize
+      array << { 
+        title: title,
+        detail: title + " " + msg
+      }
+    end
   end
 end

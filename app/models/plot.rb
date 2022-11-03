@@ -26,5 +26,4 @@ class Plot < ApplicationRecord
     return nil if plants.empty?
     !plants.all? { |plant| plant.toxicity == "None" }
   end
-
 end
