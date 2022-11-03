@@ -10,7 +10,7 @@ class Api::V1::GardensController < ApplicationController
   end
 
   def create
-    garden = Garden.create(garden_params)
+    garden = Garden.new(garden_params)
     if garden.save
       render json: GardenSerializer.new(garden), status: 201
     else
