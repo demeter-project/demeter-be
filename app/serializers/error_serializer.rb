@@ -4,21 +4,29 @@ class ErrorSerializer
     @errors = errors
   end
 
+  
+  def show
+    { errors: errors.messages.handle }
+  end
+  
+  def custom_show
+    custom_errors = errors.reduce([]) do |array, (att,msg)|
+      title = att.to_s.capitalize
+      array << { 
+        title: title,
+        detail: title + " " + msg
+      }
+    end
+    { errors: custom_errors }
+  end
+  
   def handle
-    errors.messages.reduce([]) do |array, (att,msg)|
+    reduce([]) do |array, (att,msg)|
       title = att.to_s.capitalize
       array << { 
         title: title,
         detail: title + " " + msg.first
       }
     end
-  end
-
-  def custom
-    require 'pry'; binding.pry
-  end
-
-  def show
-    { errors: handle }
   end
 end

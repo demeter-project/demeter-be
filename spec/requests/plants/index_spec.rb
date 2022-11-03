@@ -4,7 +4,8 @@ RSpec.describe '/api/v1/plants endpoints' do
   describe 'GET plants#index' do
     it 'returns a json response containing all plants native to queried state' do
       plants = create_list(:plant, 10, states: "VT CT VA WA")
-      get '/api/v1/plants?state=VT'
+      get '/api/v1/plants?state=VT&zip_code=05408'
+
       expect(response).to be_successful
       expect(response).to have_http_status(200)
       
@@ -39,10 +40,58 @@ RSpec.describe '/api/v1/plants endpoints' do
 
     describe 'sad path: state missing or empty' do
       it 'returns an error' do
-        get '/api/v1/plants?state='
+        get '/api/v1/plants?state=&zip_code=05408'
 
         expect(response).not_to be_successful
-        require 'pry'; binding.pry
+        expect(response).to have_http_status(400)
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result).to have_key(:errors)
+
+        error_hash = result[:errors].first
+        expect(error_hash).to have_key(:title)
+        expect(error_hash).to have_key(:detail)
+        expect(error_hash[:detail]).to eq("State must be present")
+
+        get '/api/v1/plants?zip_code=05408'
+        expect(response).not_to be_successful
+        expect(response).to have_http_status(400)
+      end
+    end
+
+    describe 'sad path: zip_code missing or empty' do
+      it 'returns an error' do
+        get '/api/v1/plants?state=VT'
+        expect(response).not_to be_successful
+        expect(response).to have_http_status(400)
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result).to have_key(:errors)
+
+        error_hash = result[:errors].first
+        expect(error_hash).to have_key(:title)
+        expect(error_hash).to have_key(:detail)
+        expect(error_hash[:detail]).to eq("Zip_code must be present")
+
+        get '/api/v1/plants?state=VT&zip_code='
+        expect(response).not_to be_successful
+        expect(response).to have_http_status(400)
+      end
+    end
+
+    describe 'sad path: both zip and state missing' do
+      it 'returns an error' do 
+        get '/api/v1/plants'
+        expect(response).not_to be_successful
+        expect(response).to have_http_status(400)
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result).to have_key(:errors)
+        expect(result[:errors].count).to eq(2)
+        
+        error_hash = result[:errors].first
+        expect(error_hash).to have_key(:title)
+        expect(error_hash).to have_key(:detail)
+        expect(error_hash[:detail]).to eq("State must be present")
       end
     end
   end
