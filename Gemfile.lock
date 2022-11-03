@@ -173,8 +173,6 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
-  arm64-darwin-21
-  ruby
   x86_64-darwin-21
 
 DEPENDENCIES
@@ -200,4 +198,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.3.20
+   2.2.27
