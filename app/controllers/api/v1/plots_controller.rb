@@ -1,5 +1,6 @@
 class Api::V1::PlotsController < ApplicationController
   before_action :set_garden, only: %i[index create]
+  before_action :set_plot, only: %i[show update destroy]
 
   def index
     plots = PlotSerializer.new(@garden.plots)
@@ -7,27 +8,20 @@ class Api::V1::PlotsController < ApplicationController
   end
 
   def show
-    plot = PlotSerializer.new(set_plot)
-
-    # seperate plot plants controller
-    # plot_plants = PlotPlantSerializer.new(plot.plot_plants)
-    
-    render json: plot
+    render json: PlotSerializer.new(@plot)
   end
 
   def update
-    plot = Plot.find(params[:id])
-    if plot.update(plot_params)
-      render json: PlotSerializer.new(plot)
+    if @plot.update(plot_params)
+      render json: PlotSerializer.new(@plot)
     else
-      errors = ErrorSerializer.new(plot.errors)
+      errors = ErrorSerializer.new(@plot.errors)
       render rson: errors.show, status: 400
     end
   end
 
   def destroy
-    plot = set_plot
-    plot.destroy
+    @plot.destroy
   end
 
   def create
@@ -43,7 +37,7 @@ class Api::V1::PlotsController < ApplicationController
   private
 
   def set_plot
-    Plot.find(params[:id])
+    @plot = Plot.find(params[:id])
   end
 
   def set_garden
