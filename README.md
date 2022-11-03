@@ -330,19 +330,19 @@ GET `/gardens/<garden_id>/plots/<plot_id>/plot_plants`
       "id": "3",
       "type": "plot_plant",
       "attributes": {
-        "plant_id": "15"
-        "plant_name": "Common Clover"
-        "quantity": 5
-        "date_planted": 2022/05/18
+        "plant_id": "15",
+        "plant_name": "Common Clover",
+        "quantity": 5,
+        "date_planted": 2022-05-18
       }
     },
     {
       "id": "4",
       "type": "plot_plant",
       "attributes": {
-        "plant_id": "185"
-        "plant_name": "Columbine"
-        "quantity": null
+        "plant_id": "185",
+        "plant_name": "Columbine",
+        "quantity": null,
         "date_planted": null
       }
     },
@@ -365,7 +365,7 @@ If a plant has null values for `quantity` and `date_planted` then it has been ad
 
 POST `/gardens`
 
-**Required JSON Body:**
+**Example Post Request JSON Body:**
 
 ```JSON
 {
@@ -386,7 +386,7 @@ Response should match a GET `gardens/<garden_id>` response for the newly created
 
 POST `/gardens/<garden_id>/plots`
 
-**Required JSON Body:**
+**Example Post Request JSON Body:**
 
 ```JSON
 {
@@ -420,13 +420,21 @@ Will return status 204 with no JSON response if the plot was successfully delete
 
 ---
 
+### **Delete a plant from a plot**
+
+DELETE `/gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
+
+**Notes:**
+
+Will return status 204 with no JSON response if the plot_plant was successfully deleted.
+
+---
+
 ### **Add plants to existing plot / update plot**
 
 PATCH `/gardens/<garden_id>/plots/<plot_id>`
 
-!!! _**This endpoint is subject to change depending on figuring out how this actually gets implemented**_
-
-**Example JSON Body:**
+**Example Patch Request JSON Body:**
 
 ```JSON
 {
@@ -441,3 +449,41 @@ The response should match a GET `/gardens/<garden_id>/plots/<plot_id>` request r
 **Notes:**
 
 The intension of this endpoint is to add plants to a plot, but it could also be passed a "name" in the JSON body to update the name.
+
+---
+
+### **Update a plot plant (plant the plant)**
+
+PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
+
+**Exampe Patch Request JSON Body:**
+
+```JSON
+{
+  "date_planted": 2022-05-13,
+  "quantity": 15
+}
+```
+
+**Example Response**
+
+```JSON
+{
+  "data": {
+    "id": "15",
+    "type": "plot plant",
+    "attributes": {
+      "quantity": 15,
+      "date_planted": 2022-05-15,
+      "plant_id": 85,
+      "plant_name": "Wild Thornbush"
+    }
+  }
+}
+```
+
+**Notes:**
+
+This endpoint is intended to be used to record the _planting_ of a plant in a garden after it has been added through the plant discover page.
+
+---
