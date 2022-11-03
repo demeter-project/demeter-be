@@ -58,6 +58,7 @@ RSpec.describe 'plot creation' do
           first_error = result[:errors].first
           expect(first_error).to have_key(:title)
           expect(first_error).to have_key(:detail)
+          expect(first_error[:detail]).to eq("Name can't be blank")
         end
       end
     end
