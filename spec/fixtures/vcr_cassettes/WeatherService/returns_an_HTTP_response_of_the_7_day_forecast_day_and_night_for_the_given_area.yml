@@ -36,17 +36,17 @@ http_interactions:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=35626, s-maxage=120
+      - public, max-age=31760, s-maxage=120
       Expires:
       - Fri, 04 Nov 2022 00:00:21 GMT
       Date:
-      - Thu, 03 Nov 2022 14:06:35 GMT
+      - Thu, 03 Nov 2022 15:11:01 GMT
       Content-Length:
       - '3091'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 9f45d64
+      - aa6bf01
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -146,7 +146,7 @@ http_interactions:
                 "radarStation": "KLOT"
             }
         }
-  recorded_at: Thu, 03 Nov 2022 14:06:35 GMT
+  recorded_at: Thu, 03 Nov 2022 15:11:01 GMT
 - request:
     method: get
     uri: https://api.weather.gov/gridpoints/LOT/73,70/forecast
@@ -174,26 +174,26 @@ http_interactions:
       Access-Control-Expose-Headers:
       - X-Correlation-Id, X-Request-Id, X-Server-Id
       X-Request-Id:
-      - 8da4280c-0b86-4d79-9ebe-a838518ededd
+      - d1d0357a-772b-425c-bd1b-05244955dd01
       X-Correlation-Id:
-      - 802aa4
+      - 17e1e83
       X-Server-Id:
-      - vm-lnx-nids-apiapp5.ncep.noaa.gov
+      - vm-lnx-nids-apiapp10.ncep.noaa.gov
       Vary:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=3592, s-maxage=3600
+      - public, max-age=3599, s-maxage=3600
       Expires:
-      - Thu, 03 Nov 2022 15:06:28 GMT
+      - Thu, 03 Nov 2022 16:11:01 GMT
       Date:
-      - Thu, 03 Nov 2022 14:06:36 GMT
+      - Thu, 03 Nov 2022 15:11:02 GMT
       Content-Length:
-      - '11643'
+      - '11638'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 9f45de2
+      - aa6bfa4
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -239,12 +239,12 @@ http_interactions:
                 ]
             },
             "properties": {
-                "updated": "2022-11-03T13:15:22+00:00",
+                "updated": "2022-11-03T14:15:24+00:00",
                 "units": "us",
                 "forecastGenerator": "BaselineForecastGenerator",
-                "generatedAt": "2022-11-03T14:06:36+00:00",
-                "updateTime": "2022-11-03T13:15:22+00:00",
-                "validTimes": "2022-11-03T07:00:00+00:00/P7DT18H",
+                "generatedAt": "2022-11-03T15:11:01+00:00",
+                "updateTime": "2022-11-03T14:15:24+00:00",
+                "validTimes": "2022-11-03T08:00:00+00:00/P7DT17H",
                 "elevation": {
                     "unitCode": "wmoUnit:m",
                     "value": 178.00319999999999
@@ -253,17 +253,17 @@ http_interactions:
                     {
                         "number": 1,
                         "name": "Today",
-                        "startTime": "2022-11-03T09:00:00-05:00",
+                        "startTime": "2022-11-03T10:00:00-05:00",
                         "endTime": "2022-11-03T18:00:00-05:00",
                         "isDaytime": true,
                         "temperature": 75,
                         "temperatureUnit": "F",
                         "temperatureTrend": "falling",
-                        "windSpeed": "10 to 15 mph",
+                        "windSpeed": "15 mph",
                         "windDirection": "S",
                         "icon": "https://api.weather.gov/icons/land/day/few?size=medium",
                         "shortForecast": "Sunny",
-                        "detailedForecast": "Sunny. High near 75, with temperatures falling to around 72 in the afternoon. South wind 10 to 15 mph, with gusts as high as 30 mph."
+                        "detailedForecast": "Sunny. High near 75, with temperatures falling to around 72 in the afternoon. South wind around 15 mph, with gusts as high as 30 mph."
                     },
                     {
                         "number": 2,
@@ -463,5 +463,5 @@ http_interactions:
                 ]
             }
         }
-  recorded_at: Thu, 03 Nov 2022 14:06:36 GMT
+  recorded_at: Thu, 03 Nov 2022 15:11:01 GMT
 recorded_with: VCR 6.1.0
