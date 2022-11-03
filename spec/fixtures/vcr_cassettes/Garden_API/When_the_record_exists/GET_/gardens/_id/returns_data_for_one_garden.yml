@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location-api>&filter=countrycode:us&postcode=60647
+    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=60647
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 03 Nov 2022 13:17:33 GMT
+      - Thu, 03 Nov 2022 14:06:34 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -51,20 +51,20 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PhxEVn1hqYs8VAOhv1sJXtQqJvNV01XTturW3Hr%2BmuikkOa6yHPFA7eMfyGwy7%2FyrQkrPRYg5lH2s7YqpVhk79MDpGcCmdJkk66b23cbytecyJ9N2abqB%2BeArFd5f9BM7vY%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=CRBRYd7wwTIZpYgu1CP%2FD6OT7zEZaSP9VG4NkmRGjlA2waniVtXMRJ4MSz3Qr%2Bxet1dTuQFoZi%2BxLGNLlpAzXylgOI0ztG7uey4gMZCvmxhHRVnjGGergQwyV3n8d9abB2Q%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 764564053f57e253-ORD
+      - 7645abd1a85a2c5c-ORD
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJzdWJ1cmIiOiJMb2dhbiBTcXVhcmUiLCJjaXR5IjoiQ2hpY2FnbyIsImNvdW50eSI6IkNvb2sgQ291bnR5Iiwic3RhdGUiOiJJbGxpbm9pcyIsInBvc3Rjb2RlIjoiNjA2NDciLCJjb3VudHJ5IjoiVW5pdGVkIFN0YXRlcyIsImNvdW50cnlfY29kZSI6InVzIiwiZGF0YXNvdXJjZSI6eyJzb3VyY2VuYW1lIjoib3BlbnN0cmVldG1hcCIsImF0dHJpYnV0aW9uIjoiwqkgT3BlblN0cmVldE1hcCBjb250cmlidXRvcnMiLCJsaWNlbnNlIjoiT3BlbiBEYXRhYmFzZSBMaWNlbnNlIiwidXJsIjoiaHR0cHM6Ly93d3cub3BlbnN0cmVldG1hcC5vcmcvY29weXJpZ2h0In0sImxvbiI6LTg3LjY5OTE4NTg3OCwibGF0Ijo0MS45MTkzMDUyMDcsImZvcm1hdHRlZCI6IkNoaWNhZ28sIElMIDYwNjQ3LCBVbml0ZWQgU3RhdGVzIG9mIEFtZXJpY2EiLCJhZGRyZXNzX2xpbmUxIjoiQ2hpY2FnbywgSUwgNjA2NDciLCJhZGRyZXNzX2xpbmUyIjoiVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwidGltZXpvbmUiOnsibmFtZSI6IkFtZXJpY2EvQ2hpY2FnbyIsIm9mZnNldF9TVEQiOiItMDY6MDAiLCJvZmZzZXRfU1REX3NlY29uZHMiOi0yMTYwMCwib2Zmc2V0X0RTVCI6Ii0wNTowMCIsIm9mZnNldF9EU1Rfc2Vjb25kcyI6LTE4MDAwLCJhYmJyZXZpYXRpb25fU1REIjoiQ1NUIiwiYWJicmV2aWF0aW9uX0RTVCI6IkNEVCJ9LCJyYW5rIjp7InBvcHVsYXJpdHkiOjYuMTUyMDU3NjI0ODAwMDcsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MTcxZjUxZjc2YmZlYzU1YzA1OWMzOGQwM2NiYWJmNTQ0NDBmMDAxMDFmOTAxN2M0NjlhMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy04Ny42OTkxODU4NzgsNDEuOTE5MzA1MjA3XX19XSwicXVlcnkiOnsidGV4dCI6IjYwNjQ3IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiNjA2NDciLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Thu, 03 Nov 2022 13:17:33 GMT
+  recorded_at: Thu, 03 Nov 2022 14:06:34 GMT
 - request:
     method: get
     uri: https://api.weather.gov/points/41.92,-87.7
@@ -101,17 +101,17 @@ http_interactions:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=38578, s-maxage=120
+      - public, max-age=35637, s-maxage=120
       Expires:
       - Fri, 04 Nov 2022 00:00:31 GMT
       Date:
-      - Thu, 03 Nov 2022 13:17:33 GMT
+      - Thu, 03 Nov 2022 14:06:34 GMT
       Content-Length:
       - '3089'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 978660a
+      - 9f44bb5
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -211,7 +211,7 @@ http_interactions:
                 "radarStation": "KLOT"
             }
         }
-  recorded_at: Thu, 03 Nov 2022 13:17:33 GMT
+  recorded_at: Thu, 03 Nov 2022 14:06:34 GMT
 - request:
     method: get
     uri: https://api.weather.gov/gridpoints/LOT/72,74/forecast
@@ -239,26 +239,26 @@ http_interactions:
       Access-Control-Expose-Headers:
       - X-Correlation-Id, X-Request-Id, X-Server-Id
       X-Request-Id:
-      - 5102622f-1890-4a34-9f1c-89ac86ee047e
+      - da10c208-99b1-4cc5-8d15-f651bb5e3aea
       X-Correlation-Id:
-      - '480128'
+      - 4a14748
       X-Server-Id:
-      - vm-lnx-nids-apiapp1.ncep.noaa.gov
+      - vm-lnx-nids-apiapp10.ncep.noaa.gov
       Vary:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=937, s-maxage=3600
+      - public, max-age=3540, s-maxage=3600
       Expires:
-      - Thu, 03 Nov 2022 13:33:10 GMT
+      - Thu, 03 Nov 2022 15:05:34 GMT
       Date:
-      - Thu, 03 Nov 2022 13:17:33 GMT
+      - Thu, 03 Nov 2022 14:06:34 GMT
       Content-Length:
       - '11671'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 978668b
+      - 9f44c7a
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -304,12 +304,12 @@ http_interactions:
                 ]
             },
             "properties": {
-                "updated": "2022-11-03T12:15:20+00:00",
+                "updated": "2022-11-03T13:15:22+00:00",
                 "units": "us",
                 "forecastGenerator": "BaselineForecastGenerator",
-                "generatedAt": "2022-11-03T12:33:04+00:00",
-                "updateTime": "2022-11-03T12:15:20+00:00",
-                "validTimes": "2022-11-03T06:00:00+00:00/P7DT19H",
+                "generatedAt": "2022-11-03T14:06:30+00:00",
+                "updateTime": "2022-11-03T13:15:22+00:00",
+                "validTimes": "2022-11-03T07:00:00+00:00/P7DT18H",
                 "elevation": {
                     "unitCode": "wmoUnit:m",
                     "value": 184.0992
@@ -318,7 +318,7 @@ http_interactions:
                     {
                         "number": 1,
                         "name": "Today",
-                        "startTime": "2022-11-03T07:00:00-05:00",
+                        "startTime": "2022-11-03T09:00:00-05:00",
                         "endTime": "2022-11-03T18:00:00-05:00",
                         "isDaytime": true,
                         "temperature": 74,
@@ -528,5 +528,5 @@ http_interactions:
                 ]
             }
         }
-  recorded_at: Thu, 03 Nov 2022 13:17:33 GMT
+  recorded_at: Thu, 03 Nov 2022 14:06:34 GMT
 recorded_with: VCR 6.1.0

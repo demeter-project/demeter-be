@@ -36,17 +36,17 @@ http_interactions:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=38567, s-maxage=120
+      - public, max-age=35626, s-maxage=120
       Expires:
       - Fri, 04 Nov 2022 00:00:21 GMT
       Date:
-      - Thu, 03 Nov 2022 13:17:34 GMT
+      - Thu, 03 Nov 2022 14:06:35 GMT
       Content-Length:
       - '3091'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 978753a
+      - 9f45d64
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -146,7 +146,7 @@ http_interactions:
                 "radarStation": "KLOT"
             }
         }
-  recorded_at: Thu, 03 Nov 2022 13:17:34 GMT
+  recorded_at: Thu, 03 Nov 2022 14:06:35 GMT
 - request:
     method: get
     uri: https://api.weather.gov/gridpoints/LOT/73,70/forecast
@@ -174,26 +174,26 @@ http_interactions:
       Access-Control-Expose-Headers:
       - X-Correlation-Id, X-Request-Id, X-Server-Id
       X-Request-Id:
-      - 3987fa85-eb64-45f1-8ecb-358561f60939
+      - 8da4280c-0b86-4d79-9ebe-a838518ededd
       X-Correlation-Id:
-      - 1241be5a
+      - 802aa4
       X-Server-Id:
       - vm-lnx-nids-apiapp5.ncep.noaa.gov
       Vary:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=860, s-maxage=3600
+      - public, max-age=3592, s-maxage=3600
       Expires:
-      - Thu, 03 Nov 2022 13:31:54 GMT
+      - Thu, 03 Nov 2022 15:06:28 GMT
       Date:
-      - Thu, 03 Nov 2022 13:17:34 GMT
+      - Thu, 03 Nov 2022 14:06:36 GMT
       Content-Length:
       - '11643'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 97875a3
+      - 9f45de2
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -239,12 +239,12 @@ http_interactions:
                 ]
             },
             "properties": {
-                "updated": "2022-11-03T12:15:20+00:00",
+                "updated": "2022-11-03T13:15:22+00:00",
                 "units": "us",
                 "forecastGenerator": "BaselineForecastGenerator",
-                "generatedAt": "2022-11-03T12:33:08+00:00",
-                "updateTime": "2022-11-03T12:15:20+00:00",
-                "validTimes": "2022-11-03T06:00:00+00:00/P7DT19H",
+                "generatedAt": "2022-11-03T14:06:36+00:00",
+                "updateTime": "2022-11-03T13:15:22+00:00",
+                "validTimes": "2022-11-03T07:00:00+00:00/P7DT18H",
                 "elevation": {
                     "unitCode": "wmoUnit:m",
                     "value": 178.00319999999999
@@ -253,7 +253,7 @@ http_interactions:
                     {
                         "number": 1,
                         "name": "Today",
-                        "startTime": "2022-11-03T07:00:00-05:00",
+                        "startTime": "2022-11-03T09:00:00-05:00",
                         "endTime": "2022-11-03T18:00:00-05:00",
                         "isDaytime": true,
                         "temperature": 75,
@@ -463,5 +463,5 @@ http_interactions:
                 ]
             }
         }
-  recorded_at: Thu, 03 Nov 2022 13:17:34 GMT
+  recorded_at: Thu, 03 Nov 2022 14:06:36 GMT
 recorded_with: VCR 6.1.0

@@ -1,7 +1,7 @@
 class LocationService
   def self.conn
     Faraday.new(url: 'https://api.geoapify.com') do |faraday|
-      faraday.params['apiKey'] = ENV['location-api']
+      faraday.params['apiKey'] = ENV['location_api']
     end
   end
 
