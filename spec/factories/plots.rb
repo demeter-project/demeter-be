@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :plot do
-    name { Faker::Books::Dune.unique.city }
+    name { Faker::Name.unique.name }
     plants { [] }
   end
 end
