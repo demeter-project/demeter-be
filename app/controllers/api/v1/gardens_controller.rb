@@ -10,6 +10,17 @@ class Api::V1::GardensController < ApplicationController
   end
 
   def create
+    garden = Garden.create(garden_params)
+    if garden.save
+      render json: GardenSerializer.new(garden), status: 201
+    else
+      render json: ErrorSerializer.new(garden.errors), status: 400
+    end
+  end
 
+  private
+
+  def garden_params
+    params.require(:garden).permit(:user_id, :zip_code, :name, :state_code)
   end
 end
