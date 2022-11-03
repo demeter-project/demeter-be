@@ -3,12 +3,13 @@ require 'rails_helper'
 RSpec.describe 'plot creation' do
   describe 'when a POST request is sent to /gardens/:garden_id/plots' do
     let!(:garden) { create :garden }
+    let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
     
     describe 'happy path' do
       let!(:http_body) { { "name": "Colorado Wildflowers" } }
       
       it 'returns a response with status 201 and data from the newly created Plot' do
-        post "/api/v1/gardens/#{garden.id}/plots?name=Colorado Wildflowers"
+        post "/api/v1/gardens/#{garden.id}/plots", headers: headers, params: JSON.generate(plot: http_body)
 
         expect(response).to be_successful
         expect(response).to have_http_status(201)
@@ -29,9 +30,10 @@ RSpec.describe 'plot creation' do
     end
 
     describe 'sad path' do
-      describe 'if name param not present' do
+      describe 'if name is empty' do
+        let!(:http_body) { { name: "" } }
         it 'returns a 400 error with information' do
-          post "/api/v1/gardens/#{garden.id}/plots"
+          post "/api/v1/gardens/#{garden.id}/plots", headers: headers, params: JSON.generate(plot: http_body)
 
           expect(response).not_to be_successful
           expect(response).to have_http_status(400)
@@ -46,20 +48,17 @@ RSpec.describe 'plot creation' do
         end
       end
 
-      describe 'if name param empty' do
+      describe 'if json response body is empty' do
         it 'returns a 400 error with information' do
-          post "/api/v1/gardens/#{garden.id}/plots?name="
+          post "/api/v1/gardens/#{garden.id}/plots", headers: headers
 
           expect(response).not_to be_successful
           expect(response).to have_http_status(400)
 
           result = JSON.parse(response.body, symbolize_names: true)
-          expect(result).to have_key(:errors)
+          expect(result).to have_key(:message)
 
-          first_error = result[:errors].first
-          expect(first_error).to have_key(:title)
-          expect(first_error).to have_key(:detail)
-          expect(first_error[:detail]).to eq("Name can't be blank")
+          expect(result[:message]).to eq("param is missing or the value is empty: plot")
         end
       end
     end
