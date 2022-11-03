@@ -4,7 +4,7 @@ RSpec.describe '/api/v1/plants endpoints' do
   describe 'GET plants#index' do
     it 'returns a json response containing all plants native to queried state' do
       plants = create_list(:plant, 10, states: "VT CT VA WA")
-      get '/api/v1/plants?state=VT&zip_code=05408'
+      get '/api/v1/plants?state_code=VT&zip_code=05408'
 
       expect(response).to be_successful
       expect(response).to have_http_status(200)
@@ -38,9 +38,15 @@ RSpec.describe '/api/v1/plants endpoints' do
       expect(actual_first[:attributes]).to have_key(:precipitation_max)
     end
 
+    describe 'searching with additional parameters' do
+      describe 'search_name' do
+
+      end
+    end
+
     describe 'sad path: state missing or empty' do
       it 'returns an error' do
-        get '/api/v1/plants?state=&zip_code=05408'
+        get '/api/v1/plants?state_code=&zip_code=05408'
 
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
@@ -50,7 +56,7 @@ RSpec.describe '/api/v1/plants endpoints' do
         error_hash = result[:errors].first
         expect(error_hash).to have_key(:title)
         expect(error_hash).to have_key(:detail)
-        expect(error_hash[:detail]).to eq("State must be present")
+        expect(error_hash[:detail]).to be_a String
 
         get '/api/v1/plants?zip_code=05408'
         expect(response).not_to be_successful
@@ -60,7 +66,7 @@ RSpec.describe '/api/v1/plants endpoints' do
 
     describe 'sad path: zip_code missing or empty' do
       it 'returns an error' do
-        get '/api/v1/plants?state=VT'
+        get '/api/v1/plants?state_code=VT'
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
 
@@ -70,9 +76,9 @@ RSpec.describe '/api/v1/plants endpoints' do
         error_hash = result[:errors].first
         expect(error_hash).to have_key(:title)
         expect(error_hash).to have_key(:detail)
-        expect(error_hash[:detail]).to eq("Zip_code must be present")
+        expect(error_hash[:detail]).to be_a String
 
-        get '/api/v1/plants?state=VT&zip_code='
+        get '/api/v1/plants?state_code=VT&zip_code='
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
       end
@@ -91,7 +97,7 @@ RSpec.describe '/api/v1/plants endpoints' do
         error_hash = result[:errors].first
         expect(error_hash).to have_key(:title)
         expect(error_hash).to have_key(:detail)
-        expect(error_hash[:detail]).to eq("State must be present")
+        expect(error_hash[:detail]).to be_a String
       end
     end
   end
