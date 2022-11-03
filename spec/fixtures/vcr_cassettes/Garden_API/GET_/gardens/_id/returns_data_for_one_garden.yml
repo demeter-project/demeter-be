@@ -2,7 +2,72 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.weather.gov/points/41.83,-87.68
+    uri: https://api.geoapify.com/v1/geocode/search?apiKey=2ba8a51145f547eb87315a72298aabe0&filter=countrycode:us&postcode=60647
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.6.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 03 Nov 2022 01:26:40 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Version:
+      - '1.0'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
+        access-control-allow-methods, access-control-allow-origin, allow, api-version,
+        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
+        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
+        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
+        cf-connecting-ip, x-forwarded-port
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS, PUT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Cache-Control:
+      - private, max-age=0, no-cache
+      Content-Disposition:
+      - inline; filename=response.geojson
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=nZMNBG3J87jjGF4fkJUfwu0WCJgaGICUvzwRnAD8LroKoh6%2FBF4Wwk6y44aJqQ%2FnsTOHYod33YE0PoM2h97NiPdbzW4LRbTiz3FGkuBe2PekUxuCGib9A%2FYi2PLBD6fackA%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 764152afdc5b86cf-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJzdWJ1cmIiOiJMb2dhbiBTcXVhcmUiLCJjaXR5IjoiQ2hpY2FnbyIsImNvdW50eSI6IkNvb2sgQ291bnR5Iiwic3RhdGUiOiJJbGxpbm9pcyIsInBvc3Rjb2RlIjoiNjA2NDciLCJjb3VudHJ5IjoiVW5pdGVkIFN0YXRlcyIsImNvdW50cnlfY29kZSI6InVzIiwiZGF0YXNvdXJjZSI6eyJzb3VyY2VuYW1lIjoib3BlbnN0cmVldG1hcCIsImF0dHJpYnV0aW9uIjoiwqkgT3BlblN0cmVldE1hcCBjb250cmlidXRvcnMiLCJsaWNlbnNlIjoiT3BlbiBEYXRhYmFzZSBMaWNlbnNlIiwidXJsIjoiaHR0cHM6Ly93d3cub3BlbnN0cmVldG1hcC5vcmcvY29weXJpZ2h0In0sImxvbiI6LTg3LjY5OTE4NTg3OCwibGF0Ijo0MS45MTkzMDUyMDcsImZvcm1hdHRlZCI6IkNoaWNhZ28sIElMIDYwNjQ3LCBVbml0ZWQgU3RhdGVzIG9mIEFtZXJpY2EiLCJhZGRyZXNzX2xpbmUxIjoiQ2hpY2FnbywgSUwgNjA2NDciLCJhZGRyZXNzX2xpbmUyIjoiVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwidGltZXpvbmUiOnsibmFtZSI6IkFtZXJpY2EvQ2hpY2FnbyIsIm9mZnNldF9TVEQiOiItMDY6MDAiLCJvZmZzZXRfU1REX3NlY29uZHMiOi0yMTYwMCwib2Zmc2V0X0RTVCI6Ii0wNTowMCIsIm9mZnNldF9EU1Rfc2Vjb25kcyI6LTE4MDAwLCJhYmJyZXZpYXRpb25fU1REIjoiQ1NUIiwiYWJicmV2aWF0aW9uX0RTVCI6IkNEVCJ9LCJyYW5rIjp7InBvcHVsYXJpdHkiOjYuMTUyMDU3NjI0ODAwMDcsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MTcxZjUxZjc2YmZlYzU1YzA1OWMzOGQwM2NiYWJmNTQ0NDBmMDAxMDFmOTAxN2M0NjlhMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy04Ny42OTkxODU4NzgsNDEuOTE5MzA1MjA3XX19XSwicXVlcnkiOnsidGV4dCI6IjYwNjQ3IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiNjA2NDciLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
+  recorded_at: Thu, 03 Nov 2022 01:26:39 GMT
+- request:
+    method: get
+    uri: https://api.weather.gov/points/41.92,-87.7
     body:
       encoding: US-ASCII
       string: ''
@@ -27,26 +92,26 @@ http_interactions:
       Access-Control-Expose-Headers:
       - X-Correlation-Id, X-Request-Id, X-Server-Id
       X-Request-Id:
-      - 9f07b048-2027-4846-a534-55ecc504899a
+      - af99a7da-35bf-4240-a2b4-103dd982fd10
       X-Correlation-Id:
-      - 2213b77
+      - 3979d83
       X-Server-Id:
-      - vm-lnx-nids-apiapp8.ncep.noaa.gov
+      - vm-lnx-nids-apiapp9.ncep.noaa.gov
       Vary:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=81370, s-maxage=120
+      - public, max-age=81231, s-maxage=120
       Expires:
-      - Fri, 04 Nov 2022 00:00:21 GMT
+      - Fri, 04 Nov 2022 00:00:31 GMT
       Date:
-      - Thu, 03 Nov 2022 01:24:11 GMT
+      - Thu, 03 Nov 2022 01:26:40 GMT
       Content-Length:
-      - '3091'
+      - '3089'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 74836f6
+      - 74c1167
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -96,46 +161,46 @@ http_interactions:
                     }
                 }
             ],
-            "id": "https://api.weather.gov/points/41.83,-87.68",
+            "id": "https://api.weather.gov/points/41.92,-87.7",
             "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -87.680000000000007,
-                    41.829999999999998
+                    -87.700000000000003,
+                    41.920000000000002
                 ]
             },
             "properties": {
-                "@id": "https://api.weather.gov/points/41.83,-87.68",
+                "@id": "https://api.weather.gov/points/41.92,-87.7",
                 "@type": "wx:Point",
                 "cwa": "LOT",
                 "forecastOffice": "https://api.weather.gov/offices/LOT",
                 "gridId": "LOT",
-                "gridX": 73,
-                "gridY": 70,
-                "forecast": "https://api.weather.gov/gridpoints/LOT/73,70/forecast",
-                "forecastHourly": "https://api.weather.gov/gridpoints/LOT/73,70/forecast/hourly",
-                "forecastGridData": "https://api.weather.gov/gridpoints/LOT/73,70",
-                "observationStations": "https://api.weather.gov/gridpoints/LOT/73,70/stations",
+                "gridX": 72,
+                "gridY": 74,
+                "forecast": "https://api.weather.gov/gridpoints/LOT/72,74/forecast",
+                "forecastHourly": "https://api.weather.gov/gridpoints/LOT/72,74/forecast/hourly",
+                "forecastGridData": "https://api.weather.gov/gridpoints/LOT/72,74",
+                "observationStations": "https://api.weather.gov/gridpoints/LOT/72,74/stations",
                 "relativeLocation": {
                     "type": "Feature",
                     "geometry": {
                         "type": "Point",
                         "coordinates": [
-                            -87.681843999999998,
-                            41.837550999999998
+                            -87.789940000000001,
+                            41.887163999999999
                         ]
                     },
                     "properties": {
-                        "city": "Chicago",
+                        "city": "Oak Park",
                         "state": "IL",
                         "distance": {
                             "unitCode": "wmoUnit:m",
-                            "value": 853.41986103094996
+                            "value": 8290.6471985774006
                         },
                         "bearing": {
                             "unitCode": "wmoUnit:degree_(angle)",
-                            "value": 169
+                            "value": 63
                         }
                     }
                 },
@@ -146,10 +211,10 @@ http_interactions:
                 "radarStation": "KLOT"
             }
         }
-  recorded_at: Thu, 03 Nov 2022 01:24:11 GMT
+  recorded_at: Thu, 03 Nov 2022 01:26:40 GMT
 - request:
     method: get
-    uri: https://api.weather.gov/gridpoints/LOT/73,70/forecast
+    uri: https://api.weather.gov/gridpoints/LOT/72,74/forecast
     body:
       encoding: US-ASCII
       string: ''
@@ -174,26 +239,26 @@ http_interactions:
       Access-Control-Expose-Headers:
       - X-Correlation-Id, X-Request-Id, X-Server-Id
       X-Request-Id:
-      - 773442ee-c3da-4600-839d-71a748e2171b
+      - c01e93dd-b0b6-41d4-90b8-4930a274e530
       X-Correlation-Id:
-      - 4f65194
+      - 2719cb5b
       X-Server-Id:
-      - vm-lnx-nids-apiapp12.ncep.noaa.gov
+      - vm-lnx-nids-apiapp3.ncep.noaa.gov
       Vary:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=1884, s-maxage=3600
+      - public, max-age=422, s-maxage=3600
       Expires:
-      - Thu, 03 Nov 2022 01:55:35 GMT
+      - Thu, 03 Nov 2022 01:33:42 GMT
       Date:
-      - Thu, 03 Nov 2022 01:24:11 GMT
+      - Thu, 03 Nov 2022 01:26:40 GMT
       Content-Length:
-      - '11285'
+      - '11303'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 748374a
+      - 74c1224
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -216,38 +281,38 @@ http_interactions:
                 "coordinates": [
                     [
                         [
-                            -87.692419200000003,
-                            41.8470917
+                            -87.715367900000004,
+                            41.935339399999997
                         ],
                         [
-                            -87.693996300000009,
-                            41.825311800000001
+                            -87.716940800000003,
+                            41.913578699999995
                         ],
                         [
-                            -87.664766400000005,
-                            41.8241345
+                            -87.687684400000009,
+                            41.912405699999994
                         ],
                         [
-                            -87.663183100000012,
-                            41.845914299999997
+                            -87.686105200000014,
+                            41.934166299999994
                         ],
                         [
-                            -87.692419200000003,
-                            41.8470917
+                            -87.715367900000004,
+                            41.935339399999997
                         ]
                     ]
                 ]
             },
             "properties": {
-                "updated": "2022-11-03T00:52:55+00:00",
+                "updated": "2022-11-03T00:15:18+00:00",
                 "units": "us",
                 "forecastGenerator": "BaselineForecastGenerator",
-                "generatedAt": "2022-11-03T00:56:29+00:00",
-                "updateTime": "2022-11-03T00:52:55+00:00",
+                "generatedAt": "2022-11-03T00:34:53+00:00",
+                "updateTime": "2022-11-03T00:15:18+00:00",
                 "validTimes": "2022-11-02T18:00:00+00:00/P7DT7H",
                 "elevation": {
                     "unitCode": "wmoUnit:m",
-                    "value": 178.00319999999999
+                    "value": 184.0992
                 },
                 "periods": [
                     {
@@ -271,14 +336,14 @@ http_interactions:
                         "startTime": "2022-11-03T06:00:00-05:00",
                         "endTime": "2022-11-03T18:00:00-05:00",
                         "isDaytime": true,
-                        "temperature": 74,
+                        "temperature": 73,
                         "temperatureUnit": "F",
                         "temperatureTrend": "falling",
                         "windSpeed": "5 to 20 mph",
                         "windDirection": "SSW",
                         "icon": "https://api.weather.gov/icons/land/day/sct?size=medium",
                         "shortForecast": "Mostly Sunny",
-                        "detailedForecast": "Mostly sunny. High near 74, with temperatures falling to around 71 in the afternoon. South southwest wind 5 to 20 mph, with gusts as high as 30 mph."
+                        "detailedForecast": "Mostly sunny. High near 73, with temperatures falling to around 71 in the afternoon. South southwest wind 5 to 20 mph, with gusts as high as 30 mph."
                     },
                     {
                         "number": 3,
@@ -316,14 +381,14 @@ http_interactions:
                         "startTime": "2022-11-04T18:00:00-05:00",
                         "endTime": "2022-11-05T06:00:00-05:00",
                         "isDaytime": false,
-                        "temperature": 56,
+                        "temperature": 55,
                         "temperatureUnit": "F",
                         "temperatureTrend": null,
-                        "windSpeed": "15 mph",
+                        "windSpeed": "15 to 20 mph",
                         "windDirection": "S",
-                        "icon": "https://api.weather.gov/icons/land/night/rain,40/rain,80?size=medium",
+                        "icon": "https://api.weather.gov/icons/land/night/rain,50/rain,80?size=medium",
                         "shortForecast": "Rain",
-                        "detailedForecast": "Rain. Cloudy, with a low around 56. South wind around 15 mph, with gusts as high as 35 mph. Chance of precipitation is 80%."
+                        "detailedForecast": "Rain. Cloudy, with a low around 55. South wind 15 to 20 mph, with gusts as high as 35 mph. Chance of precipitation is 80%."
                     },
                     {
                         "number": 6,
@@ -350,7 +415,7 @@ http_interactions:
                         "temperatureUnit": "F",
                         "temperatureTrend": null,
                         "windSpeed": "10 to 20 mph",
-                        "windDirection": "SSW",
+                        "windDirection": "SW",
                         "icon": "https://api.weather.gov/icons/land/night/rain,30/sct?size=medium",
                         "shortForecast": "Chance Rain then Partly Cloudy",
                         "detailedForecast": "A chance of rain before 7pm. Partly cloudy, with a low around 46. Chance of precipitation is 30%."
@@ -361,14 +426,14 @@ http_interactions:
                         "startTime": "2022-11-06T06:00:00-06:00",
                         "endTime": "2022-11-06T18:00:00-06:00",
                         "isDaytime": true,
-                        "temperature": 63,
+                        "temperature": 62,
                         "temperatureUnit": "F",
                         "temperatureTrend": null,
                         "windSpeed": "10 to 15 mph",
                         "windDirection": "SSW",
                         "icon": "https://api.weather.gov/icons/land/day/few?size=medium",
                         "shortForecast": "Sunny",
-                        "detailedForecast": "Sunny, with a high near 63."
+                        "detailedForecast": "Sunny, with a high near 62."
                     },
                     {
                         "number": 9,
@@ -391,14 +456,14 @@ http_interactions:
                         "startTime": "2022-11-07T06:00:00-06:00",
                         "endTime": "2022-11-07T18:00:00-06:00",
                         "isDaytime": true,
-                        "temperature": 59,
+                        "temperature": 58,
                         "temperatureUnit": "F",
                         "temperatureTrend": null,
                         "windSpeed": "0 to 10 mph",
                         "windDirection": "NE",
                         "icon": "https://api.weather.gov/icons/land/day/few?size=medium",
                         "shortForecast": "Sunny",
-                        "detailedForecast": "Sunny, with a high near 59."
+                        "detailedForecast": "Sunny, with a high near 58."
                     },
                     {
                         "number": 11,
@@ -406,14 +471,14 @@ http_interactions:
                         "startTime": "2022-11-07T18:00:00-06:00",
                         "endTime": "2022-11-08T06:00:00-06:00",
                         "isDaytime": false,
-                        "temperature": 49,
+                        "temperature": 48,
                         "temperatureUnit": "F",
                         "temperatureTrend": null,
                         "windSpeed": "10 mph",
                         "windDirection": "E",
                         "icon": "https://api.weather.gov/icons/land/night/sct/rain?size=medium",
                         "shortForecast": "Partly Cloudy then Slight Chance Rain",
-                        "detailedForecast": "A slight chance of rain after midnight. Partly cloudy, with a low around 49."
+                        "detailedForecast": "A slight chance of rain after midnight. Partly cloudy, with a low around 48."
                     },
                     {
                         "number": 12,
@@ -421,14 +486,14 @@ http_interactions:
                         "startTime": "2022-11-08T06:00:00-06:00",
                         "endTime": "2022-11-08T18:00:00-06:00",
                         "isDaytime": true,
-                        "temperature": 62,
+                        "temperature": 61,
                         "temperatureUnit": "F",
                         "temperatureTrend": null,
                         "windSpeed": "10 mph",
                         "windDirection": "ESE",
                         "icon": "https://api.weather.gov/icons/land/day/rain?size=medium",
                         "shortForecast": "Slight Chance Rain",
-                        "detailedForecast": "A slight chance of rain. Mostly sunny, with a high near 62."
+                        "detailedForecast": "A slight chance of rain. Mostly sunny, with a high near 61."
                     },
                     {
                         "number": 13,
@@ -463,5 +528,5 @@ http_interactions:
                 ]
             }
         }
-  recorded_at: Thu, 03 Nov 2022 01:24:11 GMT
+  recorded_at: Thu, 03 Nov 2022 01:26:40 GMT
 recorded_with: VCR 6.1.0

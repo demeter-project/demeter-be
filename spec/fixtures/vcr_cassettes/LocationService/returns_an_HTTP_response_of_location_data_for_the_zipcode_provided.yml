@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=2ba8a51145f547eb87315a72298aabe0&postcode=60647
+    uri: https://api.geoapify.com/v1/geocode/search?apiKey=2ba8a51145f547eb87315a72298aabe0&filter=countrycode:us&postcode=60647
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 03 Nov 2022 00:05:48 GMT
+      - Thu, 03 Nov 2022 01:24:11 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -51,18 +51,18 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=HPlwgzLF0M%2BXFbcYz7HUS9VnjjQq5rueskRURE92zqvpF2Y4DZVz1DvtTHdObmDmKIJZ1yfvRP%2FdTkH0UFO%2BZF9IOklp8dBLOTklWAP1kslXg961pmCRFbrtKXSxoJxXUXU%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=m304ETXmx0T%2BgT98DA3DRV5KLiy7ZHBn7lVhqPVct1D0KyjxHbPMgD6M8Sh8d%2FRITN8IeFK8R5ElSagoAASSIjJ%2BGtlShYgbM%2Btweq2GS4BzaioRTmp1kqzgt9UgxJO1gJU%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 7640dc3e8b5786ec-ORD
+      - 76414f0dd8752d40-ORD
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJzdWJ1cmIiOiJMb2dhbiBTcXVhcmUiLCJjaXR5IjoiQ2hpY2FnbyIsImNvdW50eSI6IkNvb2sgQ291bnR5Iiwic3RhdGUiOiJJbGxpbm9pcyIsInBvc3Rjb2RlIjoiNjA2NDciLCJjb3VudHJ5IjoiVW5pdGVkIFN0YXRlcyIsImNvdW50cnlfY29kZSI6InVzIiwiZGF0YXNvdXJjZSI6eyJzb3VyY2VuYW1lIjoib3BlbnN0cmVldG1hcCIsImF0dHJpYnV0aW9uIjoiwqkgT3BlblN0cmVldE1hcCBjb250cmlidXRvcnMiLCJsaWNlbnNlIjoiT3BlbiBEYXRhYmFzZSBMaWNlbnNlIiwidXJsIjoiaHR0cHM6Ly93d3cub3BlbnN0cmVldG1hcC5vcmcvY29weXJpZ2h0In0sImxvbiI6LTg3LjY5OTE4NTg3OCwibGF0Ijo0MS45MTkzMDUyMDcsImZvcm1hdHRlZCI6IkNoaWNhZ28sIElMIDYwNjQ3LCBVbml0ZWQgU3RhdGVzIG9mIEFtZXJpY2EiLCJhZGRyZXNzX2xpbmUxIjoiQ2hpY2FnbywgSUwgNjA2NDciLCJhZGRyZXNzX2xpbmUyIjoiVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwidGltZXpvbmUiOnsibmFtZSI6IkFtZXJpY2EvQ2hpY2FnbyIsIm9mZnNldF9TVEQiOiItMDY6MDAiLCJvZmZzZXRfU1REX3NlY29uZHMiOi0yMTYwMCwib2Zmc2V0X0RTVCI6Ii0wNTowMCIsIm9mZnNldF9EU1Rfc2Vjb25kcyI6LTE4MDAwLCJhYmJyZXZpYXRpb25fU1REIjoiQ1NUIiwiYWJicmV2aWF0aW9uX0RTVCI6IkNEVCJ9LCJyYW5rIjp7InBvcHVsYXJpdHkiOjYuMTUyMDU3NjI0ODAwMDcsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MTcxZjUxZjc2YmZlYzU1YzA1OWMzOGQwM2NiYWJmNTQ0NDBmMDAxMDFmOTAxN2M0NjlhMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy04Ny42OTkxODU4NzgsNDEuOTE5MzA1MjA3XX19XSwicXVlcnkiOnsidGV4dCI6IjYwNjQ3IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiNjA2NDciLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Thu, 03 Nov 2022 00:05:48 GMT
+  recorded_at: Thu, 03 Nov 2022 01:24:10 GMT
 recorded_with: VCR 6.1.0
