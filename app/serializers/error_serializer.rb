@@ -4,13 +4,8 @@ class ErrorSerializer
     @errors = errors
   end
 
-  
   def show
     { errors: handle(errors.messages) }
-  end
-  
-  def custom_show
-    { errors: custom_handle(errors) }
   end
   
   def handle(error_hash)
@@ -21,6 +16,10 @@ class ErrorSerializer
         detail: title + " " + msg.first
       }
     end
+  end
+ 
+  def custom_show
+    { errors: custom_handle(errors) }
   end
 
   def custom_handle(error_hash)
