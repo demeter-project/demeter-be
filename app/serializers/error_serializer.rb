@@ -6,26 +6,29 @@ class ErrorSerializer
 
   
   def show
-    { errors: errors.messages.handle }
+    { errors: handle(errors.messages) }
   end
   
   def custom_show
-    custom_errors = errors.reduce([]) do |array, (att,msg)|
-      title = att.to_s.capitalize
-      array << { 
-        title: title,
-        detail: title + " " + msg
-      }
-    end
-    { errors: custom_errors }
+    { errors: custom_handle(errors) }
   end
   
-  def handle
-    reduce([]) do |array, (att,msg)|
+  def handle(error_hash)
+    error_hash.reduce([]) do |array, (att,msg)|
       title = att.to_s.capitalize
       array << { 
         title: title,
         detail: title + " " + msg.first
+      }
+    end
+  end
+
+  def custom_handle(error_hash)
+    error_hash.reduce([]) do |array, (att,msg)|
+      title = att.to_s.capitalize
+      array << { 
+        title: title,
+        detail: title + " " + msg
       }
     end
   end
