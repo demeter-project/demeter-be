@@ -3,4 +3,8 @@ class Api::V1::GardensController < ApplicationController
     garden = Garden.find(params[:id])
     render json: GardenSerializer.new(garden)
   end
+
+  def create
+
+  end
 end
