@@ -2,6 +2,7 @@ Faker::Config.locale = 'en-US'
 
 FactoryBot.define do
   factory :garden do
+    user_id { Faker::Number.unique.between(from: 1, to: 999) }
     name { Faker::Books::Dune.planet }
     zip_code { [
       '35004', '99501', '71601', '90001', '06001', '19701', '32003', '96701',
