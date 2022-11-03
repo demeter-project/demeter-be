@@ -4,7 +4,7 @@ RSpec.describe 'Garden API' do
   describe 'When the record exists' do
     describe 'GET /gardens/:id' do
       it 'returns data for one garden', :vcr do
-        garden = Garden.create!(name: "My Garden", zip_code: '60647', state_code: 'IL')
+        garden = Garden.create!(name: "My Garden", zip_code: '60647', state_code: 'IL', user_id: 1)
 
         get "/api/v1/gardens/#{garden.id}"
 

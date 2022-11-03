@@ -41,10 +41,8 @@ RSpec.describe 'plot creation' do
           result = JSON.parse(response.body, symbolize_names: true)
           expect(result).to have_key(:errors)
 
-          first_error = result[:errors].first
-          expect(first_error).to have_key(:title)
-          expect(first_error).to have_key(:detail)
-          expect(first_error[:detail]).to eq("Name can't be blank")
+          expect(result[:errors].first).to have_key(:title)
+          expect(result[:errors].first).to have_key(:detail)
         end
       end
 
@@ -58,6 +56,9 @@ RSpec.describe 'plot creation' do
           result = JSON.parse(response.body, symbolize_names: true)
           expect(result).to have_key(:message)
 
+          # first_error = result[:errors].first
+          # expect(first_error).to have_key(:title)
+          # expect(first_error).to have_key(:detail)
           expect(result[:message]).to eq("param is missing or the value is empty: plot")
         end
       end
