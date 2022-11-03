@@ -67,7 +67,7 @@ RSpec.describe Plot, type: :model do
           plant_3 = create(:plant, toxicity: "Severe")
           plants = [plant_1, plant_2, plant_3]
           plot.plants << plants
-          expect(plot.shade_tolerant?).to eq(false)
+          expect(plot.contains_toxic?).to eq(true)
         end
 
         it 'returns boolean false if no plants are toxic' do
@@ -76,7 +76,7 @@ RSpec.describe Plot, type: :model do
           plant_3 = create(:plant, toxicity: "None")
           plants = [plant_1, plant_2, plant_3]
           plot.plants << plants
-          expect(plot.shade_tolerant?).to eq(false)
+          expect(plot.contains_toxic?).to eq(false)
         end
       end
     end

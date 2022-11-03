@@ -38,6 +38,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'pry'
+  gem 'simplecov'
 end
 
 group :development do
