@@ -1,9 +1,14 @@
 class Api::V1::PlantsController < ApplicationController
+  before_action :set_plant, only: [:show]
   def index
     if valid_params?
       native_plants = PlantSerializer.new(Plant.native_to(params[:state]))
       render json: native_plants
     end
+  end
+
+  def show
+    render json: PlantSerializer.new(@plant)
   end
 
   private
@@ -35,4 +40,9 @@ class Api::V1::PlantsController < ApplicationController
   def check(param)
     param.present? && !param.blank?
   end
+
+  def set_plant
+    @plant = Plant.find(params[:id])
+  end
+
 end

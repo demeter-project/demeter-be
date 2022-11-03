@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :gardens, only: %i(index show) do
         resources :plots, only: %i(index show create destroy)
       end
-      resources :plants, only: %i[index]  
+      resources :plants, only: %i[index show]  
     end
   end
 end
