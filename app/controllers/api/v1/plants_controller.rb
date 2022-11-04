@@ -28,12 +28,12 @@ class Api::V1::PlantsController < ApplicationController
   end
 
   def valid_params?
-    if check(@state_code) && check(@zip_code)
+    if valid?(@state_code) && valid?(@zip_code)
       true
-    elsif check(@state_code) && !check(@zip_code)
+    elsif valid?(@state_code) && !valid?(@zip_code)
       custom_error({zip_code: "must be present"})
       false
-    elsif check(@zip_code) && !check(@state_code)
+    elsif valid?(@zip_code) && !valid?(@state_code)
       custom_error({state_code: "must be present"})
       false
     else
@@ -47,7 +47,7 @@ class Api::V1::PlantsController < ApplicationController
     render json: error.custom_show, status: 400
   end
 
-  def check(param)
+  def valid?(param)
     param.present? && !param.blank?
   end
 
