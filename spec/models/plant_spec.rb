@@ -18,9 +18,7 @@ RSpec.describe Plant, type: :model do
         expect(Plant.native_to("VT")).not_to include(plant_3)
       end
     end
-  end
 
-  describe 'instance methods' do
     describe '#search_name(name)' do
       it 'returns any plants matching a fragment of common name' do
         plant_1 = create(:plant, common_name: "Halo Bunny", states: "VT WA")
