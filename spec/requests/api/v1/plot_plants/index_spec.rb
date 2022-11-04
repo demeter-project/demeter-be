@@ -10,10 +10,10 @@ RSpec.describe 'get /gardens/:garden_id/plots/:plot_id/plot_plants' do
       plant_1 = create(:plant)
       plant_2 = create(:plant)
 
-      plot_plant_1 = PlotPlant.create!(plot: plot_1, plant_id: plant_1.id, quantity: 4, date_planted: Time.now - 1.day)
-      plot_plant_2 = PlotPlant.create!(plot: plot_1, plant: plant_2, quantity: 4, date_planted: Time.now - 1.day)
+      plot_plant_1 = PlotPlant.create!(plot: plot_1, plant_id: plant_1.id, quantity: 4, date_planted: DateTime.now - 1.day)
+      plot_plant_2 = PlotPlant.create!(plot: plot_1, plant: plant_2, quantity: 4, date_planted: DateTime.now - 1.day)
 
-      plot_plant_3 = PlotPlant.create!(plot: plot_2, plant: plant_2, quantity: 4, date_planted: Time.now - 1.day)
+      plot_plant_3 = PlotPlant.create!(plot: plot_2, plant: plant_2, quantity: 4, date_planted: DateTime.now - 1.day)
 
       get "/api/v1/gardens/#{garden.id}/plots/#{plot_1.id}/plot_plants"
       plot_plant_1.reload
