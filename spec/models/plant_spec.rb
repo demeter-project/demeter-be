@@ -16,6 +16,7 @@ RSpec.describe Plant, type: :model do
 
         expect(Plant.native_to("VT")).to include(plant_1, plant_2)
         expect(Plant.native_to("VT")).not_to include(plant_3)
+        expect(Plant.native_to("NA")).to eq([])
       end
     end
 
