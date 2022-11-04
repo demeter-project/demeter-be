@@ -15,7 +15,9 @@ RSpec.describe 'plot destroy' do
     end
 
     it 'deletes any plot_plants in plot' do
-      plot.plants << plants
+      plot_plant_1 = PlotPlant.create!(plot: plot, plant: plants[0], quantity: 1, date_planted: DateTime.now)
+      plot_plant_1 = PlotPlant.create!(plot: plot, plant: plants[1], quantity: 1, date_planted: DateTime.now)
+      plot_plant_1 = PlotPlant.create!(plot: plot, plant: plants[2], quantity: 1, date_planted: DateTime.now)
 
       delete "/api/v1/gardens/#{garden.id}/plots/#{plot.id}"
 
