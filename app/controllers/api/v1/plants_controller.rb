@@ -4,11 +4,11 @@ class Api::V1::PlantsController < ApplicationController
 
   def index
     if valid_params?
-      native_plants = Plant.native_to(params[:state_code])
+      native_plants = Plant.native_to(@state_code)
       if @search_name.present? || !@search_name.blank?
         native_plants = native_plants.search_name(@search_name, @state_code)
       end
-      render json: PlantSerializer.new(native_plants)
+      render json: PlantSerializer.new(native_plants, params: { hz_range_high: PlantFacade.hz_range_high(@zip_code) } )
     end
   end
 
