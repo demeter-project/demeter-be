@@ -1,6 +1,8 @@
 class Api::V1::PlotPlantsController < ApplicationController
   def index
-    plot_plant = PlotPlant.find_plot_plants(params[:plot_id])
+    plot = Plot.find(params[:plot_id])
+    plot_plant = plot.plot_plants
+
     render json: PlotPlantSerializer.new(plot_plant)
   end
 
