@@ -1,6 +1,8 @@
 class Api::V1::PlotPlantsController < ApplicationController
   def index
-    plot_plant = PlotPlant.find_plot_plants(params[:plot_id])
+    plot = Plot.find(params[:plot_id])
+    plot_plant = plot.plot_plants
+
     render json: PlotPlantSerializer.new(plot_plant)
   end
 
@@ -9,10 +11,15 @@ class Api::V1::PlotPlantsController < ApplicationController
     plot_plant.update(plot_plant_params)
     render json: PlotPlantSerializer.new(plot_plant)
   end
-
+  
+  def destroy
+    render json: PlotPlant.destroy(params[:id]), status: 204
+  end
+  
   private
 
   def plot_plant_params
     params.require(:plot_plant).permit(:quantity, :date_planted)
   end
+ 
 end

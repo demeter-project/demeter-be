@@ -5,14 +5,8 @@ RSpec.describe 'plots#show' do
     it 'returns a json response with information about the requested plot' do
       garden = create :garden
       plot = create(:plot, garden: garden)
-      plants = create_list(:plant, 5)
-      plot_plant_1 = PlotPlant.create!(plot: plot, plant: plants[0], quantity: 1, date_planted: DateTime.now)
-      plot_plant_2 = PlotPlant.create!(plot: plot, plant: plants[1], quantity: 1, date_planted: DateTime.now)
-      plot_plant_3 = PlotPlant.create!(plot: plot, plant: plants[2], quantity: 1, date_planted: DateTime.now)
-      plot_plant_4 = PlotPlant.create!(plot: plot, plant: plants[3], quantity: 1, date_planted: DateTime.now)
-      plot_plant_5 = PlotPlant.create!(plot: plot, plant: plants[4], quantity: 1, date_planted: DateTime.now)
-      plot.reload
-      
+      plot.plants = create_list(:plant, 10)
+        
       get "/api/v1/gardens/#{garden.id}/plots/#{plot.id}"
 
       expect(response).to be_successful
