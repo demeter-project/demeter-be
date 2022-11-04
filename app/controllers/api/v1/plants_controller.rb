@@ -1,17 +1,14 @@
 class Api::V1::PlantsController < ApplicationController
-  before_action :set_plant, only: [:show]
-  before_action :set_params
+  before_action :set_plant, only: :show
+  before_action :set_index_vars, only: :index
 
   def index
-    if valid_params?
-      native_plants = Plant.native_to(params[:state_code])
-      if @search_name.present? && !@search_name.blank?
-        native_plants = native_plants.search_name(@search_name)
-      elsif @sort_attribute.present? && !@sort_attribute.blank?
-        native_plants = native_plants.sort_by_attr(@sort_attribute)
-      end
-      render json: PlantSerializer.new(native_plants)
+    if @search_name.present? && !@search_name.blank?
+      @plants = @plants.search_name(@search_name)
+    elsif @sort_attribute.present? && !@sort_attribute.blank?
+      @plants = @plants.sort_by_attr(@sort_attribute)
     end
+    render json: PlantSerializer.new(@plants)
   end
 
   def show
@@ -20,29 +17,34 @@ class Api::V1::PlantsController < ApplicationController
 
   private
 
-  def set_params
+  def set_index_vars
     @state_code = params[:state_code]
     @zip_code = params[:zip_code]
     @search_name = params[:search_name]
     @sort_attribute = params[:sort_by]
+    if valid_params?
+      @plants = Plant.native_to(@state_code)
+    end
   end
 
   def valid_params?
     if check(@state_code) && check(@zip_code)
       true
     elsif check(@state_code) && !check(@zip_code)
-      error = ErrorSerializer.new( {zip_code: "must be present"} )
-      render json: error.custom_show, status: 400
+      custom_error({zip_code: "must be present"})
       false
     elsif check(@zip_code) && !check(@state_code)
-      error = ErrorSerializer.new( {state_code: "must be present"} )
-      render json: error.custom_show, status: 400
+      custom_error({state_code: "must be present"})
       false
     else
-      error = ErrorSerializer.new( {state_code: "must be present", zip_code: "must be present"} )
-      render json: error.custom_show, status: 400
+      custom_error({state_code: "must be present", zip_code: "must be present"})
       false
     end
+  end
+
+  def custom_error(message_hash)
+    error = ErrorSerializer.new( {state_code: "must be present", zip_code: "must be present"} )
+    render json: error.custom_show, status: 400
   end
 
   def check(param)

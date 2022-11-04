@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'GET /plants/:id' do
   describe 'When the record exists' do
     it 'returns detailed information for the requested plant' do
-      plant = create(:plant)
+      plant = create(:plant, )
 
       get "/api/v1/plants/#{plant.id}"
       
