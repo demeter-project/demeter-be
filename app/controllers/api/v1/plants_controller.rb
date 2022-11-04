@@ -43,7 +43,7 @@ class Api::V1::PlantsController < ApplicationController
   end
 
   def custom_error(message_hash)
-    error = ErrorSerializer.new( {state_code: "must be present", zip_code: "must be present"} )
+    error = ErrorSerializer.new(message_hash)
     render json: error.custom_show, status: 400
   end
 
