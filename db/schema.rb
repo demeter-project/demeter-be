@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_11_03_172424) do
     t.bigint "plot_id"
     t.bigint "plant_id"
     t.integer "quantity"
+    t.datetime "date_planted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plant_id"], name: "index_plot_plants_on_plant_id"
