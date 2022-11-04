@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/api/v1/plants endpoints' do
+RSpec.describe '/api/v1/plants endpoints', :vcr do
   describe 'GET plants#index' do
     it 'returns a json response containing all plants native to queried state' do
       plants = create_list(:plant, 10, states: "VT CT VA WA")
@@ -36,6 +36,35 @@ RSpec.describe '/api/v1/plants endpoints' do
       expect(actual_first[:attributes]).to have_key(:frost_free_days_min)
       expect(actual_first[:attributes]).to have_key(:precipitation_min)
       expect(actual_first[:attributes]).to have_key(:precipitation_max)
+    end
+    
+    describe 'suitable_for_hz attribute' do
+      let!(:plants) { create_list(:plant, 10, states: 'VT WA VA')}
+      describe 'json response includes a custom attribute suitable_for_hz' do
+        describe 'happy path - zip_code info found' do
+          it 'returns a boolean attr suitable_for_hz' do
+            get '/api/v1/plants?state_code=VT&zip_code=05408'
+    
+            result = JSON.parse(response.body, symbolize_names: true)
+ 
+            plant = result[:data].first
+            expect(plant[:attributes]).to have_key(:suitable_for_hz)
+            expect(plant[:attributes][:suitable_for_hz]).to be_in([true, false])
+          end
+        end
+
+        describe 'sad path - zip_code not found' do
+          it 'returns nil' do
+            get '/api/v1/plants?state_code=VT&zip_code=99999'
+            
+            result = JSON.parse(response.body, symbolize_names: true)
+            
+            plant = result[:data].first
+            expect(plant[:attributes]).to have_key(:suitable_for_hz)
+            expect(plant[:attributes][:suitable_for_hz]).to be nil
+          end
+        end
+      end
     end
 
     describe 'searching with additional parameters' do
