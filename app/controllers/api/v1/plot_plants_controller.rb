@@ -13,7 +13,7 @@ class Api::V1::PlotPlantsController < ApplicationController
   end
   
   def destroy
-    render json: PlotPlant.destroy(params[:id]), status: 204
+    PlotPlant.destroy(params[:id])
   end
   
   private
