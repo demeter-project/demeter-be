@@ -40,34 +40,14 @@ RSpec.describe 'get /gardens/:garden_id/plots/:plot_id/plot_plants' do
       expect(result[:attributes][:date_planted]).to be_a(String)
     end
   end
+
+  describe 'When the record does not exist' do
+    it 'returns an empty hash' do
+      get "/api/v1/gardens/1/plots/1/plot_plants"
+
+      expect(response).to have_http_status(200)
+      results = JSON.parse(response.body, symbolize_names: true)
+      expect(results[:data]).to be_empty
+    end
+  end
 end
-
-# Returns a list of "plot_plants" within the plot. Also includes the name attribute from the associated plant.
-
-# {
-#   "data": [
-#     {
-#       "id": "3",
-#       "type": "plot_plant",
-#       "attributes": {
-#         "plant_id": "15"
-#         "plant_name": "Common Clover"
-#         "quantity": 5
-#         "date_planted": 2022/05/18
-#       }
-#     },
-#     {
-#       "id": "4",
-#       "type": "plot_plant",
-#       "attributes": {
-#         "plant_id": "185"
-#         "plant_name": "Columbine"
-#         "quantity": 18
-#         "date_planted": 2022/05/17
-#       }
-#     },
-#     **etc...**
-#   ]
-# }
-
-# get /gardens/:garden_id/plots/:plot_id/plot_plants
