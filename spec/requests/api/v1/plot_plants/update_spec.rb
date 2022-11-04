@@ -34,24 +34,31 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
       end
     end
   end
+
+  describe 'When the record does not exist' do
+    it 'returns a status 404' do
+      
+      params = {
+        date_planted: DateTime.now,
+          quantity: 15
+        }
+      headers = {"CONTENT_TYPE" => "application/json"}
+        
+      patch "/api/v1/gardens/1/plots/1/plot_plants/1", headers: headers, params: JSON.generate({plot_plant: params})
+
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns a not found message' do
+      params = {
+        date_planted: DateTime.now,
+          quantity: 15
+        }
+      headers = {"CONTENT_TYPE" => "application/json"}
+        
+      patch "/api/v1/gardens/1/plots/1/plot_plants/1", headers: headers, params: JSON.generate({plot_plant: params})
+
+      expect(response.body).to match(/Couldn't find PlotPlant/)
+    end
+  end
 end
-# expected http request JSON body:
-
-# {
-#   "date_planted": 2022-5-13,
-#   "quantity": 15
-# }
-# should return a 200 status and the plot_plant object JSON:
-
-# {
-#   "data": {
-#     "id": "15",
-#     "type": "plot plant",
-#     "attributes": {
-#       "quantity": 15,
-#       "date_planted": 2022-5-15,
-#       "plant_id": 85,
-#       "plant_name": "Wild Thornbush"
-#     }
-#   }
-# }
