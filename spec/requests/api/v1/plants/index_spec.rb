@@ -70,10 +70,19 @@ RSpec.describe '/api/v1/plants endpoints' do
       end
     end
 
+    describe 'sorting by attribute' do
+      describe 'when param[sort_plants=attribute] is present' do
+        it 'returns a json response of plants sorted by specified' do
+          
+        end
+      end
+    end
+
     describe 'sad path: state missing or empty' do
       it 'returns an error' do
+        create_list :plant, 10, states: "VT WA CA"
         get '/api/v1/plants?state_code=&zip_code=05408'
-
+        
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
         result = JSON.parse(response.body, symbolize_names: true)
@@ -92,6 +101,7 @@ RSpec.describe '/api/v1/plants endpoints' do
 
     describe 'sad path: zip_code missing or empty' do
       it 'returns an error' do
+        create_list :plant, 10, states: "VT WA CA"
         get '/api/v1/plants?state_code=VT'
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
@@ -111,7 +121,9 @@ RSpec.describe '/api/v1/plants endpoints' do
     end
 
     describe 'sad path: both zip and state missing' do
-      it 'returns an error' do 
+      it 'returns an error' do
+        create_list :plant, 10, states: "VT WA CA"
+
         get '/api/v1/plants'
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
