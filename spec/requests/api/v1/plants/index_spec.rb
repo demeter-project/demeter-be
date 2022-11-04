@@ -40,7 +40,33 @@ RSpec.describe '/api/v1/plants endpoints' do
 
     describe 'searching with additional parameters' do
       describe 'search_name' do
+        let!(:plant_1) { create(:plant, common_name: "Halo Bunny", scientific_name: "Fluffy Hal", states: "VT WA VA") }
+        let!(:plant_2) { create(:plant, common_name: "Halberd Flower", scientific_name: "Fluffy Halberd", states: "VT WA VA") }
+        let!(:plant_3) { create(:plant, common_name: "Squirrel's Tail", scientific_name: "Bunny Bun", states: "VT WA VA") }
 
+        it 'returns a json response with plants matching all or part of searched name' do
+          get '/api/v1/plants?state_code=VT&zip_code=05408&search_name=hal'
+
+          expect(response).to be_successful
+          expect(response).to have_http_status(200)
+
+          result = JSON.parse(response.body, symbolize_names: true)
+          expect(result).to have_key(:data)
+
+          expect(result[:data].count).to eq(2)
+        end
+
+        it 'if no plants match, returns an empty response with 200 status' do
+          get '/api/v1/plants?state_code=VT&zip_code=05408&search_name=x7f'
+
+          expect(response).to be_successful
+          expect(response).to have_http_status(200)
+
+          result = JSON.parse(response.body, symbolize_names: true)
+          expect(result).to have_key(:data)
+
+          expect(result[:data].count).to eq(0)
+        end
       end
     end
 
