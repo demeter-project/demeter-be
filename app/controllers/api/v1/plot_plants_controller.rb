@@ -3,4 +3,8 @@ class Api::V1::PlotPlantsController < ApplicationController
     plot_plant = PlotPlant.find_plot_plants(params[:plot_id])
     render json: PlotPlantSerializer.new(plot_plant)
   end
+
+  def destroy
+    render json: PlotPlant.destroy(params[:id]), status: 204
+  end
 end
