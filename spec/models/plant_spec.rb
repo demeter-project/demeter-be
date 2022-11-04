@@ -45,5 +45,26 @@ RSpec.describe Plant, type: :model do
         expect(Plant.search_name('1$#', "VT")).to eq([])
       end
     end
+  
+    describe '::sort_by(attribute)' do
+      let!(:plant_1) { create :plant, common_name: "Dogfern", temperature_min: 15, states: "VT VA CA" }
+      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", temperature_min: 10, states: "VT VA CA" }
+      let!(:plant_3) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VT VA CA" }
+      let!(:plant_4) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VA CA" }
+      let!(:plants) { Plant.native_to("VT") }
+
+      describe 'happy path - good attribute provided' do
+        it 'returns an array of plants sorted by attribute' do
+          expect(plants.sort_by_attr("common_name", "VT")).to eq([plant_2, plant_3, plant_1])
+          expect(plants.sort_by_attr("temperature_min", "VT")).to eq([plant_3, plant_2, plant_1])
+        end
+      end
+
+      describe 'sad path - bad attribute provided' do
+        it 'returns nil' do
+          expect(plants.sort_by_attr("depth_perception", "VT")).to eq(nil)
+        end
+      end
+    end
   end
 end

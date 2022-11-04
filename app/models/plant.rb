@@ -9,4 +9,12 @@ class Plant < ApplicationRecord
   def self.search_name(name, state_code)
     native_to(state_code).where('common_name ilike ? OR scientific_name ilike ?', "%#{name}%", "%#{name}%")
   end
+
+  def self.sort_by_attr(attribute, state_code)
+    plants = native_to(state_code)
+    if Plant.column_names.include?(attribute)
+      attribute = sanitize_sql_for_order(attribute)
+      plants.order(attribute)
+    end
+  end
 end
