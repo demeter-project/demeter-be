@@ -37,6 +37,12 @@ RSpec.describe Plant, type: :model do
         expect(Plant.search_name("hal", "VT")).to include(plant_1, plant_2)
         expect(Plant.search_name("hal", "VT")).not_to include(plant_3)
       end
+
+      it 'returns an empty array if no name matches' do
+        plants = create_list(:plant, 3)
+
+        expect(Plant.search_name('1$#', "VT")).to eq([])
+      end
     end
   end
 end
