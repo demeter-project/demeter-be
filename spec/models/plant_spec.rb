@@ -7,16 +7,6 @@ RSpec.describe Plant, type: :model do
     it { should have_many(:plots).through(:plot_plants) }
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:usda_symbol) }
-    it { should validate_presence_of(:scientific_name) }
-    it { should validate_presence_of(:common_name) }
-    it { should validate_presence_of(:temperature_min) }
-    it { should validate_presence_of(:moisture_use) }
-
-    it { should validate_numericality_of(:temperature_min) }
-  end
-
   describe 'class methods' do
     describe '#native_to(state)' do
       it 'returns all plants native to provided state' do
@@ -26,6 +16,33 @@ RSpec.describe Plant, type: :model do
 
         expect(Plant.native_to("VT")).to include(plant_1, plant_2)
         expect(Plant.native_to("VT")).not_to include(plant_3)
+        expect(Plant.native_to("NA")).to eq([])
+      end
+    end
+
+    describe '#search_name(name)' do
+      it 'returns any plants matching a fragment of common name' do
+        plant_1 = create(:plant, common_name: "Halo Bunny", states: "VT WA")
+        plant_2 = create(:plant, common_name: "Hal Bunno", states: "VT WA")
+        plant_3 = create(:plant, common_name: "Squirrel", states: "VT WA")
+
+        expect(Plant.search_name("hal", "VT")).to include(plant_1, plant_2)
+        expect(Plant.search_name("hal", "VT")).not_to include(plant_3)
+      end
+
+      it 'also searches scientific name' do
+        plant_1 = create(:plant, common_name: "Halo Bunny", states: "VT WA")
+        plant_2 = create(:plant, scientific_name: "Hal Bunno", states: "VT WA")
+        plant_3 = create(:plant, common_name: "Squirrel", scientific_name: "Gary", states: "VT WA")
+
+        expect(Plant.search_name("hal", "VT")).to include(plant_1, plant_2)
+        expect(Plant.search_name("hal", "VT")).not_to include(plant_3)
+      end
+
+      it 'returns an empty array if no name matches' do
+        plants = create_list(:plant, 3)
+
+        expect(Plant.search_name('1$#', "VT")).to eq([])
       end
     end
   end
