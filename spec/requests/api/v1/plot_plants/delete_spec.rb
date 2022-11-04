@@ -19,6 +19,7 @@ RSpec.describe 'delete /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
       expect(response).to have_http_status(204)
       expect(response.body).to be_empty
       expect{PlotPlant.find(plot_plant_1.id)}.to raise_error(ActiveRecord::RecordNotFound)
+      expect(PlotPlant.find(plot_plant_2.id)).to eq(plot_plant_2)
     end
   end
 end
