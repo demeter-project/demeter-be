@@ -5,8 +5,6 @@ class Plot < ApplicationRecord
 
   validates_presence_of :name
 
-  # validates_uniqueness_of :name
-
   def soil_ph_min
     return nil if plants.empty?
     plants.order(ph_minimum: :desc).first.ph_minimum
