@@ -7,10 +7,6 @@ class PlotPlant < ApplicationRecord
     plant.name
   end
 
-  # def plot_name
-  #   plot.name
-  # end
-
   def self.find_plot_plants(plot_id)
     where(plot_id: plot_id)
   end
