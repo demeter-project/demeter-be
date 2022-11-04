@@ -7,6 +7,8 @@ class Api::V1::PlantsController < ApplicationController
       native_plants = Plant.native_to(params[:state_code])
       if @search_name.present? && !@search_name.blank?
         native_plants = native_plants.search_name(@search_name, @state_code)
+      elsif @sort_attribute.present? && !@sort_attribute.blank?
+        native_plants = native_plants.sort_by_attr(@sort_attribute, @state_code)
       end
       render json: PlantSerializer.new(native_plants)
     end
@@ -22,6 +24,7 @@ class Api::V1::PlantsController < ApplicationController
     @state_code = params[:state_code]
     @zip_code = params[:zip_code]
     @search_name = params[:search_name]
+    @sort_attribute = params[:sort_by]
   end
 
   def valid_params?
