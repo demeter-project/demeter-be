@@ -11,6 +11,8 @@ class PlotPlantSerializer
   end
 
   attribute :date_planted do |object|
-    object.date_planted.strftime("%Y/%m/%d")
+    if !object.date_planted.nil?
+      object.date_planted.strftime("%Y/%m/%d")
+    end
   end
 end
