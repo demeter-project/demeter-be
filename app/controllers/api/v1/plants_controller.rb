@@ -8,7 +8,7 @@ class Api::V1::PlantsController < ApplicationController
     elsif @sort_attribute.present? && !@sort_attribute.blank?
       @plants = @plants.sort_by_attr(@sort_attribute)
     end
-    render json: PlantSerializer.new(@plants, params {hz_range_high: hz_range_high)
+    render json: PlantSerializer.new(@plants, params: {hz_range_high: hz_range_high})
   end
 
   def show
@@ -42,7 +42,7 @@ class Api::V1::PlantsController < ApplicationController
     end
   end
   
-  def hz_range_high(zip_code)
+  def hz_range_high
     PlantFacade.hz_range_high(@zip_code)
   end
 
