@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'gardens#create' do
+  let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
   describe 'happy paths' do
     describe 'when a post request is made to api/v1/gardens' do
       describe 'all params are present and correct' do
+        let!(:body) {JSON.generate(user_id: 1, zip_code: "05408", state_code: "VT", name: "Arnold's Whimsical Carrot Grotto")}
         it 'returns a json response with status 201 and the garden' do
-          post "/api/v1/gardens", params: { garden: { user_id: 1, zip_code: "05408", state_code: "VT", name: "Arnold's Whimsical Carrot Grotto" } }
+          
+          post "/api/v1/gardens", headers: headers, params: body
 
           expect(response).to be_successful
           expect(response).to have_http_status(201)
@@ -39,7 +42,8 @@ RSpec.describe 'gardens#create' do
 
   describe 'sad paths' do
     it 'returns an error when values are missing' do
-      post "/api/v1/gardens", params: { garden: { user_id: 1, name: "Arnold's Whimsical Carrot Grotto" } }
+
+      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: 1, name: "Arnold's Whimsical Carrot Grotto")
 
       expect(response).not_to be_successful
       expect(response).to have_http_status(400)
@@ -52,7 +56,7 @@ RSpec.describe 'gardens#create' do
     end
 
     it 'returns an error when values are incorrect' do
-      post "/api/v1/gardens", params: { garden: { user_id: 'barney', zip_code: "5408", state_code: "VTA", name: "Arnold's Whimsical Carrot Grotto" } }
+      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: 'barney', zip_code: "5408", state_code: "VTA", name: "Arnold's Whimsical Carrot Grotto")
       
       expect(response).not_to be_successful
       expect(response).to have_http_status(400)

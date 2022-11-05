@@ -10,18 +10,16 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
         plant_1 = create(:plant)
         plant_2 = create(:plant)
 
-        plot_plant_1 = PlotPlant.create!(plot: plot_1, plant_id: plant_1.id)
+        plot_plant_1 = PlotPlant.create!(plot: plot_1, plant: plant_1)
         plot_plant_2 = PlotPlant.create!(plot: plot_1, plant: plant_2)
 
         previous_date = {date_planted: plot_plant_1.date_planted}
         previous_quantity = {quantity: plot_plant_1.quantity}
-        params = {
-            date_planted: DateTime.now,
-            quantity: 15
-          }
+
+        body = JSON.generate(date_planted: DateTime.now, quantity: 15)
         headers = {"CONTENT_TYPE" => "application/json"}
 
-        patch "/api/v1/gardens/#{garden.id}/plots/#{plot_1.id}/plot_plants/#{plot_plant_1.id}", headers: headers, params: JSON.generate({plot_plant: params})
+        patch "/api/v1/gardens/#{garden.id}/plots/#{plot_1.id}/plot_plants/#{plot_plant_1.id}", headers: headers, params: body
         plot_plant = PlotPlant.find(plot_plant_1.id)
 
         expect(response).to be_successful
@@ -29,8 +27,8 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
         expect(plot_plant.date_planted).to_not eq(previous_date)
         expect(plot_plant.quantity).to_not eq(previous_quantity)
         result = JSON.parse(response.body, symbolize_names: true)
-        expect(result[:data][:attributes][:quantity]).to eq(params[:quantity])
-        expect(result[:data][:attributes][:date_planted]).to eq(params[:date_planted].strftime("%Y/%m/%d"))
+        expect(result[:data][:attributes][:quantity]).to eq(15)
+        expect(result[:data][:attributes][:date_planted]).to eq(DateTime.now.strftime("%Y/%m/%d"))
       end
     end
   end
@@ -44,7 +42,7 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
         }
       headers = {"CONTENT_TYPE" => "application/json"}
         
-      patch "/api/v1/gardens/1/plots/1/plot_plants/1", headers: headers, params: JSON.generate({plot_plant: params})
+      patch "/api/v1/gardens/1/plots/1/plot_plants/1", headers: headers, params: JSON.generate(params)
 
       expect(response).to have_http_status(404)
     end
@@ -56,7 +54,7 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
         }
       headers = {"CONTENT_TYPE" => "application/json"}
         
-      patch "/api/v1/gardens/1/plots/1/plot_plants/1", headers: headers, params: JSON.generate({plot_plant: params})
+      patch "/api/v1/gardens/1/plots/1/plot_plants/1", headers: headers, params: JSON.generate(params)
 
       expect(response.body).to match(/Couldn't find PlotPlant/)
     end
