@@ -3,10 +3,10 @@ class Api::V1::PlantsController < ApplicationController
   before_action :set_index_vars, only: :index
 
   def index
-    if valid?(@search_name)
-      @plants = @plants.search_name(@search_name)
-    elsif valid?(@sort_attribute)
-      @plants = @plants.sort_by_attr(@sort_attribute)
+    if valid?(params[:search_name])
+      @plants = name_search
+    elsif valid?(params[:sort_by])
+      @plants = sort_by_attr
     end
     render json: PlantSerializer.new(@plants, params: {hz_range_high: hz_range_high})
   end
@@ -17,11 +17,17 @@ class Api::V1::PlantsController < ApplicationController
 
   private
 
+  def name_search
+    @plants.search_name(params[:search_name])
+  end
+
+  def sort_by_attr
+    @plants.sort_by_attr(params[:sort_by])
+  end
+
   def set_index_vars
     @state_code = params[:state_code]
     @zip_code = params[:zip_code]
-    @search_name = params[:search_name]
-    @sort_attribute = params[:sort_by]
     if valid_params?
       @plants = Plant.native_to(@state_code)
     end

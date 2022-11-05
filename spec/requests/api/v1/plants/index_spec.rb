@@ -104,7 +104,7 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
       let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", temperature_min: 10, states: "VT VA CA" }
       let!(:plant_3) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VT VA CA" }
 
-      describe 'when param[sort_plants=attribute] is present' do
+      describe 'when param[sort_by=attribute] is present' do
         it 'returns a json response of plants sorted by specified' do
           get '/api/v1/plants?state_code=VT&zip_code=05408&sort_by=common_name'
 
