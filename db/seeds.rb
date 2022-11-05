@@ -12,10 +12,6 @@ nw = garden_1.plots.create(name: "Native Wildflowers")
 s = garden_1.plots.create(name: "Shrubs")
 og = garden_1.plots.create(name: "Foxtails")
 
-# plant_ids: [692, 869, 876]
-# plant_ids: [206, 360]
-# plant_ids: [57, 58, 66]
-
 nw.update!(plant_ids: [692, 869, 876])
 s.update!(plant_ids:[206, 360])
 og.update!(plant_ids: [57, 58, 66])
