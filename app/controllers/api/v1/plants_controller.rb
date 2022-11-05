@@ -64,5 +64,4 @@ class Api::V1::PlantsController < ApplicationController
   def set_plant
     @plant = Plant.find(params[:id])
   end
-
 end
