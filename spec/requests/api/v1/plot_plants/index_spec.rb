@@ -42,12 +42,16 @@ RSpec.describe 'get /gardens/:garden_id/plots/:plot_id/plot_plants' do
   end
 
   describe 'When the record does not exist' do
-    it 'returns an empty hash' do
+    it 'returns a status 400' do
       get "/api/v1/gardens/1/plots/1/plot_plants"
 
-      expect(response).to have_http_status(200)
-      results = JSON.parse(response.body, symbolize_names: true)
-      expect(results[:data]).to be_empty
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns a not found message' do
+      get "/api/v1/gardens/1/plots/1/plot_plants"
+      
+      expect(response.body).to match(/Couldn't find Plot/)
     end
   end
 end

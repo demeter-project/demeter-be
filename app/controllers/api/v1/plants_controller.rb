@@ -8,7 +8,7 @@ class Api::V1::PlantsController < ApplicationController
     elsif @sort_attribute.present? && !@sort_attribute.blank?
       @plants = @plants.sort_by_attr(@sort_attribute)
     end
-    render json: PlantSerializer.new(@plants)
+    render json: PlantSerializer.new(@plants, params {hz_range_high: hz_range_high)
   end
 
   def show
@@ -40,6 +40,10 @@ class Api::V1::PlantsController < ApplicationController
       custom_error({state_code: "must be present", zip_code: "must be present"})
       false
     end
+  end
+  
+  def hz_range_high(zip_code)
+    PlantFacade.hz_range_high(@zip_code)
   end
 
   def custom_error(message_hash)

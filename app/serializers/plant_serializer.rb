@@ -21,4 +21,13 @@ class PlantSerializer
               :frost_free_days_min,
               :precipitation_min,
               :precipitation_max
+  attribute   :suitable_for_hz do |object, params|
+    if params[:hz_range_high].nil?
+      nil
+    elsif object.temperature_min <= params[:hz_range_high]
+      true
+    else
+      false
+    end
+  end
 end
