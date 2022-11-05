@@ -32,6 +32,19 @@ RSpec.describe 'plots#update' do
         plot.reload
         expect(plot.plants).to eq([plants[5], plants[12]])
       end
+
+      it 'updates to plant_ids add to plants instead of replacing' do
+        plot.plants << [plants[1], plants[6]]
+
+        patch "/api/v1/gardens/#{garden.id}/plots/#{plot.id}", headers: headers, params: body
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+        
+        plot.reload
+
+        expect(plot.plants).to match_array([plants[1], plants[6], plants[5], plants[12]])
+      end
     end
 
     describe 'sad path' do
