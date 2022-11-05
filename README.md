@@ -218,34 +218,34 @@ GET `/gardens/<garden_id>`
       "state": "CO",
       "weather_forecast": [
           {
-              "number": 1,
-              "name": "Tonight",
-              "startTime": "2022-11-01T19:00:00-05:00",
-              "endTime": "2022-11-02T06:00:00-05:00",
-              "isDaytime": false,
+              "id": 1,
+              "day":"Tonight",
+              "start_time": "2022-11-01T19:00:00-05:00",
+              "end_time": "2022-11-02T06:00:00-05:00",
+              "day_time": false,
               "temperature": 54,
-              "temperatureUnit": "F",
-              "temperatureTrend": null,
-              "windSpeed": "15 mph",
-              "windDirection": "S",
+              "temperature_unit": "F",
+              "temperature_trend": null,
+              "wind_speed": "15 mph",
+              "wind_direction": "S",
               "icon": "https://api.weather.gov/icons/land/night/skc?size=medium",
-              "shortForecast": "Clear",
-              "detailedForecast": "Clear, with a low around 54. South wind around 15 mph, with gusts as high as 25 mph."
+              "short_forecast": "Clear",
+              "detailed_forecast": "Clear, with a low around 54. South wind around 15 mph, with gusts as high as 25 mph."
           },
           {
-              "number": 2,
-              "name": "Wednesday",
-              "startTime": "2022-11-02T06:00:00-05:00",
-              "endTime": "2022-11-02T18:00:00-05:00",
-              "isDaytime": true,
+              "id": 2,
+              "day": "Wednesday",
+              "start_time": "2022-11-02T06:00:00-05:00",
+              "end_time": "2022-11-02T18:00:00-05:00",
+              "daytime": true,
               "temperature": 76,
-              "temperatureUnit": "F",
-              "temperatureTrend": null,
-              "windSpeed": "15 to 25 mph",
-              "windDirection": "S",
+              "temperature_unit": "F",
+              "temperature_trend": null,
+              "wind_speed": "15 to 25 mph",
+              "wind_direction": "S",
               "icon": "https://api.weather.gov/icons/land/day/wind_few?size=medium",
-              "shortForecast": "Sunny",
-              "detailedForecast": "Sunny, with a high near 76. South wind 15 to 25 mph, with gusts as high as 40 mph."
+              "short_forecast": "Sunny",
+              "detailed_forecast": "Sunny, with a high near 76. South wind 15 to 25 mph, with gusts as high as 40 mph."
         },
         **etc...(includes 7 days in actual response)**
       ]
@@ -305,7 +305,8 @@ GET `/gardens/<garden_id>/plots/<plot_id>`
       "name": "Succulents",
       "soil_ph_min": 5.7,
       "soil_ph_max": 7,
-      "shade_tolerant": true
+      "shade_tolerant?": true,
+      "contains_toxic?": true
     }
   }
 }
@@ -333,7 +334,7 @@ GET `/gardens/<garden_id>/plots/<plot_id>/plot_plants`
         "plant_id": "15",
         "plant_name": "Common Clover",
         "quantity": 5,
-        "date_planted": 2022-05-18
+        "date_planted": "2022-05-18"
       }
     },
     {
