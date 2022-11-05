@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://phzmapi.org/.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.6.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 05 Nov 2022 12:41:54 GMT
+      Server:
+      - AmazonS3
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 1d0c8380d9f12c4c559633dbe9e5eeca.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - JFK50-P8
+      X-Amz-Cf-Id:
+      - VTnZnJ3TgilSWwL-HD6YkzlyNM1jLp895HHGBwu8z-mHCHDZ6nvqMQ==
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Error><Code>NoSuchKey</Code><Message>The specified key does not exist.</Message><Key>.json</Key><RequestId>YNAJ8BTCV1119TPJ</RequestId><HostId>v3e6m/M44UZy5yt8lzT8sriP2ZAniJjXkrFLl6pr/mz81PlePux/ncW6kIJCji5eWL+8zsJCNpQ=</HostId></Error>
+  recorded_at: Sat, 05 Nov 2022 12:41:54 GMT
+recorded_with: VCR 6.1.0

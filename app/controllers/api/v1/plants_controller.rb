@@ -1,15 +1,14 @@
 class Api::V1::PlantsController < ApplicationController
-  before_action :set_plant, only: [:show]
-  before_action :set_params
+  before_action :set_plant, only: :show
+  before_action :set_index_vars, only: :index
 
   def index
-    if valid_params?
-      native_plants = Plant.native_to(@state_code)
-      if @search_name.present? || !@search_name.blank?
-        native_plants = native_plants.search_name(@search_name, @state_code)
-      end
-      render json: PlantSerializer.new(native_plants, params: { hz_range_high: PlantFacade.hz_range_high(@zip_code) } )
+    if valid?(params[:search_name])
+      @plants = name_search
+    elsif valid?(params[:sort_by])
+      @plants = sort_by_attr
     end
+    render json: PlantSerializer.new(@plants, params: {hz_range_high: hz_range_high})
   end
 
   def show
@@ -18,36 +17,51 @@ class Api::V1::PlantsController < ApplicationController
 
   private
 
-  def set_params
-    @state_code = params[:state_code]
-    @zip_code = params[:zip_code]
-    @search_name = params[:search_name]
+  def name_search
+    @plants.search_name(params[:search_name])
   end
 
-  def valid_params?
-    if check(@state_code) && check(@zip_code)
-      true
-    elsif check(@state_code) && !check(@zip_code)
-      error = ErrorSerializer.new( {zip_code: "must be present"} )
-      render json: error.custom_show, status: 400
-      false
-    elsif check(@zip_code) && !check(@state_code)
-      error = ErrorSerializer.new( {state_code: "must be present"} )
-      render json: error.custom_show, status: 400
-      false
-    else
-      error = ErrorSerializer.new( {state_code: "must be present", zip_code: "must be present"} )
-      render json: error.custom_show, status: 400
-      false
+  def sort_by_attr
+    @plants.sort_by_attr(params[:sort_by])
+  end
+
+  def set_index_vars
+    @state_code = params[:state_code]
+    @zip_code = params[:zip_code]
+    if valid_params?
+      @plants = Plant.native_to(@state_code)
     end
   end
 
-  def check(param)
+  def valid_params?
+    if valid?(@state_code) && valid?(@zip_code)
+      true
+    elsif valid?(@state_code) && !valid?(@zip_code)
+      custom_error({zip_code: "must be present"})
+      false
+    elsif valid?(@zip_code) && !valid?(@state_code)
+      custom_error({state_code: "must be present"})
+      false
+    else
+      custom_error({state_code: "must be present", zip_code: "must be present"})
+      false
+    end
+  end
+  
+  def hz_range_high
+    PlantFacade.hz_range_high(@zip_code)
+  end
+
+  def custom_error(message_hash)
+    error = ErrorSerializer.new(message_hash)
+    render json: error.custom_show, status: 400
+  end
+
+  def valid?(param)
     param.present? && !param.blank?
   end
 
   def set_plant
     @plant = Plant.find(params[:id])
   end
-
 end

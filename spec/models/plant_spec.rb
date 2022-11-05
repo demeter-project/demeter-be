@@ -25,24 +25,56 @@ RSpec.describe Plant, type: :model do
         plant_1 = create(:plant, common_name: "Halo Bunny", states: "VT WA")
         plant_2 = create(:plant, common_name: "Hal Bunno", states: "VT WA")
         plant_3 = create(:plant, common_name: "Squirrel", states: "VT WA")
+        plant_4 = create(:plant, common_name: "Squirrel", states: "VA WA")
 
-        expect(Plant.search_name("hal", "VT")).to include(plant_1, plant_2)
-        expect(Plant.search_name("hal", "VT")).not_to include(plant_3)
+        plants = Plant.native_to("VT")
+
+        expect(plants.search_name("hal")).to include(plant_1, plant_2)
+        expect(plants.search_name("hal")).not_to include(plant_3, plant_4)
       end
 
       it 'also searches scientific name' do
         plant_1 = create(:plant, common_name: "Halo Bunny", states: "VT WA")
         plant_2 = create(:plant, scientific_name: "Hal Bunno", states: "VT WA")
         plant_3 = create(:plant, common_name: "Squirrel", scientific_name: "Gary", states: "VT WA")
+        plant_4 = create(:plant, common_name: "Squirrel", states: "VA WA")
 
-        expect(Plant.search_name("hal", "VT")).to include(plant_1, plant_2)
-        expect(Plant.search_name("hal", "VT")).not_to include(plant_3)
+        plants = Plant.native_to("VT")
+
+        expect(plants.search_name("hal")).to include(plant_1, plant_2)
+        expect(plants.search_name("hal")).not_to include(plant_3)
       end
 
       it 'returns an empty array if no name matches' do
-        plants = create_list(:plant, 3)
+        plant_1 = create(:plant, common_name: "Halo Bunny", states: "VT WA")
+        plant_2 = create(:plant, scientific_name: "Hal Bunno", states: "VT WA")
+        plant_3 = create(:plant, common_name: "Squirrel", scientific_name: "Gary", states: "VT WA")
+        plant_4 = create(:plant, common_name: "Squirrel", states: "VA WA")
 
-        expect(Plant.search_name('1$#', "VT")).to eq([])
+        plants = Plant.native_to("VT")
+
+        expect(plants.search_name('1$#')).to eq([])
+      end
+    end
+  
+    describe '::sort_by(attribute)' do
+      let!(:plant_1) { create :plant, common_name: "Dogfern", temperature_min: 15, states: "VT VA CA" }
+      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", temperature_min: 10, states: "VT VA CA" }
+      let!(:plant_3) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VT VA CA" }
+      let!(:plant_4) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VA CA" }
+      let!(:plants) { Plant.native_to("VT") }
+
+      describe 'happy path - good attribute provided' do
+        it 'returns an array of plants sorted by attribute' do
+          expect(plants.sort_by_attr("common_name")).to eq([plant_2, plant_3, plant_1])
+          expect(plants.sort_by_attr("temperature_min")).to eq([plant_3, plant_2, plant_1])
+        end
+      end
+
+      describe 'sad path - bad attribute provided' do
+        it 'returns nil' do
+          expect(plants.sort_by_attr("depth_perception")).to eq(nil)
+        end
       end
     end
   end

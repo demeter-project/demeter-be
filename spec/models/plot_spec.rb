@@ -28,7 +28,7 @@ RSpec.describe Plot, type: :model do
 
       it 'returns the average of all plants ph_minimum' do
         plot.plants << plants
-        
+
         expect(plot.soil_ph_min).to eq(5)
         expect(plot.soil_ph_max).to eq(6)
       end
@@ -42,8 +42,7 @@ RSpec.describe Plot, type: :model do
           plant_1 = create(:plant, shade_tolerance: "Tolerant")
           plant_2 = create(:plant, shade_tolerance: "Tolerant")
           plant_3 = create(:plant, shade_tolerance: "Tolerant")
-          plants = [plant_1, plant_2, plant_3]
-          plot.plants << plants
+          plot.plants << [plant_1, plant_2, plant_3]
 
           expect(plot.shade_tolerant?).to eq(true)
         end
@@ -52,9 +51,7 @@ RSpec.describe Plot, type: :model do
           plant_1 = create(:plant, shade_tolerance: "Tolerant")
           plant_2 = create(:plant, shade_tolerance: "Intermediate")
           plant_3 = create(:plant, shade_tolerance: "Intolerant")
-
-          plants = [plant_1, plant_2, plant_3]
-          plot.plants << plants
+          plot.plants << [plant_1, plant_2, plant_3]
 
           expect(plot.shade_tolerant?).to eq(false)
         end
@@ -69,8 +66,7 @@ RSpec.describe Plot, type: :model do
           plant_1 = create(:plant, toxicity: "None")
           plant_2 = create(:plant, toxicity: "Slight")
           plant_3 = create(:plant, toxicity: "Severe")
-          plants = [plant_1, plant_2, plant_3]
-          plot.plants << plants
+          plot.plants << [plant_1, plant_2, plant_3]
 
           expect(plot.contains_toxic?).to eq(true)
         end
@@ -79,8 +75,7 @@ RSpec.describe Plot, type: :model do
           plant_1 = create(:plant, toxicity: "None")
           plant_2 = create(:plant, toxicity: "None")
           plant_3 = create(:plant, toxicity: "None")
-          plants = [plant_1, plant_2, plant_3]
-          plot.plants << plants
+          plot.plants << [plant_1, plant_2, plant_3]
 
           expect(plot.contains_toxic?).to eq(false)
         end

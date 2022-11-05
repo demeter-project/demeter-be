@@ -99,8 +99,45 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
       end
     end
 
+    describe 'sorting by attribute' do
+      let!(:plant_1) { create :plant, common_name: "Dogfern", temperature_min: 15, states: "VT VA CA" }
+      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", temperature_min: 10, states: "VT VA CA" }
+      let!(:plant_3) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VT VA CA" }
+
+      describe 'when param[sort_by=attribute] is present' do
+        it 'returns a json response of plants sorted by specified' do
+          get '/api/v1/plants?state_code=VT&zip_code=05408&sort_by=common_name'
+
+          expect(response).to be_successful
+          expect(response).to have_http_status(200)
+
+          result = JSON.parse(response.body, symbolize_names: true)
+          expect(result).to have_key(:data)
+
+          data = result[:data]
+          first_plant = data.first
+
+          expect(first_plant[:id]).to eq(plant_2.id.to_s)
+        end
+      end
+
+      describe 'when params[:sort_plants]=attribute is not a valid attribute' do
+        it 'returns an error' do
+          get '/api/v1/plants?state_code=VT&zip_code=05408&sort_by=depth_perception'
+          
+          expect(response).to be_successful
+          expect(response).to have_http_status(200)
+
+          result = JSON.parse(response.body, symbolize_names: true)
+          expect(result).to have_key(:data)
+          expect(result[:data]).to be(nil)
+        end
+      end
+    end
+
     describe 'sad path: state missing or empty' do
       it 'returns an error' do
+        create_list :plant, 10, states: "VT WA CA"
         get '/api/v1/plants?state_code=&zip_code=05408'
 
         expect(response).not_to be_successful
@@ -121,6 +158,7 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
 
     describe 'sad path: zip_code missing or empty' do
       it 'returns an error' do
+        create_list :plant, 10, states: "VT WA CA"
         get '/api/v1/plants?state_code=VT'
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
@@ -140,7 +178,9 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
     end
 
     describe 'sad path: both zip and state missing' do
-      it 'returns an error' do 
+      it 'returns an error' do
+        create_list :plant, 10, states: "VT WA CA"
+
         get '/api/v1/plants'
         expect(response).not_to be_successful
         expect(response).to have_http_status(400)
