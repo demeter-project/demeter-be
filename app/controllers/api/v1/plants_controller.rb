@@ -3,9 +3,9 @@ class Api::V1::PlantsController < ApplicationController
   before_action :set_index_vars, only: :index
 
   def index
-    if @search_name.present? && !@search_name.blank?
+    if valid?(@search_name)
       @plants = @plants.search_name(@search_name)
-    elsif @sort_attribute.present? && !@sort_attribute.blank?
+    elsif valid?(@sort_attribute)
       @plants = @plants.sort_by_attr(@sort_attribute)
     end
     render json: PlantSerializer.new(@plants, params: {hz_range_high: hz_range_high})
