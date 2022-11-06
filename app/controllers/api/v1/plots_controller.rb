@@ -12,6 +12,7 @@ class Api::V1::PlotsController < ApplicationController
   end
 
   def update
+    params[:plant_ids] = @plot.plant_ids + params[:plant_ids] if params[:plant_ids]
     if @plot.update(plot_params)
       render json: PlotSerializer.new(@plot)
     else
@@ -45,6 +46,6 @@ class Api::V1::PlotsController < ApplicationController
   end
 
   def plot_params
-    params.require(:plot).permit(:name, plant_ids: [])
+    params.permit(:name, plant_ids: [])
   end
 end

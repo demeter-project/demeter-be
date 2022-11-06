@@ -31,6 +31,6 @@ class Api::V1::GardensController < ApplicationController
   end
   
   def garden_params
-    params.require(:garden).permit(:user_id, :zip_code, :name, :state_code)
+    params.permit(:user_id, :zip_code, :name, :state_code)
   end
 end

@@ -19,7 +19,7 @@ class Api::V1::PlotPlantsController < ApplicationController
   private
 
   def plot_plant_params
-    params.require(:plot_plant).permit(:quantity, :date_planted)
+    params.permit(:quantity, :date_planted)
   end
  
 end

@@ -6,10 +6,10 @@ RSpec.describe 'plot creation' do
     let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
     
     describe 'happy path' do
-      let!(:http_body) { { "name": "Colorado Wildflowers" } }
+      let!(:body) { JSON.generate("name": "Colorado Wildflowers") }
       
       it 'returns a response with status 201 and data from the newly created Plot' do
-        post "/api/v1/gardens/#{garden.id}/plots", headers: headers, params: JSON.generate(plot: http_body)
+        post "/api/v1/gardens/#{garden.id}/plots", headers: headers, params: body
 
         expect(response).to be_successful
         expect(response).to have_http_status(201)
@@ -31,16 +31,16 @@ RSpec.describe 'plot creation' do
 
     describe 'sad path' do
       describe 'if name is empty' do
-        let!(:http_body) { { name: "" } }
+        let!(:body) { JSON.generate(name: "") }
         it 'returns a 400 error with information' do
-          post "/api/v1/gardens/#{garden.id}/plots", headers: headers, params: JSON.generate(plot: http_body)
+          post "/api/v1/gardens/#{garden.id}/plots", headers: headers, params: body
 
           expect(response).not_to be_successful
           expect(response).to have_http_status(400)
 
           result = JSON.parse(response.body, symbolize_names: true)
+          
           expect(result).to have_key(:errors)
-
           expect(result[:errors].first).to have_key(:title)
           expect(result[:errors].first).to have_key(:detail)
         end
@@ -54,12 +54,11 @@ RSpec.describe 'plot creation' do
           expect(response).to have_http_status(400)
 
           result = JSON.parse(response.body, symbolize_names: true)
-          expect(result).to have_key(:message)
 
-          # first_error = result[:errors].first
-          # expect(first_error).to have_key(:title)
-          # expect(first_error).to have_key(:detail)
-          expect(result[:message]).to eq("param is missing or the value is empty: plot")
+          expect(result).to have_key(:errors)
+          expect(result[:errors].first).to have_key(:title)
+          expect(result[:errors].first).to have_key(:detail)
+          expect(result[:errors].first[:detail].first).to eq("Name can't be blank")
         end
       end
     end

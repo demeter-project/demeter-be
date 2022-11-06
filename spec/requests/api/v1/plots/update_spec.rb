@@ -8,10 +8,10 @@ RSpec.describe 'plots#update' do
     let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
 
     describe 'happy path' do
-      let!(:http_body) { { plant_ids: [plants[5].id, plants[12].id]} }
+      let!(:body) { JSON.generate(plant_ids: [plants[5].id, plants[12].id]) }
 
       it 'can add plants to a plot' do
-        patch "/api/v1/gardens/#{garden.id}/plots/#{plot.id}", headers: headers, params: JSON.generate(plot: http_body)
+        patch "/api/v1/gardens/#{garden.id}/plots/#{plot.id}", headers: headers, params: body
 
         expect(response).to be_successful
         expect(response).to have_http_status(200)
@@ -32,14 +32,27 @@ RSpec.describe 'plots#update' do
         plot.reload
         expect(plot.plants).to eq([plants[5], plants[12]])
       end
+
+      it 'updates to plant_ids add to plants instead of replacing' do
+        plot.plants << [plants[1], plants[6]]
+
+        patch "/api/v1/gardens/#{garden.id}/plots/#{plot.id}", headers: headers, params: body
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+        
+        plot.reload
+
+        expect(plot.plants).to match_array([plants[1], plants[6], plants[5], plants[12]])
+      end
     end
 
     describe 'sad path' do
       describe 'if plant id does not exist' do
-        let!(:http_body) { { plant_ids: [plants[5].id, 6516516]} }
+        let!(:body) { JSON.generate(plant_ids: [plants[5].id, 6516516]) }
 
         it 'returns a 400 error with information' do
-          patch "/api/v1/gardens/#{garden.id}/plots/#{plot.id}", headers: headers, params: JSON.generate(plot: http_body)
+          patch "/api/v1/gardens/#{garden.id}/plots/#{plot.id}", headers: headers, params: body
 
           expect(response).not_to be_successful
           expect(response).to have_http_status(404)
