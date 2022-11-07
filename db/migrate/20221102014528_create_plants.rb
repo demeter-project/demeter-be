@@ -14,7 +14,7 @@ class CreatePlants < ActiveRecord::Migration[5.2]
       t.string :growth_rate
       t.string :salinity_tolerance
       t.string :shade_tolerance
-      t.string :edible
+      t.boolean :edible
       t.decimal :ph_minimum
       t.decimal :ph_maximum
       t.integer :temperature_min

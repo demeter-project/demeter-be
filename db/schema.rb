@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2022_11_03_172424) do
     t.string "growth_rate"
     t.string "salinity_tolerance"
     t.string "shade_tolerance"
-    t.string "edible"
+    t.boolean "edible"
     t.decimal "ph_minimum"
     t.decimal "ph_maximum"
     t.integer "temperature_min"
