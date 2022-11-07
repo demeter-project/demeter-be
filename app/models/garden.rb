@@ -1,5 +1,5 @@
 class Garden < ApplicationRecord
-  has_many :plots
+  has_many :plots, dependent: :destroy
 
   validates_presence_of :name, :user_id, :zip_code, :state_code
 
