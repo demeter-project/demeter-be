@@ -82,7 +82,7 @@ GET `/plants/<plant_id>`
     "id": "192",
     "type": "plant",
     "attributes": {
-      "name": "Heartleaf Arnica",
+      "common_name": "Heartleaf Arnica",
       "usda_symbol": "ARCO9",
       "scientific_name": "Arnica cordifolia",
       "states": "AK, AZ, CA, CO, ID, MI, MT, ND, NM, NV, OR, SD, UT, WA, WY",
@@ -101,7 +101,7 @@ GET `/plants`
 
 **Required Params:**
 
-- state: Two letter state code
+- state_code: Two letter state code
 - zip_code: 5-digit zip code for the planting location
 
 **Optional Params:**
@@ -110,9 +110,9 @@ GET `/plants`
 - sort_by: Pass a plant attribute to sort the results based on that attribute. Available Options are any attribute listed in the plants table within the database schema above.
   **Example Queries:**
 
-- GET `https://demeter-be.herokuapp.com/api/v1/plants?state=CO&zip_code=80223`
-- GET `https://demeter-be.herokuapp.com/api/v1/plants?state=CO&zip_code=80223&sort_by=ph_minimum`
-- GET `https://demeter-be.herokuapp.com/api/v1/plants?state=CO&zip_code=80223&seach_name=columbine`
+- GET `https://demeter-be.herokuapp.com/api/v1/plants?state_code=CO&zip_code=80223`
+- GET `https://demeter-be.herokuapp.com/api/v1/plants?state_code=CO&zip_code=80223&sort_by=ph_minimum`
+- GET `https://demeter-be.herokuapp.com/api/v1/plants?state_code=CO&zip_code=80223&seach_name=columbine`
 
 **Example Response:**
 
@@ -123,7 +123,7 @@ GET `/plants`
             "id": "156",
             "type": "plant",
             "attributes": {
-                "name": "Heartleaf Arnica",
+                "common_name": "Heartleaf Arnica",
                 "usda_symbol": "ARCO9",
                 "scientific_name": "Arnica cordifolia",
                 "states": "AK, AZ, CA, CO, ID, MI, MT, ND, NM, NV, OR, SD, UT, WA, WY",
@@ -136,7 +136,7 @@ GET `/plants`
             "id": "124",
             "type": "plant",
             "attributes": {
-                "name": "Heartleaf Arnica",
+                "common_name": "Heartleaf Arnica",
                 "usda_symbol": "ARCO9",
                 "scientific_name": "Arnica cordifolia",
                 "states": "AK, AZ, CA, CO, ID, MI, MT, ND, NM, NV, OR, SD, UT, WA, WY",
@@ -181,7 +181,7 @@ See the database schema above for list of other attributes on a given plant.
             "attributes": {
                 "name": "My Garden",
                 "zip_code": 80023,
-                "state": "CO",
+                "state_code": "CO",
                 "user_id": "18"
             }
         },
@@ -191,7 +191,7 @@ See the database schema above for list of other attributes on a given plant.
             "attributes": {
                 "name": "My Second Garden",
                 "zip_code": 80023,
-                "state": "CO",
+                "state_code": "CO",
                 "user_id": "18"
             }
         }
@@ -215,7 +215,7 @@ GET `/gardens/<garden_id>`
     "attributes": {
       "name": "My Garden",
       "zip_code": 80023,
-      "state": "CO",
+      "state_code": "CO",
       "weather_forecast": [
           {
               "id": 1,
@@ -372,7 +372,7 @@ POST `/gardens`
 {
   "name": "My Garden",
   "zip_code": "80023",
-  "state": "CO",
+  "state_code": "CO",
   "user_id": 15
 }
 ```
@@ -472,7 +472,7 @@ PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
 {
   "data": {
     "id": "15",
-    "type": "plot plant",
+    "type": "plot_plant",
     "attributes": {
       "quantity": 15,
       "date_planted": 2022-05-15,
