@@ -153,7 +153,7 @@ RSpec.describe Plot, type: :model do
           plants = [plant_1, plant_2, plant_3]
           plot.plants << plants
 
-          expect(plot.shade_tolerant?).to eq(false)
+          expect(plot.contains_toxic?).to eq(false)
         end
       end
     end

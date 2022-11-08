@@ -188,6 +188,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
+    validates_zipcode (0.5.1)
+      activemodel (>= 4.2.0)
     vcr (6.1.0)
     webmock (3.18.1)
       addressable (>= 2.8.0)
@@ -222,6 +224,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  validates_zipcode
   vcr
   webmock
 
@@ -229,4 +232,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.3.20
+   2.3.21
