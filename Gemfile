@@ -29,6 +29,7 @@ gem 'faraday'
 gem 'jsonapi-serializer'
 gem 'active_model_serializers'
 gem 'figaro'
+gem 'validates_zipcode'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -37,7 +38,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'rspec-rails'
-  gem 'pry'
   gem 'simplecov'
 end
 
