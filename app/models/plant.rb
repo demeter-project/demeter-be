@@ -14,6 +14,8 @@ class Plant < ApplicationRecord
     if Plant.column_names.include?(attribute)
       attribute = sanitize_sql_for_order(attribute)
       order(attribute)
+    else
+      order(:id)
     end
   end
 end
