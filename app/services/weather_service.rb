@@ -4,7 +4,7 @@ class WeatherService
   end
 
   def self.get_forecast(latitude, longitude)
-    Rails.cache.fetch("forecast-#{latitude}-#{longitude}", expires_in: 12.hours) do
+    Rails.cache.fetch("forecast-#{latitude}-#{longitude}", expires_in: 6.hours) do
       url = conn.get("/points/#{latitude},#{longitude}")
       url = conn.get(url.headers[:location]) if url.status == 301
       forecast_url = JSON.parse(url.body, symbolize_names: true)
