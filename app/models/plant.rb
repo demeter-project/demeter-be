@@ -7,13 +7,19 @@ class Plant < ApplicationRecord
   end
 
   def self.search_name(name)
-    where('common_name ilike ? OR scientific_name ilike ?', "%#{name}%", "%#{name}%")
+    if name.nil? || name == ""
+      all
+    else
+      where('common_name ilike ? OR scientific_name ilike ?', "%#{name}%", "%#{name}%")
+    end
   end
 
   def self.sort_by_attr(attribute)
     if Plant.column_names.include?(attribute)
       attribute = sanitize_sql_for_order(attribute)
       order(attribute)
+    else
+      order(:scientific_name)
     end
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
   describe 'GET plants#index' do
     it 'returns a json response containing all plants native to queried state' do
       plants = create_list(:plant, 10, states: "VT CT VA WA")
-      get '/api/v1/plants?state_code=VT&zip_code=05408'
+      get '/api/v1/plants', params: {zip_code: "05408", state_code: "VT"}
 
       expect(response).to be_successful
       expect(response).to have_http_status(200)
@@ -74,7 +74,7 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
         let!(:plant_3) { create(:plant, common_name: "Squirrel's Tail", scientific_name: "Bunny Bun", states: "VT WA VA") }
 
         it 'returns a json response with plants matching all or part of searched name' do
-          get '/api/v1/plants?state_code=VT&zip_code=05408&search_name=hal'
+          get '/api/v1/plants', params: { state_code: "VT", zip_code: "05408", search_name: "hal"}
 
           expect(response).to be_successful
           expect(response).to have_http_status(200)
@@ -100,9 +100,9 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
     end
 
     describe 'sorting by attribute' do
-      let!(:plant_1) { create :plant, common_name: "Dogfern", temperature_min: 15, states: "VT VA CA" }
-      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", temperature_min: 10, states: "VT VA CA" }
-      let!(:plant_3) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VT VA CA" }
+      let!(:plant_1) { create :plant, common_name: "Dogfern", scientific_name: "A", temperature_min: 15, states: "VT VA CA" }
+      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", scientific_name: "B", temperature_min: 10, states: "VT VA CA" }
+      let!(:plant_3) { create :plant, common_name: "Bearwood", scientific_name: "C", temperature_min: 5, states: "VT VA CA" }
 
       describe 'when param[sort_by=attribute] is present' do
         it 'returns a json response of plants sorted by specified' do
@@ -122,7 +122,7 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
       end
 
       describe 'when params[:sort_plants]=attribute is not a valid attribute' do
-        it 'returns an error' do
+        it 'returns the original collection' do
           get '/api/v1/plants?state_code=VT&zip_code=05408&sort_by=depth_perception'
           
           expect(response).to be_successful
@@ -130,7 +130,11 @@ RSpec.describe '/api/v1/plants endpoints', :vcr do
 
           result = JSON.parse(response.body, symbolize_names: true)
           expect(result).to have_key(:data)
-          expect(result[:data]).to be(nil)
+
+          data = result[:data]
+          first_plant = data.first
+
+          expect(first_plant[:id]).to eq(plant_1.id.to_s)
         end
       end
     end

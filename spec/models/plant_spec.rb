@@ -58,10 +58,10 @@ RSpec.describe Plant, type: :model do
     end
   
     describe '::sort_by(attribute)' do
-      let!(:plant_1) { create :plant, common_name: "Dogfern", temperature_min: 15, states: "VT VA CA" }
-      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", temperature_min: 10, states: "VT VA CA" }
-      let!(:plant_3) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VT VA CA" }
-      let!(:plant_4) { create :plant, common_name: "Bearwood", temperature_min: 5, states: "VA CA" }
+      let!(:plant_1) { create :plant, common_name: "Dogfern", scientific_name: "A", temperature_min: 15, states: "VT VA CA" }
+      let!(:plant_2) { create :plant, common_name: "Aardvarkleaf", scientific_name: "B", temperature_min: 10, states: "VT VA CA" }
+      let!(:plant_3) { create :plant, common_name: "Bearwood", scientific_name: "C", temperature_min: 5, states: "VT VA CA" }
+      let!(:plant_4) { create :plant, common_name: "Bearwood", scientific_name: "D", temperature_min: 5, states: "VA CA" }
       let!(:plants) { Plant.native_to("VT") }
 
       describe 'happy path - good attribute provided' do
@@ -72,8 +72,8 @@ RSpec.describe Plant, type: :model do
       end
 
       describe 'sad path - bad attribute provided' do
-        it 'returns nil' do
-          expect(plants.sort_by_attr("depth_perception")).to eq(nil)
+        it 'returns the original collection' do
+          expect(plants.sort_by_attr("depth_perception")).to eq([plant_1, plant_2, plant_3])
         end
       end
     end
