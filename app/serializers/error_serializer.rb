@@ -10,10 +10,11 @@ class ErrorSerializer
   
   def handle(error_hash)
     error_hash.reduce([]) do |array, (att,msg)|
-      title = att.to_s.capitalize
+      title = att.to_s.humanize
       msgs = msg.map { |msg| title + " " + msg }
       array << { 
         title: title,
+        source: att,
         detail: msgs
       }
     end
@@ -25,9 +26,10 @@ class ErrorSerializer
 
   def custom_handle(error_hash)
     error_hash.reduce([]) do |array, (att,msg)|
-      title = att.to_s.capitalize
+      title = att.to_s.humanize
       array << { 
         title: title,
+        source: att,
         detail: title + " " + msg
       }
     end

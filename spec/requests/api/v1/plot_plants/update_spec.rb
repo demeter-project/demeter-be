@@ -16,7 +16,7 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
         previous_date = {date_planted: plot_plant_1.date_planted}
         previous_quantity = {quantity: plot_plant_1.quantity}
 
-        body = JSON.generate(date_planted: DateTime.now, quantity: 15)
+        body = JSON.generate({date_planted: DateTime.now, quantity: 15})
         headers = {"CONTENT_TYPE" => "application/json"}
 
         patch "/api/v1/gardens/#{garden.id}/plots/#{plot_1.id}/plot_plants/#{plot_plant_1.id}", headers: headers, params: body
@@ -24,11 +24,9 @@ RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
 
         expect(response).to be_successful
         expect(response).to have_http_status(200)
-        expect(plot_plant.date_planted).to_not eq(previous_date)
-        expect(plot_plant.quantity).to_not eq(previous_quantity)
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result[:data][:attributes][:quantity]).to eq(15)
-        expect(result[:data][:attributes][:date_planted]).to eq(DateTime.now.strftime("%Y/%m/%d"))
+        expect(result[:data][:attributes][:date_planted]).to eq(DateTime.now.utc.strftime("%Y/%m/%d"))
       end
     end
   end
