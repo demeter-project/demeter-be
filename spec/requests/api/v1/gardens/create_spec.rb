@@ -67,5 +67,12 @@ RSpec.describe 'gardens#create' do
       expect(result[:errors].first).to have_key(:title)
       expect(result[:errors].first).to have_key(:detail)
     end
+
+    it 'handles gardens created with a bad zipcode' do
+      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: "1", zip_code: "99998", state_code: "VT", name: "Arnold's Whimsical Carrot Grotto")
+
+      get "/api/v1/gardens/#{Garden.last.id}"
+      
+    end
   end
 end
