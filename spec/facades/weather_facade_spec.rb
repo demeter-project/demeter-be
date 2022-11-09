@@ -8,4 +8,10 @@ RSpec.describe WeatherFacade do
     expect(forecast.first).to be_instance_of(Weather)
     expect(forecast.first.day).to be_a(String)
   end
+
+  it 'returns nil with bad zipcode', :vcr do
+    forecast = WeatherFacade.get_forecast('99998')
+
+    expect(forecast).to be nil
+  end
 end
