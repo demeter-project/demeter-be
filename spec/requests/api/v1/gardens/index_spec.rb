@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'gardens#index' do
+RSpec.describe 'gardens#index', :vcr do
   describe 'happy path' do
     let!(:gardens) { create_list(:garden, 5, user_id: 1, zip_code: "05408") }
 

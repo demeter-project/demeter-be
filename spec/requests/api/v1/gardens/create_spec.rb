@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'gardens#create' do
+RSpec.describe 'gardens#create', :vcr do
   let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
   describe 'happy paths' do
     describe 'when a post request is made to api/v1/gardens' do
@@ -68,11 +68,32 @@ RSpec.describe 'gardens#create' do
       expect(result[:errors].first).to have_key(:detail)
     end
 
-    it 'handles gardens created with a bad zipcode' do
-      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: "1", zip_code: "99998", state_code: "VT", name: "Arnold's Whimsical Carrot Grotto")
+    it 'returns an error when zip code cannot obtain coordinates from location service' do
+      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: 1, zip_code: "11111", state_code: "CO", name: "Arnold's Whimsical Carrot Grotto")
 
-      get "/api/v1/gardens/#{Garden.last.id}"
+      expect(response).not_to be_successful
+      expect(response).to have_http_status(400)
       
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result).to have_key(:errors)
+      expect(result[:errors]).to be_an Array
+      expect(result[:errors].first).to have_key(:title)
+      expect(result[:errors].first).to have_key(:detail)
+      expect(result[:errors].first[:detail]).to eq(["Zip code cannot be matched to valid US location"])
+    end
+
+    it 'returns error specifically for 99999 zip code because location service be crazy' do
+      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: 1, zip_code: "99999", state_code: "CO", name: "Arnold's Whimsical Carrot Grotto")
+
+      expect(response).not_to be_successful
+      expect(response).to have_http_status(400)
+      
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result).to have_key(:errors)
+      expect(result[:errors]).to be_an Array
+      expect(result[:errors].first).to have_key(:title)
+      expect(result[:errors].first).to have_key(:detail)
+      expect(result[:errors].first[:detail]).to eq(["Zip code cannot be matched to valid US location"])
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'plot creation' do
+RSpec.describe 'plot creation', :vcr do
   describe 'when a POST request is sent to /gardens/:garden_id/plots' do
     let!(:garden) { create :garden }
     let!(:headers) { {"CONTENT_TYPE" => "application/json"} }

@@ -24,33 +24,31 @@ http_interactions:
       - '94'
       Connection:
       - keep-alive
+      Date:
+      - Wed, 09 Nov 2022 18:36:05 GMT
       Last-Modified:
       - Sat, 15 Apr 2017 03:56:55 GMT
+      Etag:
+      - '"c87c6772c680874730f7fb3f01109756"'
       X-Amz-Version-Id:
       - 'null'
       Accept-Ranges:
       - bytes
       Server:
       - AmazonS3
-      Date:
-      - Thu, 03 Nov 2022 01:24:11 GMT
-      Etag:
-      - '"c87c6772c680874730f7fb3f01109756"'
-      Vary:
-      - Accept-Encoding
       X-Cache:
       - Hit from cloudfront
       Via:
-      - 1.1 ca5077255b9397f917364c90d2f75496.cloudfront.net (CloudFront)
+      - 1.1 210d9ee328e88fcabe1880802aba942a.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
-      - ORD58-P5
+      - DFW53-C1
       X-Amz-Cf-Id:
-      - cehaMIpirkCOB1GGk2PPvGh8gNHCmVlEqjKKxApwMHwJNcnsRx6Xww==
+      - gB1urPPijQTgmimYqOqm74YyZ8HZEngMRZWxdxJGlK8TU8KcTqEHmA==
       Age:
-      - '49610'
+      - '5318'
     body:
       encoding: UTF-8
       string: '{"zone": "6a", "coordinates": {"lat": 41.83, "lon": -87.68}, "temperature_range":
         "-10 to -5"}'
-  recorded_at: Thu, 03 Nov 2022 15:11:00 GMT
+  recorded_at: Wed, 09 Nov 2022 20:04:42 GMT
 recorded_with: VCR 6.1.0

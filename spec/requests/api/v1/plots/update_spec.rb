@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'plots#update' do
+RSpec.describe 'plots#update', :vcr do
   describe 'when a PATCH request is sent to /gardens/:garden_id/plots' do
     let!(:garden) { create(:garden) }
     let!(:plot) { create(:plot, garden: garden) }

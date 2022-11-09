@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'gardens#delete' do
+RSpec.describe 'gardens#delete', :vcr do
   it 'deletes a garden and returns a 204 status' do
     garden_1 = create :garden
     garden_2 = create :garden
