@@ -68,6 +68,7 @@ RSpec.configure do |config|
     config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
     config.hook_into :webmock
     config.filter_sensitive_data('<location_api>') { ENV['location_api'] }
+    config.default_cassette_options = { :record => :new_episodes }
     config.configure_rspec_metadata!
   end
 end

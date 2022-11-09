@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
+RSpec.describe 'patch /gardens/:garden_id/plots/:plot_id/plot_plant/:id', :vcr do
   describe 'When the record exists' do
     describe "updating a plot plant when it is being 'planted'" do
       it 'updates the quantity and date planted attributes' do

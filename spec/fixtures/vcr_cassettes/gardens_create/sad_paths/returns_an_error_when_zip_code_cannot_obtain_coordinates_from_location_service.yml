@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=99998
+    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=11111
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 09 Nov 2022 18:16:30 GMT
+      - Wed, 09 Nov 2022 19:57:58 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -51,17 +51,17 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Vb99EE45EYXcwoVjKSUhOnN34vO%2B5YCcMs3tl4nEhJB9vC2MQFMX9Y0dDZt6wFODAmOaJ3niEhkkv%2BNY3lIYCx10Bq373RyPi6ZILxx0qvpIiRHz%2FxnOkDmkyuRCLLRGhFY%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=gonQsZTnGAfHlqpsO2CqusuOYy3K%2FaZv8gGdeHqLX8lreQHw6EIshFzmTneevKld6SHqZIWGuxV%2BLKtKl%2Fo1iAQyuYmsM%2FI6H4Y2VptYizwtY2D1GQEBrcx0VDQY3lm1ZbI%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 76788a35bbbde732-DFW
+      - 76791ed61cfe813d-ORD
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"type":"FeatureCollection","features":[],"query":{"text":"99998","parsed":{"postcode":"99998","expected_type":"unknown"}}}'
-  recorded_at: Wed, 09 Nov 2022 18:16:30 GMT
+      string: '{"type":"FeatureCollection","features":[],"query":{"text":"11111","parsed":{"postcode":"11111","expected_type":"unknown"}}}'
+  recorded_at: Wed, 09 Nov 2022 19:57:58 GMT
 recorded_with: VCR 6.1.0

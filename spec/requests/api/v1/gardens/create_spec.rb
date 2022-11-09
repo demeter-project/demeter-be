@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'gardens#create' do
+RSpec.describe 'gardens#create', :vcr do
   let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
   describe 'happy paths' do
     describe 'when a post request is made to api/v1/gardens' do
@@ -68,8 +68,8 @@ RSpec.describe 'gardens#create' do
       expect(result[:errors].first).to have_key(:detail)
     end
 
-    it 'returns an error when zip code cannot obtain coordinates from location service', :vcr do
-      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: 1, zip_code: "99998", state_code: "CO", name: "Arnold's Whimsical Carrot Grotto")
+    it 'returns an error when zip code cannot obtain coordinates from location service' do
+      post "/api/v1/gardens", headers: headers, params: JSON.generate(user_id: 1, zip_code: "11111", state_code: "CO", name: "Arnold's Whimsical Carrot Grotto")
 
       expect(response).not_to be_successful
       expect(response).to have_http_status(400)

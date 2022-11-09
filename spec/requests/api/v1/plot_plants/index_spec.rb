@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'get /gardens/:garden_id/plots/:plot_id/plot_plants' do
+RSpec.describe 'get /gardens/:garden_id/plots/:plot_id/plot_plants', :vcr do
   describe 'When the record exists' do
     it 'returns a list of plot_plants within the plot' do
       garden = create(:garden)

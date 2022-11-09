@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WeatherService do
+RSpec.describe WeatherService, :vcr do
   it 'returns an HTTP response of the 7 day forecast day and night for the given area', :vcr do
     forecast = WeatherService.get_forecast('41.83', '-87.68')
 

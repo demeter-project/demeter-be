@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'delete /gardens/:garden_id/plots/:plot_id/plot_plant/:id' do
+RSpec.describe 'delete /gardens/:garden_id/plots/:plot_id/plot_plant/:id', :vcr do
   describe 'delete a plant from a garden' do
     it 'deletes the plot plant record from the table' do
       garden = create(:garden)
