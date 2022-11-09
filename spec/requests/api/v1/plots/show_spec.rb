@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'plots#show' do
+RSpec.describe 'plots#show', :vcr do
   describe 'GET api/v1/gardens/:garden_id/plots/:plot_id' do
     it 'returns a json response with information about the requested plot' do
       garden = create :garden

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'plot destroy' do
+RSpec.describe 'plot destroy', :vcr do
   let!(:garden) { create :garden }
   let!(:plot) { create :plot, garden: garden }
   let!(:plants) { create_list(:plant, 3) }
