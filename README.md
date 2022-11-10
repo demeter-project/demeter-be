@@ -25,7 +25,7 @@ The app also consumes two external APIs and consolidates the data to be consumed
 
 [Front End Repository](https://github.com/demeter-project/demeter-fe)
 
-[Application Deployed on Heroku](https://demeter-fe.herokuapp.com/)
+[Application Deployed on Heroku](https://en-root.herokuapp.com/)
 
 ---
 
