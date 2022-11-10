@@ -490,3 +490,19 @@ PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
 This endpoint is intended to be used to record the _planting_ of a plant in a garden after it has been added through the plant discover page.
 
 ---
+
+Code Example Screenshots
+
+Consuming the geoapify service to obtain latitude and longitude for a zipcode
+<img src="doc/readme_images/location_service.png" width="700px">
+
+Serializing plant information for the frontend
+<img src="doc/readme_images/plant_serializer.png" width="700px">
+
+An example of one of our ActiveRecord models
+<img src="doc/readme_images/plot_model.png" width="700px">
+
+The rake task used to populate our plants table, coming from USDA Plants database
+<img src="doc/readme_images/rake_task.png" width="700px">
+
+
