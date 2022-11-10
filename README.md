@@ -457,7 +457,7 @@ PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
 
 ```JSON
 {
-  "date_planted": 2022-05-13,
+  "date_planted": 2022-5-13,
   "quantity": 15
 }
 ```
@@ -471,7 +471,7 @@ PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
     "type": "plot_plant",
     "attributes": {
       "quantity": 15,
-      "date_planted": 2022-05-15,
+      "date_planted": 2022-5-15,
       "plant_id": 85,
       "plant_name": "Wild Thornbush"
     }
