@@ -358,10 +358,6 @@ If a plant has null values for `quantity` and `date_planted` then it has been ad
 
 ---
 
-### Post, Delete, Patch Endpoints coming soon...
-
----
-
 ### **Create a new garden**
 
 POST `/gardens`
@@ -449,7 +445,7 @@ The response should match a GET `/gardens/<garden_id>/plots/<plot_id>` request r
 
 **Notes:**
 
-The intension of this endpoint is to add plants to a plot, but it could also be passed a "name" in the JSON body to update the name.
+The intention of this endpoint is to add plants to a plot, but it could also be passed a "name" in the JSON body to update the name.
 
 ---
 
