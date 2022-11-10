@@ -49,7 +49,13 @@ git clone git@github.com:demeter-project/demeter-be.git
 
 bundle install
 
-rails db:{drop,create,migrate,seed}
+rails db:{drop,create,migrate}
+
+#load plant data from usda csv file:
+rails csv_load:native_plants
+
+#load test user garden/plots/plants (requires plant csv to be loaded):
+rails db:seed
 
 rails s
 ```
