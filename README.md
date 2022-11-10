@@ -25,7 +25,7 @@ The app also consumes two external APIs and consolidates the data to be consumed
 
 [Front End Repository](https://github.com/demeter-project/demeter-fe)
 
-[Application Deployed on Heroku](https://demeter-fe.herokuapp.com/)
+[Application Deployed on Heroku](https://en-root.herokuapp.com/)
 
 ---
 
@@ -49,7 +49,13 @@ git clone git@github.com:demeter-project/demeter-be.git
 
 bundle install
 
-rails db:{drop,create,migrate,seed}
+rails db:{drop,create,migrate}
+
+#load plant data from usda csv file:
+rails csv_load:native_plants
+
+#load test user garden/plots/plants (requires plant csv to be loaded):
+rails db:seed
 
 rails s
 ```
@@ -457,7 +463,7 @@ PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
 
 ```JSON
 {
-  "date_planted": 2022-05-13,
+  "date_planted": 2022-5-13,
   "quantity": 15
 }
 ```
@@ -471,7 +477,7 @@ PATCH `gardens/<garden_id>/plots/<plot_id>/plot_plants/<plot_plant_id>`
     "type": "plot_plant",
     "attributes": {
       "quantity": 15,
-      "date_planted": 2022-05-15,
+      "date_planted": 2022-5-15,
       "plant_id": 85,
       "plant_name": "Wild Thornbush"
     }
