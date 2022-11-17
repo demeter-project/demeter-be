@@ -28,8 +28,22 @@ RSpec.describe 'Garden API' do
         expect(garden[:data][:attributes][:weather_forecast]).to be_an(Array)
         day = garden[:data][:attributes][:weather_forecast].first
         expect(day).to be_a(Hash)
-        expect(day.count).to eq(13)
-        expect(day).to have_key(:temperature)
+        expect(day.count).to eq(4)
+        expect(day).to have_key(:temp)
+      end
+
+      it 'returns nil for weather forecast if theres an issue with the weather api', :vcr do
+        garden = Garden.create!(name: "My Garden", zip_code: '60647', state_code: 'IL', user_id: 1)
+        
+        stub_const 'ENV', ENV.to_h.merge('open_weather_key' => 'thisisabadapikey')
+
+        get "/api/v1/gardens/#{garden.id}"
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+        garden = JSON.parse(response.body, symbolize_names: true)
+
+        expect(garden[:data][:attributes][:weather_forecast]).to be nil
       end
     end
   end

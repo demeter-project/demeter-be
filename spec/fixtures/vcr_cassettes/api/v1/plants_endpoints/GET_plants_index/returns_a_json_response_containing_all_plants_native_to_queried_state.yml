@@ -25,7 +25,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Wed, 09 Nov 2022 18:35:59 GMT
+      - Thu, 17 Nov 2022 00:27:29 GMT
       Last-Modified:
       - Sat, 15 Apr 2017 04:57:29 GMT
       Etag:
@@ -39,16 +39,16 @@ http_interactions:
       X-Cache:
       - Hit from cloudfront
       Via:
-      - 1.1 5bf69ea12932bf924b52d57ed5314c14.cloudfront.net (CloudFront)
+      - 1.1 27fe6f224e0cfa3f3a446471ee256e56.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
-      - DFW53-C1
+      - SEA73-P2
       X-Amz-Cf-Id:
-      - M9AMXa6VrzSkUZEHRsTMmfSFUXvCtYy_CjMpCaBE8Q4Ohk7V8CJazg==
+      - uURFZXXmJst9c83C3B8jXScVZPM6_nbrwClRkD_zCDeGqmQiepK5Sg==
       Age:
-      - '5321'
+      - '12'
     body:
       encoding: UTF-8
       string: '{"zone": "5a", "coordinates": {"lat": 44.48, "lon": -73.27}, "temperature_range":
         "-20 to -15"}'
-  recorded_at: Wed, 09 Nov 2022 20:04:39 GMT
+  recorded_at: Thu, 17 Nov 2022 00:27:40 GMT
 recorded_with: VCR 6.1.0

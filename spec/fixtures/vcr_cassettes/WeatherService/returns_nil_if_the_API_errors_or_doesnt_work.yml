@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=,US
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=49643,US
     body:
       encoding: US-ASCII
       string: ''
@@ -15,21 +15,21 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 401
+      message: Unauthorized
     headers:
       Server:
       - openresty
       Date:
-      - Thu, 17 Nov 2022 00:27:31 GMT
+      - Thu, 17 Nov 2022 00:27:47 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '42'
+      - '108'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/geo/1.0/zip?zip=%2cus"
+      - "/geo/1.0/zip?zip=49643%2cus"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -38,11 +38,12 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"cod":"400","message":"invalid zip code"}'
-  recorded_at: Thu, 17 Nov 2022 00:27:31 GMT
+      string: '{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401
+        for more info."}'
+  recorded_at: Thu, 17 Nov 2022 00:27:47 GMT
 - request:
     method: get
-    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=,US
+    uri: http://api.openweathermap.org/data/2.5/forecast?appid=<open_weather_key>&lat&lon&units=imperial
     body:
       encoding: US-ASCII
       string: ''
@@ -55,21 +56,21 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 401
+      message: Unauthorized
     headers:
       Server:
       - openresty
       Date:
-      - Thu, 17 Nov 2022 00:27:31 GMT
+      - Thu, 17 Nov 2022 00:27:47 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '42'
+      - '108'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/geo/1.0/zip?zip=%2cus"
+      - "/data/2.5/forecast?lat=&lon=&units=imperial"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -78,6 +79,7 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"cod":"400","message":"invalid zip code"}'
-  recorded_at: Thu, 17 Nov 2022 00:27:31 GMT
+      string: '{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401
+        for more info."}'
+  recorded_at: Thu, 17 Nov 2022 00:27:47 GMT
 recorded_with: VCR 6.1.0

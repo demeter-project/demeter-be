@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=,US
     body:
       encoding: US-ASCII
       string: ''
@@ -18,48 +18,26 @@ http_interactions:
       code: 400
       message: Bad Request
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 19:57:56 GMT
+      - Thu, 17 Nov 2022 00:27:36 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '92'
+      - '42'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=GXU4WlVFYy5snjDiyUy8JasZJsJRbtNqsFY%2BlJDXloCNyz5SHyDBe%2FZTgbazGdwFpkWZ%2FpY5pNb1LXzm1Z5sOmHpctHpd8sFpvaC2K7KLiqz7HtvbNmtkb7EIJBcu4%2BCM94%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 76791ecccc7d291c-ORD
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
       encoding: UTF-8
-      string: '{"statusCode":400,"error":"Bad Request","message":"\"postcode\" is
-        not allowed to be empty"}'
-  recorded_at: Wed, 09 Nov 2022 19:57:56 GMT
+      string: '{"cod":"400","message":"invalid zip code"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:36 GMT
 recorded_with: VCR 6.1.0

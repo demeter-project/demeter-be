@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=05408
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=05408,US
     body:
       encoding: US-ASCII
       string: ''
@@ -18,56 +18,31 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 20:33:43 GMT
+      - Thu, 17 Nov 2022 00:27:38 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '78'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=05408%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=59XDt0LsWxVPwDBO%2B0kotOGUM2odX%2BMg3TWG8QwXfBNBHH%2Bn2FdESHXWoHvRfEBNqE%2BTrW48AqD6INSI8s2MUhtQX6R1w%2BGsR2KZEyrQsmt94%2FPc6DDlf%2B%2Bl6gZw3EiIl68%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 767953353b83061b-IAD
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjaXR5IjoiQnVybGluZ3RvbiIsImNvdW50eSI6IkNoaXR0ZW5kZW4gQ291bnR5Iiwic3RhdGUiOiJWZXJtb250IiwicG9zdGNvZGUiOiIwNTQwOCIsImNvdW50cnkiOiJVbml0ZWQgU3RhdGVzIiwiY291bnRyeV9jb2RlIjoidXMiLCJkYXRhc291cmNlIjp7InNvdXJjZW5hbWUiOiJvcGVuc3RyZWV0bWFwIiwiYXR0cmlidXRpb24iOiLCqSBPcGVuU3RyZWV0TWFwIGNvbnRyaWJ1dG9ycyIsImxpY2Vuc2UiOiJPcGVuIERhdGFiYXNlIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQifSwibG9uIjotNzMuMjQ5NzgzMTkyLCJsYXQiOjQ0LjUxMTM1ODU3NiwicGFyZW50X2FzX3BsYWNlX2lkIjp0cnVlLCJmb3JtYXR0ZWQiOiJCdXJsaW5ndG9uLCBWVCAwNTQwOCwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiYWRkcmVzc19saW5lMSI6IkJ1cmxpbmd0b24sIFZUIDA1NDA4IiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL05ld19Zb3JrIiwib2Zmc2V0X1NURCI6Ii0wNTowMCIsIm9mZnNldF9TVERfc2Vjb25kcyI6LTE4MDAwLCJvZmZzZXRfRFNUIjoiLTA0OjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjotMTQ0MDAsImFiYnJldmlhdGlvbl9TVEQiOiJFU1QiLCJhYmJyZXZpYXRpb25fRFNUIjoiRURUIn0sInJhbmsiOnsicG9wdWxhcml0eSI6My43MTgyMTUyMDcyOTM3MTQsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MWMwMmVhNDcyZmM0ZjUyYzA1OTdkMzlhNDMyNzQ0MTQ2NDBmMDAxMDFmOTAxOWYwOTAzMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy03My4yNDk3ODMxOTIsNDQuNTExMzU4NTc2XX19XSwicXVlcnkiOnsidGV4dCI6IjA1NDA4IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiMDU0MDgiLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Wed, 09 Nov 2022 20:33:43 GMT
+      encoding: UTF-8
+      string: '{"zip":"05408","name":"Burlington","lat":44.512,"lon":-73.2492,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:38 GMT
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=05408
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=05408,US
     body:
       encoding: US-ASCII
       string: ''
@@ -83,56 +58,31 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 20:33:45 GMT
+      - Thu, 17 Nov 2022 00:27:38 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '78'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=05408%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=L2x55SwS3EVdS4TsRKCwrip%2BNg3ev0lXFtmRQBKo8QaUPM%2FMmmWpUVqAaY68XX0OsS8HEGJZI9GZW3XjSw5nxNzo3z67zPetKuqHwAo5BznnPTcCIxZR2T1QSpSN4i%2BAh1g%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 7679533c08e9b0fa-ATL
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjaXR5IjoiQnVybGluZ3RvbiIsImNvdW50eSI6IkNoaXR0ZW5kZW4gQ291bnR5Iiwic3RhdGUiOiJWZXJtb250IiwicG9zdGNvZGUiOiIwNTQwOCIsImNvdW50cnkiOiJVbml0ZWQgU3RhdGVzIiwiY291bnRyeV9jb2RlIjoidXMiLCJkYXRhc291cmNlIjp7InNvdXJjZW5hbWUiOiJvcGVuc3RyZWV0bWFwIiwiYXR0cmlidXRpb24iOiLCqSBPcGVuU3RyZWV0TWFwIGNvbnRyaWJ1dG9ycyIsImxpY2Vuc2UiOiJPcGVuIERhdGFiYXNlIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQifSwibG9uIjotNzMuMjQ5NzgzMTkyLCJsYXQiOjQ0LjUxMTM1ODU3NiwicGFyZW50X2FzX3BsYWNlX2lkIjp0cnVlLCJmb3JtYXR0ZWQiOiJCdXJsaW5ndG9uLCBWVCAwNTQwOCwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiYWRkcmVzc19saW5lMSI6IkJ1cmxpbmd0b24sIFZUIDA1NDA4IiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL05ld19Zb3JrIiwib2Zmc2V0X1NURCI6Ii0wNTowMCIsIm9mZnNldF9TVERfc2Vjb25kcyI6LTE4MDAwLCJvZmZzZXRfRFNUIjoiLTA0OjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjotMTQ0MDAsImFiYnJldmlhdGlvbl9TVEQiOiJFU1QiLCJhYmJyZXZpYXRpb25fRFNUIjoiRURUIn0sInJhbmsiOnsicG9wdWxhcml0eSI6My43MTgyMTUyMDcyOTM3MTQsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MWMwMmVhNDcyZmM0ZjUyYzA1OTdkMzlhNDMyNzQ0MTQ2NDBmMDAxMDFmOTAxOWYwOTAzMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy03My4yNDk3ODMxOTIsNDQuNTExMzU4NTc2XX19XSwicXVlcnkiOnsidGV4dCI6IjA1NDA4IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiMDU0MDgiLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Wed, 09 Nov 2022 20:33:44 GMT
+      encoding: UTF-8
+      string: '{"zip":"05408","name":"Burlington","lat":44.512,"lon":-73.2492,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:38 GMT
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=05408
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=05408,US
     body:
       encoding: US-ASCII
       string: ''
@@ -148,56 +98,31 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 20:33:46 GMT
+      - Thu, 17 Nov 2022 00:27:38 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '78'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=05408%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wClfi2pUeYyINNou6mfxgZogESwdpGB8iiAuWw7QzwJLaGykNhTNfQ08Y9EEowax%2FTyMl15uhg57Whag1IfQ66oHAGnvCjh%2BkMYRACYqlJMe%2BkFpN1KcD0bbWQkLS5tAQnQ%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 76795343a99e1733-IAD
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjaXR5IjoiQnVybGluZ3RvbiIsImNvdW50eSI6IkNoaXR0ZW5kZW4gQ291bnR5Iiwic3RhdGUiOiJWZXJtb250IiwicG9zdGNvZGUiOiIwNTQwOCIsImNvdW50cnkiOiJVbml0ZWQgU3RhdGVzIiwiY291bnRyeV9jb2RlIjoidXMiLCJkYXRhc291cmNlIjp7InNvdXJjZW5hbWUiOiJvcGVuc3RyZWV0bWFwIiwiYXR0cmlidXRpb24iOiLCqSBPcGVuU3RyZWV0TWFwIGNvbnRyaWJ1dG9ycyIsImxpY2Vuc2UiOiJPcGVuIERhdGFiYXNlIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQifSwibG9uIjotNzMuMjQ5NzgzMTkyLCJsYXQiOjQ0LjUxMTM1ODU3NiwicGFyZW50X2FzX3BsYWNlX2lkIjp0cnVlLCJmb3JtYXR0ZWQiOiJCdXJsaW5ndG9uLCBWVCAwNTQwOCwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiYWRkcmVzc19saW5lMSI6IkJ1cmxpbmd0b24sIFZUIDA1NDA4IiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL05ld19Zb3JrIiwib2Zmc2V0X1NURCI6Ii0wNTowMCIsIm9mZnNldF9TVERfc2Vjb25kcyI6LTE4MDAwLCJvZmZzZXRfRFNUIjoiLTA0OjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjotMTQ0MDAsImFiYnJldmlhdGlvbl9TVEQiOiJFU1QiLCJhYmJyZXZpYXRpb25fRFNUIjoiRURUIn0sInJhbmsiOnsicG9wdWxhcml0eSI6My43MTgyMTUyMDcyOTM3MTQsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MWMwMmVhNDcyZmM0ZjUyYzA1OTdkMzlhNDMyNzQ0MTQ2NDBmMDAxMDFmOTAxOWYwOTAzMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy03My4yNDk3ODMxOTIsNDQuNTExMzU4NTc2XX19XSwicXVlcnkiOnsidGV4dCI6IjA1NDA4IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiMDU0MDgiLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Wed, 09 Nov 2022 20:33:46 GMT
+      encoding: UTF-8
+      string: '{"zip":"05408","name":"Burlington","lat":44.512,"lon":-73.2492,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:38 GMT
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=05408
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=05408,US
     body:
       encoding: US-ASCII
       string: ''
@@ -213,56 +138,31 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 20:33:47 GMT
+      - Thu, 17 Nov 2022 00:27:38 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '78'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=05408%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7oNW77C3FVMemZ0NCK7A8KxByiay4BIDU%2B4xjWU4t3KqtzB7CpwVMnVk5YTxzkiIuV8kRXFZk5OsTpIba9W1YzEzSi2yYpt56JMkTBoG6D04xm6A3V5VGBXLmV7ypk056g0%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 7679534b3f1ce716-DFW
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjaXR5IjoiQnVybGluZ3RvbiIsImNvdW50eSI6IkNoaXR0ZW5kZW4gQ291bnR5Iiwic3RhdGUiOiJWZXJtb250IiwicG9zdGNvZGUiOiIwNTQwOCIsImNvdW50cnkiOiJVbml0ZWQgU3RhdGVzIiwiY291bnRyeV9jb2RlIjoidXMiLCJkYXRhc291cmNlIjp7InNvdXJjZW5hbWUiOiJvcGVuc3RyZWV0bWFwIiwiYXR0cmlidXRpb24iOiLCqSBPcGVuU3RyZWV0TWFwIGNvbnRyaWJ1dG9ycyIsImxpY2Vuc2UiOiJPcGVuIERhdGFiYXNlIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQifSwibG9uIjotNzMuMjQ5NzgzMTkyLCJsYXQiOjQ0LjUxMTM1ODU3NiwicGFyZW50X2FzX3BsYWNlX2lkIjp0cnVlLCJmb3JtYXR0ZWQiOiJCdXJsaW5ndG9uLCBWVCAwNTQwOCwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiYWRkcmVzc19saW5lMSI6IkJ1cmxpbmd0b24sIFZUIDA1NDA4IiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL05ld19Zb3JrIiwib2Zmc2V0X1NURCI6Ii0wNTowMCIsIm9mZnNldF9TVERfc2Vjb25kcyI6LTE4MDAwLCJvZmZzZXRfRFNUIjoiLTA0OjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjotMTQ0MDAsImFiYnJldmlhdGlvbl9TVEQiOiJFU1QiLCJhYmJyZXZpYXRpb25fRFNUIjoiRURUIn0sInJhbmsiOnsicG9wdWxhcml0eSI6My43MTgyMTUyMDcyOTM3MTQsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MWMwMmVhNDcyZmM0ZjUyYzA1OTdkMzlhNDMyNzQ0MTQ2NDBmMDAxMDFmOTAxOWYwOTAzMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy03My4yNDk3ODMxOTIsNDQuNTExMzU4NTc2XX19XSwicXVlcnkiOnsidGV4dCI6IjA1NDA4IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiMDU0MDgiLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Wed, 09 Nov 2022 20:33:47 GMT
+      encoding: UTF-8
+      string: '{"zip":"05408","name":"Burlington","lat":44.512,"lon":-73.2492,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:38 GMT
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=05408
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=05408,US
     body:
       encoding: US-ASCII
       string: ''
@@ -278,51 +178,26 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 20:33:48 GMT
+      - Thu, 17 Nov 2022 00:27:39 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '78'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=05408%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=QZZ4LTVmY2tFc%2FGFwLjoIXh2V5q83pYm%2FN%2BQMRxce6D3XOMydJtZCU2eONiPodiwEU%2FjtEdWxixO0k9A1i8HkxnRkyR4ugNV3rlz3l%2FqOHutOP5%2FyIwlvkCyC5FTvOdHn%2FY%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 76795350ebd6288b-DFW
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjaXR5IjoiQnVybGluZ3RvbiIsImNvdW50eSI6IkNoaXR0ZW5kZW4gQ291bnR5Iiwic3RhdGUiOiJWZXJtb250IiwicG9zdGNvZGUiOiIwNTQwOCIsImNvdW50cnkiOiJVbml0ZWQgU3RhdGVzIiwiY291bnRyeV9jb2RlIjoidXMiLCJkYXRhc291cmNlIjp7InNvdXJjZW5hbWUiOiJvcGVuc3RyZWV0bWFwIiwiYXR0cmlidXRpb24iOiLCqSBPcGVuU3RyZWV0TWFwIGNvbnRyaWJ1dG9ycyIsImxpY2Vuc2UiOiJPcGVuIERhdGFiYXNlIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQifSwibG9uIjotNzMuMjQ5NzgzMTkyLCJsYXQiOjQ0LjUxMTM1ODU3NiwicGFyZW50X2FzX3BsYWNlX2lkIjp0cnVlLCJmb3JtYXR0ZWQiOiJCdXJsaW5ndG9uLCBWVCAwNTQwOCwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiYWRkcmVzc19saW5lMSI6IkJ1cmxpbmd0b24sIFZUIDA1NDA4IiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL05ld19Zb3JrIiwib2Zmc2V0X1NURCI6Ii0wNTowMCIsIm9mZnNldF9TVERfc2Vjb25kcyI6LTE4MDAwLCJvZmZzZXRfRFNUIjoiLTA0OjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjotMTQ0MDAsImFiYnJldmlhdGlvbl9TVEQiOiJFU1QiLCJhYmJyZXZpYXRpb25fRFNUIjoiRURUIn0sInJhbmsiOnsicG9wdWxhcml0eSI6My43MTgyMTUyMDcyOTM3MTQsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MWMwMmVhNDcyZmM0ZjUyYzA1OTdkMzlhNDMyNzQ0MTQ2NDBmMDAxMDFmOTAxOWYwOTAzMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy03My4yNDk3ODMxOTIsNDQuNTExMzU4NTc2XX19XSwicXVlcnkiOnsidGV4dCI6IjA1NDA4IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiMDU0MDgiLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Wed, 09 Nov 2022 20:33:48 GMT
+      encoding: UTF-8
+      string: '{"zip":"05408","name":"Burlington","lat":44.512,"lon":-73.2492,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:39 GMT
 recorded_with: VCR 6.1.0
