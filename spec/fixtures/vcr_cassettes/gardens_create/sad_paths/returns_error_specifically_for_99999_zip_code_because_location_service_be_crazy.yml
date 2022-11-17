@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=99999
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=99999,US
     body:
       encoding: US-ASCII
       string: ''
@@ -15,54 +15,29 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 19:57:59 GMT
+      - Thu, 17 Nov 2022 00:27:37 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '35'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=99999%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=SUFrhxNFQMainuwy%2FUG0ofZZ%2B%2FWw0IWcN00mVWhYWUt5akckM6ZpM9c%2FXBW6i5RHfMUCfIoPgE6gMGzAQrjVJA9mAnALZx2P77u%2Bw0IPLIxI81s1XNOwI1YVyvoEHa0oNpY%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 76791edbadd12bf9-ORD
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjb3VudHkiOiJNb3JnYW4gQ291bnR5Iiwic3RhdGUiOiJPaGlvIiwicG9zdGNvZGUiOiI5OTk5OSIsImNvdW50cnkiOiJVbml0ZWQgU3RhdGVzIiwiY291bnRyeV9jb2RlIjoidXMiLCJkYXRhc291cmNlIjp7InNvdXJjZW5hbWUiOiJvcGVuc3RyZWV0bWFwIiwiYXR0cmlidXRpb24iOiLCqSBPcGVuU3RyZWV0TWFwIGNvbnRyaWJ1dG9ycyIsImxpY2Vuc2UiOiJPcGVuIERhdGFiYXNlIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQifSwibG9uIjotODIuMDcwMzAxOTU2LCJsYXQiOjM5Ljc1NjU1MDQ5NCwicGFyZW50X2FzX3BsYWNlX2lkIjp0cnVlLCJmb3JtYXR0ZWQiOiJNb3JnYW4gQ291bnR5LCBPSCA5OTk5OSwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiYWRkcmVzc19saW5lMSI6Ik1vcmdhbiBDb3VudHksIE9IIDk5OTk5IiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL05ld19Zb3JrIiwib2Zmc2V0X1NURCI6Ii0wNTowMCIsIm9mZnNldF9TVERfc2Vjb25kcyI6LTE4MDAwLCJvZmZzZXRfRFNUIjoiLTA0OjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjotMTQ0MDAsImFiYnJldmlhdGlvbl9TVEQiOiJFU1QiLCJhYmJyZXZpYXRpb25fRFNUIjoiRURUIn0sInJhbmsiOnsicG9wdWxhcml0eSI6MS43NzQ4NjEzNjkzNDU3MjYsImNvbmZpZGVuY2UiOjEsImNvbmZpZGVuY2VfY2l0eV9sZXZlbCI6MSwibWF0Y2hfdHlwZSI6ImZ1bGxfbWF0Y2gifSwicGxhY2VfaWQiOiI1MTU5NzdjNmQzN2Y4NDU0YzA1OTU3YzA4NmE1ZDZlMDQzNDBmMDAxMDFmOTAxYzZlNzBkMDAwMDAwMDAwMGMwMDIwNyJ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy04Mi4wNzAzMDE5NTYsMzkuNzU2NTUwNDk0XX19XSwicXVlcnkiOnsidGV4dCI6Ijk5OTk5IiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiOTk5OTkiLCJleHBlY3RlZF90eXBlIjoidW5rbm93biJ9fX0=
-  recorded_at: Wed, 09 Nov 2022 19:57:59 GMT
+      encoding: UTF-8
+      string: '{"cod":"404","message":"not found"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:37 GMT
 recorded_with: VCR 6.1.0

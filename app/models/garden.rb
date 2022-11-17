@@ -10,8 +10,8 @@ class Garden < ApplicationRecord
   private
 
   def zip_code_can_get_location
-    response = LocationService.get_lat_lon(zip_code)
-    if response[:features].blank? || zip_code =='99999'
+    response = WeatherService.get_coordinates(zip_code)
+    if response[:cod]
       errors.add(:zip_code, "cannot be matched to valid US location")
     end
   end

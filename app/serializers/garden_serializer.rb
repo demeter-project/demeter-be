@@ -5,7 +5,7 @@ class GardenSerializer
 
   attribute :weather_forecast do |object, params|
     if params[:weather].present? && params[:weather]
-      WeatherFacade.get_forecast(object.zip_code)
+      WeatherFacade.forecast(object.zip_code)
     end
   end
 end

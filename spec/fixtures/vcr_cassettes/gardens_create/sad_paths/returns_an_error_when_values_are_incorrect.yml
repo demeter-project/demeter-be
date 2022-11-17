@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=5408
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=5408,US
     body:
       encoding: US-ASCII
       string: ''
@@ -15,53 +15,29 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 19:57:57 GMT
+      - Thu, 17 Nov 2022 00:27:37 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '35'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=5408%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=LfDfVi93vqXYYBbL%2F75Ton2NnYFyRY6wgBIB5WqxRIt6ckrfCN94bsZZPtzgG71kNnu%2BPZdzyiAI9Mma2ph7pIsHxPqCZFlq46YycPJ6k2ZQXaBl2LEIppCeR1XPTOWq%2BSs%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 76791ed0ab337fa4-ORD
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: '{"type":"FeatureCollection","features":[],"query":{"text":"5408","parsed":{"postcode":"5408","expected_type":"unknown"}}}'
-  recorded_at: Wed, 09 Nov 2022 19:57:57 GMT
+      encoding: UTF-8
+      string: '{"cod":"404","message":"not found"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:37 GMT
 recorded_with: VCR 6.1.0

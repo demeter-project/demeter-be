@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=xxxx,US
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=b9f980f3993c2138e1249d5d3cb53455&zip=60647,US
     body:
       encoding: US-ASCII
       string: ''
@@ -15,21 +15,21 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 200
+      message: OK
     headers:
       Server:
       - openresty
       Date:
-      - Thu, 17 Nov 2022 00:27:33 GMT
+      - Thu, 17 Nov 2022 00:27:39 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '35'
+      - '76'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/geo/1.0/zip?zip=xxxx%2cus"
+      - "/geo/1.0/zip?zip=60647%2cus"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -38,11 +38,11 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"cod":"404","message":"not found"}'
-  recorded_at: Thu, 17 Nov 2022 00:27:33 GMT
+      string: '{"zip":"60647","name":"Chicago","lat":41.9209,"lon":-87.7043,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:39 GMT
 - request:
     method: get
-    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=xxxxx,US
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=60647,US
     body:
       encoding: US-ASCII
       string: ''
@@ -55,21 +55,21 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 401
+      message: Unauthorized
     headers:
       Server:
       - openresty
       Date:
-      - Thu, 17 Nov 2022 00:27:33 GMT
+      - Thu, 17 Nov 2022 00:27:40 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '35'
+      - '108'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/geo/1.0/zip?zip=xxxxx%2cus"
+      - "/geo/1.0/zip?zip=60647%2cus"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -78,11 +78,12 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"cod":"404","message":"not found"}'
-  recorded_at: Thu, 17 Nov 2022 00:27:33 GMT
+      string: '{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401
+        for more info."}'
+  recorded_at: Thu, 17 Nov 2022 00:27:40 GMT
 - request:
     method: get
-    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=xxxxxx,US
+    uri: http://api.openweathermap.org/data/2.5/forecast?appid=<open_weather_key>&lat&lon&units=imperial
     body:
       encoding: US-ASCII
       string: ''
@@ -95,21 +96,21 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 401
+      message: Unauthorized
     headers:
       Server:
       - openresty
       Date:
-      - Thu, 17 Nov 2022 00:27:33 GMT
+      - Thu, 17 Nov 2022 00:27:40 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '35'
+      - '108'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/geo/1.0/zip?zip=xxxxxx%2cus"
+      - "/data/2.5/forecast?lat=&lon=&units=imperial"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -118,46 +119,7 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"cod":"404","message":"not found"}'
-  recorded_at: Thu, 17 Nov 2022 00:27:33 GMT
-- request:
-    method: get
-    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=xxxxx,US
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v2.6.0
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - openresty
-      Date:
-      - Thu, 17 Nov 2022 00:27:33 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Content-Length:
-      - '35'
-      Connection:
-      - keep-alive
-      X-Cache-Key:
-      - "/geo/1.0/zip?zip=xxxxx%2cus"
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST
-    body:
-      encoding: UTF-8
-      string: '{"cod":"404","message":"not found"}'
-  recorded_at: Thu, 17 Nov 2022 00:27:33 GMT
+      string: '{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401
+        for more info."}'
+  recorded_at: Thu, 17 Nov 2022 00:27:40 GMT
 recorded_with: VCR 6.1.0

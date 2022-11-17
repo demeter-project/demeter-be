@@ -1,16 +1,8 @@
 class WeatherFacade
-  def self.get_forecast(zip_code)
-    response = LocationService.get_lat_lon(zip_code)
-    if response[:features].empty?
-      return nil
-    else
-      lat_lon = response[:features][0][:properties]
-      latitude = lat_lon[:lat].round(2)
-      longitude = lat_lon[:lon].round(2)
-      forecast = WeatherService.get_forecast(latitude, longitude)
-      forecast[:properties][:periods].map do |day|
-        Weather.new(day)
-      end
-    end
+  def self.forecast(zip_code)
+    forecast_data = WeatherService.get_forecast(zip_code)
+    return nil if !forecast_data
+    weather = forecast_data[:list][0..20].map { |weather_period| Weather.new(weather_period) }
+    weather.select.with_index{ |weather, i| i % 2 == 0 }
   end
 end

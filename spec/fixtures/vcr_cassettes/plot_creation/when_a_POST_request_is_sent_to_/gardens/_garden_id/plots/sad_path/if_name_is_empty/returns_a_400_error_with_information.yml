@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<location_api>&filter=countrycode:us&postcode=80223
+    uri: http://api.openweathermap.org/geo/1.0/zip?appid=<open_weather_key>&zip=80223,US
     body:
       encoding: US-ASCII
       string: ''
@@ -18,51 +18,26 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - openresty
       Date:
-      - Wed, 09 Nov 2022 20:33:54 GMT
+      - Thu, 17 Nov 2022 00:27:43 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '76'
       Connection:
       - keep-alive
-      Api-Version:
-      - '1.0'
+      X-Cache-Key:
+      - "/geo/1.0/zip?zip=80223%2cus"
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Headers:
-      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
-        access-control-allow-methods, access-control-allow-origin, allow, api-version,
-        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
-        cache-control, etag, last-modified, expires, host, cf-ipcountry, cdn-loop,
-        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
-        cf-connecting-ip, x-forwarded-port
-      Access-Control-Allow-Methods:
-      - GET, POST, DELETE, OPTIONS, PUT
       Access-Control-Allow-Credentials:
       - 'true'
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Cache-Control:
-      - private, max-age=0, no-cache
-      Content-Disposition:
-      - inline; filename=response.geojson
-      Cf-Cache-Status:
-      - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=aAsoCjINppx4ErdiFV9f%2FBbVcJtBZFGDwboNFE8mTAAD8hBXnEgCpxn4hYOmUqrG1tg2LpxWFSTjQ6uYqWLQ%2B8OXlCRKkCQvN9o7U7TmPC74lbnnDCB1rk6zMBqEXYuP4KY%3D"}],"group":"cf-nel","max_age":604800}'
-      Nel:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 767953780f9e173c-IAD
-      Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Access-Control-Allow-Methods:
+      - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InJlc3VsdF90eXBlIjoicG9zdGNvZGUiLCJjaXR5IjoiRGVudmVyIiwic3RhdGUiOiJDb2xvcmFkbyIsInBvc3Rjb2RlIjoiODAyMjMiLCJjb3VudHJ5IjoiVW5pdGVkIFN0YXRlcyIsImNvdW50cnlfY29kZSI6InVzIiwiZGF0YXNvdXJjZSI6eyJzb3VyY2VuYW1lIjoib3BlbnN0cmVldG1hcCIsImF0dHJpYnV0aW9uIjoiwqkgT3BlblN0cmVldE1hcCBjb250cmlidXRvcnMiLCJsaWNlbnNlIjoiT3BlbiBEYXRhYmFzZSBMaWNlbnNlIiwidXJsIjoiaHR0cHM6Ly93d3cub3BlbnN0cmVldG1hcC5vcmcvY29weXJpZ2h0In0sImxvbiI6LTEwNS4wMDMyMjE4NDUsImxhdCI6MzkuNjk5NTcyMjkxLCJwYXJlbnRfYXNfcGxhY2VfaWQiOnRydWUsImZvcm1hdHRlZCI6IkRlbnZlciwgQ08gODAyMjMsIFVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsImFkZHJlc3NfbGluZTEiOiJEZW52ZXIsIENPIDgwMjIzIiwiYWRkcmVzc19saW5lMiI6IlVuaXRlZCBTdGF0ZXMgb2YgQW1lcmljYSIsInRpbWV6b25lIjp7Im5hbWUiOiJBbWVyaWNhL0RlbnZlciIsIm9mZnNldF9TVEQiOiItMDc6MDAiLCJvZmZzZXRfU1REX3NlY29uZHMiOi0yNTIwMCwib2Zmc2V0X0RTVCI6Ii0wNjowMCIsIm9mZnNldF9EU1Rfc2Vjb25kcyI6LTIxNjAwLCJhYmJyZXZpYXRpb25fU1REIjoiTVNUIiwiYWJicmV2aWF0aW9uX0RTVCI6Ik1EVCJ9LCJyYW5rIjp7InBvcHVsYXJpdHkiOjQuOTgwNDQ5MzI4MjI2NDY3LCJjb25maWRlbmNlIjoxLCJjb25maWRlbmNlX2NpdHlfbGV2ZWwiOjEsIm1hdGNoX3R5cGUiOiJmdWxsX21hdGNoIn0sInBsYWNlX2lkIjoiNTExOWJhNjVjOTM0NDA1YWMwNTkzMzg0Yjc5NThiZDk0MzQwZjAwMTAxZjkwMTBiODkxNTAwMDAwMDAwMDBjMDAyMDcifSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlstMTA1LjAwMzIyMTg0NSwzOS42OTk1NzIyOTFdfX1dLCJxdWVyeSI6eyJ0ZXh0IjoiODAyMjMiLCJwYXJzZWQiOnsicG9zdGNvZGUiOiI4MDIyMyIsImV4cGVjdGVkX3R5cGUiOiJ1bmtub3duIn19fQ==
-  recorded_at: Wed, 09 Nov 2022 20:33:54 GMT
+      encoding: UTF-8
+      string: '{"zip":"80223","name":"Denver","lat":39.7002,"lon":-105.0028,"country":"US"}'
+  recorded_at: Thu, 17 Nov 2022 00:27:43 GMT
 recorded_with: VCR 6.1.0
