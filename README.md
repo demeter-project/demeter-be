@@ -16,7 +16,7 @@ This app includes a PostgreSQL database that stores garden, plot, and plant info
 
 The app also consumes two external APIs and consolidates the data to be consumed by our front end:
 
-- Weather information for a user's garden is provided by consuming the [NOAA Weather API](https://www.noaa.gov/)
+- Weather information for a user's garden is provided by consuming the [OpenWeatherMap API](https://openweathermap.org/)
 - USDA Plant Hardiness Zones are provided by https://phzmapi.org/ which is an API provided by Oregon State PRISM Climate Group
 
 ---
@@ -223,37 +223,19 @@ GET `/gardens/<garden_id>`
       "zip_code": 80023,
       "state_code": "CO",
       "weather_forecast": [
-          {
-              "id": 1,
-              "day":"Tonight",
-              "start_time": "2022-11-01T19:00:00-05:00",
-              "end_time": "2022-11-02T06:00:00-05:00",
-              "day_time": false,
-              "temperature": 54,
-              "temperature_unit": "F",
-              "temperature_trend": null,
-              "wind_speed": "15 mph",
-              "wind_direction": "S",
-              "icon": "https://api.weather.gov/icons/land/night/skc?size=medium",
-              "short_forecast": "Clear",
-              "detailed_forecast": "Clear, with a low around 54. South wind around 15 mph, with gusts as high as 25 mph."
-          },
-          {
-              "id": 2,
-              "day": "Wednesday",
-              "start_time": "2022-11-02T06:00:00-05:00",
-              "end_time": "2022-11-02T18:00:00-05:00",
-              "daytime": true,
-              "temperature": 76,
-              "temperature_unit": "F",
-              "temperature_trend": null,
-              "wind_speed": "15 to 25 mph",
-              "wind_direction": "S",
-              "icon": "https://api.weather.gov/icons/land/day/wind_few?size=medium",
-              "short_forecast": "Sunny",
-              "detailed_forecast": "Sunny, with a high near 76. South wind 15 to 25 mph, with gusts as high as 40 mph."
+        {
+          "period": "2022-11-17T03:00:00.000Z",
+          "temp": 32.56,
+          "weather": "Few Clouds",
+          "icon_path": "http://openweathermap.org/img/wn/02n.png"
         },
-        **etc...(includes 7 days in actual response)**
+        {
+          "period": "2022-11-17T09:00:00.000Z",
+          "temp": 30.7,
+          "weather": "Overcast Clouds",
+          "icon_path": "http://openweathermap.org/img/wn/04n.png"
+        },
+        **etc...(includes 10 weather periods in actual response)**
       ]
     }
   }
@@ -493,9 +475,6 @@ This endpoint is intended to be used to record the _planting_ of a plant in a ga
 
 Code Example Screenshots
 
-Consuming the geoapify service to obtain latitude and longitude for a zipcode
-<img src="doc/readme_images/location_service.png" width="700px">
-
 Serializing plant information for the frontend
 <img src="doc/readme_images/plant_serializer.png" width="700px">
 
@@ -504,5 +483,3 @@ An example of one of our ActiveRecord models
 
 The rake task used to populate our plants table, coming from USDA Plants database
 <img src="doc/readme_images/rake_task.png" width="700px">
-
-
